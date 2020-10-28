@@ -15,7 +15,7 @@ namespace StudentManagement.DAL
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Manager> Managers { get; set; }
-        public DbSet<Class> Classes { get; set; }
+        public DbSet<Class> Classes { get; set; } 
         public DbSet<Test> Tests { get; set; }
         public DbSet<Answer> Answers { get; set; }
 
