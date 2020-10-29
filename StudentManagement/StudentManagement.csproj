@@ -134,9 +134,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010281416040_hieunt.cs" />
-    <Compile Include="Migrations\202010281416040_hieunt.designer.cs">
-      <DependentUpon>202010281416040_hieunt.cs</DependentUpon>
+    <Compile Include="Migrations\202010290647523_initial.cs" />
+    <Compile Include="Migrations\202010290647523_initial.designer.cs">
+      <DependentUpon>202010290647523_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010290655401_addData.cs" />
+    <Compile Include="Migrations\202010290655401_addData.designer.cs">
+      <DependentUpon>202010290655401_addData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
@@ -204,8 +208,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010281416040_hieunt.resx">
-      <DependentUpon>202010281416040_hieunt.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010290647523_initial.resx">
+      <DependentUpon>202010290647523_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010290655401_addData.resx">
+      <DependentUpon>202010290655401_addData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
