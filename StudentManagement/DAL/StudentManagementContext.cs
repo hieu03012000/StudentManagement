@@ -1,4 +1,5 @@
-﻿using StudentManagement.Models;
+﻿using AutoMapper;
+using StudentManagement.Models;
 using StudentSystem.Models;
 using System;
 using System.Collections.Generic;
