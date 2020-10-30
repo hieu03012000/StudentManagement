@@ -1,17 +1,12 @@
-﻿using StudentManagement.Models.Enum;
+﻿using BusinessObjects.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
-namespace StudentManagement.Models
+namespace BusinessObjects
 {
     public class Class
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ClassID { get; set; }
 
         [Required]
@@ -28,13 +23,11 @@ namespace StudentManagement.Models
 
         public Status Status { get; set; }
 
-        [ForeignKey("Teacher")]
         public string TeacherID { get; set; }
 
         public List<Test> Tests { get; set; }
         public Teacher Teacher { get; set; }
-
-        public virtual List<Student> Students { get; set; }
+        public List<Student> Students { get; set; }
 
     }
 }

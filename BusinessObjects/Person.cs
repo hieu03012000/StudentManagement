@@ -1,17 +1,12 @@
-﻿using StudentManagement.Models.Enum;
-using StudentSystem.Models.Enums;
-using System;
-using System.Collections.Generic;
+﻿using BusinessObjects.Enum;
+using BusinessObjects.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace StudentSystem.Models
+namespace BusinessObjects
 {
 
     public abstract class Person
     {
-        [Key]
         [StringLength(50, MinimumLength = 3)]
         public string Username { get; set; }
 

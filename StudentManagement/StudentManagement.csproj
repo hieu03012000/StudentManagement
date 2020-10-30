@@ -145,28 +145,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAL\StudentManagementContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010290647523_initial.cs" />
-    <Compile Include="Migrations\202010290647523_initial.designer.cs">
-      <DependentUpon>202010290647523_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010290655401_addData.cs" />
-    <Compile Include="Migrations\202010290655401_addData.designer.cs">
-      <DependentUpon>202010290655401_addData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Answer.cs" />
-    <Compile Include="Models\Class.cs" />
-    <Compile Include="Models\Enum\Gender.cs" />
-    <Compile Include="Models\Enum\Status.cs" />
-    <Compile Include="Models\Manager.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\Teacher.cs" />
-    <Compile Include="Models\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,11 +184,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -223,20 +203,20 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010290647523_initial.resx">
-      <DependentUpon>202010290647523_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010290655401_addData.resx">
-      <DependentUpon>202010290655401_addData.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Project>{96d90dcc-b99f-4f02-b50d-0fd5369e94ad}</Project>
+      <Name>BusinessObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLayout\DataObjects.csproj">
       <Project>{8f3d576e-ce2d-474e-9e23-d14b8be8046d}</Project>
       <Name>DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{4994f331-af85-482d-b8da-9c292dff5c56}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

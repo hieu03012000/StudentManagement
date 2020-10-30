@@ -46,6 +46,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.8\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -56,12 +59,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoFactories.cs" />
+    <Compile Include="EF\AnswerDao.cs" />
     <Compile Include="EF\AnswerEntity.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\ClassDao.cs" />
     <Compile Include="EF\ClassEntity.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\DaoFactory.cs" />
+    <Compile Include="EF\DynamicLinq.cs" />
+    <Compile Include="EF\ManagerDao.cs" />
+    <Compile Include="EF\StudentDao.cs" />
+    <Compile Include="EF\TeacherDao.cs" />
+    <Compile Include="EF\TestDao.cs" />
+    <Compile Include="IAnswerDao.cs" />
+    <Compile Include="IManagerDao.cs" />
+    <Compile Include="IStudentDao.cs" />
+    <Compile Include="ITeacherDao.cs" />
+    <Compile Include="ITestDao.cs" />
     <Compile Include="EF\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -83,6 +100,8 @@
     <Compile Include="EF\TestEntity.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="IClassDao.cs" />
+    <Compile Include="IDaoFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Project>{96d90dcc-b99f-4f02-b50d-0fd5369e94ad}</Project>
+      <Name>BusinessObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
