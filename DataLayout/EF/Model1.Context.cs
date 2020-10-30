@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataLayout.EF
+namespace DataObject.EF
 {
     using System;
     using System.Data.Entity;

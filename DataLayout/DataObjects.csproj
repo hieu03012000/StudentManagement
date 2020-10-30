@@ -8,8 +8,8 @@
     <ProjectGuid>{8F3D576E-CE2D-474E-9E23-D14B8BE8046D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataLayout</RootNamespace>
-    <AssemblyName>DataLayout</AssemblyName>
+    <RootNamespace>DataObject</RootNamespace>
+    <AssemblyName>DataObject</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
