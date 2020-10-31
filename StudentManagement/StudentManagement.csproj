@@ -147,11 +147,16 @@
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
+    <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
+    <Compile Include="Code\HtmlHelpers\BreadCrumbHelper.cs" />
+    <Compile Include="Code\Sorting\SortedList.cs" />
+    <Compile Include="Code\Sorting\SorterHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Code\Sorting\ISortable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\style.css" />
