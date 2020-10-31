@@ -14,11 +14,8 @@ namespace StudentManagement.Areas.Manager
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.MapRoute(
-                "Manager_default",
-                "Manager/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+            context.MapRoute("", "teachers/{id}", new { area = "Manager", controller = "Manager", action = "Teacher" });
+            context.MapRoute("", "teachers", new { area = "Manager", controller = "Manager", action = "Teachers" });
         }
     }
 }

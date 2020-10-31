@@ -13,6 +13,7 @@ namespace StudentManagement
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
         }
     }
 }

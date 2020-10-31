@@ -48,8 +48,8 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -144,16 +144,28 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+
     <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
     <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
+
+    <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Manager\Data\PersonModal.cs" />
+    <Compile Include="Areas\Manager\Data\TeacherModal.cs" />
+    <Compile Include="Areas\Manager\Data\TeachersModal.cs" />
+
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
+    <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
+    <Compile Include="Code\HtmlHelpers\BreadCrumbHelper.cs" />
+    <Compile Include="Code\Sorting\SortedList.cs" />
+    <Compile Include="Code\Sorting\SorterHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Code\Sorting\ISortable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\style.css" />
@@ -2007,8 +2019,13 @@
     <Content Include="Assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\vendor\jquery\jquery.slim.min.map" />
+
     <Content Include="Areas\Auth\Views\web.config" />
     <Content Include="Areas\Auth\Views\Auth\Login.cshtml" />
+
+    <Content Include="Areas\Manager\Views\Manager\Teachers.cshtml" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2035,10 +2052,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+
     <Folder Include="Areas\Auth\Data\" />
     <Folder Include="Areas\Auth\Views\Shared\" />
     <Folder Include="Areas\Manager\Controllers\" />
     <Folder Include="Areas\Manager\Data\" />
+
     <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Areas\Student\Controllers\" />
     <Folder Include="Areas\Student\Data\" />
@@ -2073,9 +2092,9 @@
       <Project>{8f3d576e-ce2d-474e-9e23-d14b8be8046d}</Project>
       <Name>DataObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
+    <ProjectReference Include="..\Service\ServiceObject.csproj">
       <Project>{4994f331-af85-482d-b8da-9c292dff5c56}</Project>
-      <Name>Service</Name>
+      <Name>ServiceObject</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
