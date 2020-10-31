@@ -70,13 +70,11 @@
     </Compile>
     <Compile Include="EF\DaoFactory.cs" />
     <Compile Include="EF\ManagerDao.cs" />
-    <Compile Include="EF\PersonDao.cs" />
     <Compile Include="EF\StudentDao.cs" />
     <Compile Include="EF\TeacherDao.cs" />
     <Compile Include="EF\TestDao.cs" />
     <Compile Include="IAnswerDao.cs" />
     <Compile Include="IManagerDao.cs" />
-    <Compile Include="IPersonDao.cs" />
     <Compile Include="IStudentDao.cs" />
     <Compile Include="ITeacherDao.cs" />
     <Compile Include="ITestDao.cs" />

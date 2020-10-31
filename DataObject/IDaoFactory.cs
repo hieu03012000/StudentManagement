@@ -15,6 +15,5 @@ namespace DataObject
         IClassDao ClassDao { get; }
         ITestDao TestDao { get; }
         IAnswerDao AnswerDao { get; }
-        IPersonDao PersonDao { get; }
     }
 }

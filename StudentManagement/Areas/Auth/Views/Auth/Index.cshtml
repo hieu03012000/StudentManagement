@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@model StudentManagement.Areas.Auth.Data.LoginModel
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Student Management - Login</title>
+    <title>Login Page - Student Management</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/Assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,24 +42,27 @@
                             <div class="col-lg-5 d-none d-lg-block">
                                 <img src="~/Assets/img/login.jpg" style="width: 350px" />
                             </div>
-                            <div class="col-lg-7" style="padding:40px 20px">
+                            <div class="col-lg-7" style="padding:40px 20px 0px 20px; text-align:center">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4"><strong>LOGIN</strong></h1>
                                     </div>
                                     <form class="user" method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Username...">
+                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-user", @placeholder = "Enter Username...", @autofocus = "autofocus" })
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user", @placeholder = "Password..." })
                                         </div>
                                         <hr />
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block" />
                                     </form>
+
                                 </div>
+                                @{ if(@Html.ValidationSummary(true) != null) {
+                                        <p>Invalid username or password</p>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
