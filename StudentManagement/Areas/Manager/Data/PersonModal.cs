@@ -1,10 +1,13 @@
 ﻿using BusinessObjects.Enums;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace BusinessObjects
+namespace StudentManagement.Areas.Manager.Data
 {
-
-    public abstract class Person
+    public abstract class PersonModal
     {
         [StringLength(50, MinimumLength = 3)]
         public string Username { get; set; }
