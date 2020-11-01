@@ -14,8 +14,8 @@ namespace StudentManagement.Areas.Manager
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.MapRoute("", "teachers/{id}", new { area = "Manager", controller = "Manager", action = "Teacher" });
-            context.MapRoute("", "teachers", new { area = "Manager", controller = "Manager", action = "Teachers" });
+            context.MapRoute("", "teachers/{id}", new { area = "Manager", controller = "Manager", action = "SearchTeacher" });
+            context.MapRoute("", "teachers", new { area = "Manager", controller = "Manager", action = "SearchTeacher" });
         }
     }
 }

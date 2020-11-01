@@ -26,9 +26,14 @@ namespace ServiceObject
             return teacherDao.GetTeacher(Username);
         }
 
-        public List<Teacher> GetTeachers(string sortExpression)
+        public List<Teacher> GetTeachers(string searchValue, string sortExpression, int page, int pageSize)
         {
-            return teacherDao.GetTeachers(sortExpression);
+            return teacherDao.GetTeachers(searchValue, page, pageSize, sortExpression);
+        }
+
+        public List<Teacher> GetTeachers(string searchValue, string sortExpression)
+        {
+            return teacherDao.GetTeachers(searchValue, sortExpression);
         }
     }
 }

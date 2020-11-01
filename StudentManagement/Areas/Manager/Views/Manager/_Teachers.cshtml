@@ -1,0 +1,32 @@
+﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Manager.Data.TeacherModal>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col" style="width:50px;">No.</th>
+                <th scope="col">Username</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td scope="row">@(++count)</td>
+                        <td scope="row">@item.Username</td>
+                        <td scope="row">@item.Fullname</td>
+                        <td scope="row">@item.Gender</td>
+                        <td scope="row">@item.Phone</td>
+                        <td scope="row">@item.Address</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

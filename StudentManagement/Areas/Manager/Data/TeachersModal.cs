@@ -1,4 +1,4 @@
-﻿using StudentManagement.Code.Sorting;
+﻿using StudentManagement.Code;
 
 namespace StudentManagement.Areas.Manager.Data
 {
