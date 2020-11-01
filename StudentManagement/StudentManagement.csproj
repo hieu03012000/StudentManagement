@@ -146,7 +146,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
     <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
-    <Compile Include="Areas\Auth\Controllers\BaseController.cs" />
     <Compile Include="Areas\Auth\Data\LoginModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\PersonModal.cs" />
@@ -163,6 +162,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Infrastructure\CustomAuthenticationFilter.cs" />
+    <Compile Include="Areas\Infrastructure\CustomAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Sorting\ISortable.cs" />
   </ItemGroup>
@@ -2048,7 +2049,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Auth\Views\Base\" />
     <Folder Include="Areas\Auth\Views\Shared\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Areas\Student\Controllers\" />
