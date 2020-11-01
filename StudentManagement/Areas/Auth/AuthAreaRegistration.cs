@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using BusinessObjects;
+using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Auth
 {
@@ -14,9 +15,19 @@ namespace StudentManagement.Areas.Auth
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            //Login-logout
             context.MapRoute("", "", new { area = "Auth", controller = "Auth", action = "Index" });
             context.MapRoute("", "login", new { area = "Auth", controller = "Auth", action = "Index" });
             context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+
+            //chuc nang
+            context.MapRoute("", "", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+
         }
     }
 }

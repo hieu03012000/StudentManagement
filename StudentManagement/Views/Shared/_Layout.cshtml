@@ -44,22 +44,32 @@
                 <!-- Role Manager -->
                 if (user.Discriminator.Equals("Manager"))
                 {
-                    <form method="get" action="" class="nav-item">
+                    <!-- but show teacher -->
+                    <form method="get" action="teachers" class="nav-item">
                         <button class="nav-link btn btn-block" type="submit">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Teacher</span>
                         </button>
                     </form>
+                    <!-- but show class -->
                     <form method="get" action="" class="nav-item">
                         <button class="nav-link btn btn-block" type="submit">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Class</span>
                         </button>
                     </form>
+                    <!-- but show student -->
                     <form method="get" action="" class="nav-item">
                         <button class="nav-link btn btn-block" type="submit">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Student</span>
+                        </button>
+                    </form>
+                    <!-- but create account -->
+                    <form method="get" action="createAccount" class="nav-item">
+                        <button class="nav-link btn btn-block" type="submit">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Create Account</span>
                         </button>
                     </form>
                 }
@@ -88,15 +98,15 @@
                             <span>Test</span>
                         </button>
                     </form>
-                    }
                 }
-                <!-- Divider -->
-                <hr class="sidebar-divider">
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-                <!-- Dynamic Sidebar -->
-                </div>
+            }
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+            <!-- Dynamic Sidebar -->
+        </div>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
