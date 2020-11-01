@@ -19,7 +19,5 @@ namespace DataObject.EF
         public ITestDao TestDao { get { return new TestDao(); } }
 
         public IAnswerDao AnswerDao { get { return new AnswerDao(); } }
-
-        public IPersonDao PersonDao { get { return new PersonDao(); } }
     }
 }
