@@ -45,59 +45,59 @@
                 if (user.Discriminator.Equals("Manager"))
                 {
                     <!-- but show teacher -->
-                    <form method="get" action="teachers" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="/teachers" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Teacher</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                     <!-- but show class -->
-                    <form method="get" action="classes" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="/classes" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Class</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                     <!-- but show student -->
-                    <form method="get" action="students" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="/students" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Student</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                     <!-- but create account -->
-                    <form method="get" action="createAccount" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="#" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Create Account</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                 }
                 <!-- Role Student -->
                 if (user.Discriminator.Equals("Student"))
                 {
-                    <form method="get" action="" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="#" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Class</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                 }
                 <!-- Role Teacher -->
                 if (user.Discriminator.Equals("Teacher"))
                 {
-                    <form method="get" action="" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="/classes" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Class</span>
-                        </button>
-                    </form>
-                    <form method="get" action="" class="nav-item">
-                        <button class="nav-link btn btn-block" type="submit">
+                        </a>
+                    </div>
+                    <div class="nav-item btn btn-block" type="submit">
+                        <a href="/classes" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Test</span>
-                        </button>
-                    </form>
+                        </a>
+                    </div>
                 }
             }
             <!-- Divider -->

@@ -29,5 +29,7 @@ namespace ServiceObject
 
         List<Class> GetClasses(string searchValue, string sortExpression, int page, int pageSize);
         List<Class> GetClasses(string searchValue, string sortExpression);
+        List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
+        List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression);
     }
 }

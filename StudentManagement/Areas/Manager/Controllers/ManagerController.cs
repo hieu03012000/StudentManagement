@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using StudentManagement.Areas.Infrastructure;
-
+using BusinessObjects;
 
 namespace StudentManagement.Areas.Manager.Controllers
 {
@@ -24,6 +24,9 @@ namespace StudentManagement.Areas.Manager.Controllers
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
 
+            Mapper.CreateMap<Class, ClassModel>();
+            Mapper.CreateMap<ClassModel, Class>();
+
         }
         public ManagerController() : this(new Service()) { }
 
@@ -36,7 +39,7 @@ namespace StudentManagement.Areas.Manager.Controllers
         [CustomAuthorize("Manager")]
         public ActionResult SearchTeacher(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
-            int pageSize = 1;
+            int pageSize = 10;
             var teachers = service.GetTeachers(searchValue, sort + " " + order, page, pageSize);
             int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
             var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
@@ -49,7 +52,7 @@ namespace StudentManagement.Areas.Manager.Controllers
         [CustomAuthorize("Manager")]
         public ActionResult SearchStudent(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
-            int pageSize = 1;
+            int pageSize = 10;
             var students = service.GetStudents(searchValue, sort + " " + order, page, pageSize);
             int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
             var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
@@ -60,13 +63,28 @@ namespace StudentManagement.Areas.Manager.Controllers
 
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult SearchClass(string searchValue = null, string sort = "ClassName", string order = "desc", int page = 1)
+        public ActionResult SearchClass(string searchValue = null, string sort = "ClassName", string order = "desc", int page = 1, string id = null)
         {
-            int pageSize = 1;
-            var classes = service.GetClasses(searchValue, sort + " " + order, page, pageSize);
-            int totalPages = (int)Math.Ceiling(service.GetClasses(searchValue, sort + " " + order).Count / (double)pageSize);
-            var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
-            var list = Mapper.Map<List<BusinessObjects.Class>, List<ClassModel>>(classes);
+            int pageSize = 10;
+            var classes = new List<Class>();
+            int total = 0;
+            PersonModel p;
+            var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize };
+            if (!string.IsNullOrEmpty(id))
+            {
+                classes = service.GetTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
+                total = service.GetTeacherClasses(id, searchValue, sort + " " + order).Count;
+                var teacher = service.GetTeacher(id);
+                model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
+            } 
+            else
+            {
+                classes = service.GetClasses(searchValue, sort + " " + order, page, pageSize);
+                total = service.GetClasses(searchValue, sort + " " + order).Count;
+            }
+            int totalPages = (int)Math.Ceiling(total / (double)pageSize);
+            model.TotalPages = totalPages;
+            var list = Mapper.Map<List<Class>, List<ClassModel>>(classes);
             model.Classes = new SortedList<ClassModel>(list, sort, order);
             return View(model);
         }
