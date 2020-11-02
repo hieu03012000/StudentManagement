@@ -30,6 +30,7 @@ namespace StudentManagement.Areas.Auth.Controllers
             }
             else
             {
+
                 String originalPath = new Uri(HttpContext.Current.Request.Url.AbsoluteUri).OriginalString;
                 String parentDirectory = originalPath.Substring(0, originalPath.LastIndexOf("/"));
                 //ckeck role Maneger
@@ -37,6 +38,7 @@ namespace StudentManagement.Areas.Auth.Controllers
                 {
                     //if()
                 }
+
             }
             base.OnActionExecuting(filterContext);
         }

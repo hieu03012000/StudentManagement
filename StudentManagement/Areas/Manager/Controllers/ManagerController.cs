@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using ServiceObject;
 using StudentManagement.Areas.Manager.Data;
-using StudentManagement.Code.Sorting;
+using StudentManagement.Code;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -24,13 +25,15 @@ namespace StudentManagement.Areas.Manager.Controllers
         }
 
         [HttpGet]
-        public ActionResult Teachers(string sort = "Username", string order = "desc", string message = null)
+        public ActionResult SearchTeacher(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
-            var modal = new TeachersModal { Message = message };
-            var teachers = service.GetTeachers(sort + " " + order);
-            var teacherModels = Mapper.Map<List<BusinessObjects.Teacher>, List<TeacherModal>>(teachers);
-            modal.Teachers = new SortedList<TeacherModal>(teacherModels, sort, order);
-            return View(modal);
+            int pageSize = 1;
+            var teachers = service.GetTeachers(searchValue, sort + " " + order, page, pageSize);
+            int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
+            var model = new SearchModal { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            var list = Mapper.Map<List<BusinessObjects.Teacher>, List<TeacherModal>>(teachers);
+            model.Teachers = new SortedList<TeacherModal>(list, sort, order);
+            return View(model);
         }
     }
 }
