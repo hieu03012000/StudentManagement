@@ -146,7 +146,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
     <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
-    <Compile Include="Areas\Auth\Controllers\BaseController.cs" />
     <Compile Include="Areas\Auth\Data\LoginModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\PersonModal.cs" />
@@ -2019,10 +2018,8 @@
     <Content Include="Assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\vendor\jquery\jquery.slim.min.map" />
-
     <Content Include="Areas\Auth\Views\web.config" />
     <Content Include="Areas\Auth\Views\Auth\Index.cshtml" />
-
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\_Teachers.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\SearchTeacher.cshtml" />
