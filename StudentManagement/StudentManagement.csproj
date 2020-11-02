@@ -149,6 +149,7 @@
     <Compile Include="Areas\Auth\Data\LoginModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\PersonModal.cs" />
+    <Compile Include="Areas\Manager\Data\SearchModal.cs" />
     <Compile Include="Areas\Manager\Data\TeacherModal.cs" />
     <Compile Include="Areas\Manager\Data\TeachersModal.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
@@ -2021,8 +2022,9 @@
     <Content Include="Assets\vendor\jquery\jquery.slim.min.map" />
     <Content Include="Areas\Auth\Views\web.config" />
     <Content Include="Areas\Auth\Views\Auth\Index.cshtml" />
-    <Content Include="Areas\Manager\Views\Manager\Teachers.cshtml" />
     <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\_Teachers.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\SearchTeacher.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

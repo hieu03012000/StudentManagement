@@ -11,6 +11,7 @@ namespace DataObject.EF
     {
         Teacher GetTeacher(string Username);
 
-        List<Teacher> GetTeachers(string sortExpression = "Username ASC");
+        List<Teacher> GetTeachers(string searchValue, int page, int pageSize,  string sortExpression = "Username ASC");
+        List<Teacher> GetTeachers(string searchValue,  string sortExpression = "Username ASC");
     }
 }

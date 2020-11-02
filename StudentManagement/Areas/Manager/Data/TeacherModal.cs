@@ -7,5 +7,6 @@ namespace StudentManagement.Areas.Manager.Data
 {
     public class TeacherModal : PersonModal
     {
+
     }
 }

@@ -15,6 +15,7 @@ namespace ServiceObject
         //Teacher respository
         Teacher GetTeacher(string Username);
 
-        List<Teacher> GetTeachers(string sortExpression);
+        List<Teacher> GetTeachers(string searchValue, string sortExpression, int page, int pageSize);
+        List<Teacher> GetTeachers(string searchValue, string sortExpression);
     }
 }
