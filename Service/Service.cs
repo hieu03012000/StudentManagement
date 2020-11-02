@@ -21,7 +21,23 @@ namespace ServiceObject
         static readonly IAnswerDao answerDao = factory.AnswerDao;
         static readonly IPersonDao personDao = factory.PersonDao;
 
- 
+
+
+        //Student Services
+        public Student GetStudent(string Username)
+        {
+            return studentDao.GetStudent(Username);
+        }
+
+        public List<Student> GetStudents(string searchValue, string sortExpression, int page, int pageSize)
+        {
+            return studentDao.GetStudents(searchValue, page, pageSize, sortExpression);
+        }
+
+        public List<Student> GetStudents(string searchValue, string sortExpression)
+        {
+            return studentDao.GetStudents(searchValue, sortExpression);
+        }
 
         //Teacher Services
         public Teacher GetTeacher(string Username)
@@ -54,5 +70,22 @@ namespace ServiceObject
         {
             throw new NotImplementedException();
         }
+
+        //Class Services
+        public Class GetClass(string ClassName)
+        {
+            return classDao.GetClass(ClassName);
+        }
+
+        public List<Class> GetClasses(string searchValue, string sortExpression, int page, int pageSize)
+        {
+            return classDao.GetClasses(searchValue, page, pageSize, sortExpression);
+        }
+
+        public List<Class> GetClasses(string searchValue, string sortExpression)
+        {
+            return classDao.GetClasses(searchValue, sortExpression);
+        }
+
     }
 }

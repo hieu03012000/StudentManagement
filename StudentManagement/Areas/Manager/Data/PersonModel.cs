@@ -7,7 +7,7 @@ using System.Web;
 
 namespace StudentManagement.Areas.Manager.Data
 {
-    public class PersonModal
+    public class PersonModel
     {
         [StringLength(50, MinimumLength = 3)]
         public string Username { get; set; }

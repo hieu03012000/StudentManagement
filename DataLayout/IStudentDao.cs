@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace DataObject.EF
 {
     public interface IStudentDao
     {
+        Student GetStudent(string Username);
+
+        List<Student> GetStudents(string searchValue, int page, int pageSize, string sortExpression = "Username ASC");
+        List<Student> GetStudents(string searchValue, string sortExpression = "Username ASC");
     }
 }
