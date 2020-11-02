@@ -20,13 +20,6 @@ namespace StudentManagement.Areas.Auth
             context.MapRoute("", "login", new { area = "Auth", controller = "Auth", action = "Index" });
             context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
 
-            //chuc nang
-            context.MapRoute("", "", new { area = "Auth", controller = "Auth", action = "Logout" });
-            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
-            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
-            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
-            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
-            context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
 
         }
     }

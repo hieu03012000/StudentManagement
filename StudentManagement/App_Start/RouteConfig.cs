@@ -14,6 +14,7 @@ namespace StudentManagement
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute("", "home", new { area = "", controller = "Home", action = "Index" });
+            routes.MapRoute("", "showProfile", new { area = "", controller = "Home", action = "ShowProfile" });
         }
     }
 }

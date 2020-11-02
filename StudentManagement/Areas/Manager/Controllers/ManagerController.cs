@@ -1,13 +1,17 @@
 ﻿using AutoMapper;
 using ServiceObject;
+using StudentManagement.Areas.Auth.Controllers;
 using StudentManagement.Areas.Manager.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using StudentManagement.Areas.Infrastructure;
+
 
 namespace StudentManagement.Areas.Manager.Controllers
 {
+    [CustomAuthenticationFilter]
     public class ManagerController : Controller
     {
         IService service { get; set; }
@@ -25,6 +29,8 @@ namespace StudentManagement.Areas.Manager.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult Teachers(string sort = "Username", string order = "desc", string message = null)
         public ActionResult SearchTeacher(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
             int pageSize = 1;
