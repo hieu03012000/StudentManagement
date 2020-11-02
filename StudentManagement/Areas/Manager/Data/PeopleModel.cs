@@ -2,12 +2,12 @@
 
 namespace StudentManagement.Areas.Manager.Data
 {
-    public class TeachersModal
+    public class PeopleModel
     {
         public string Message { get; set; }
 
         // sortable list of members
 
-        public SortedList<TeacherModal> Teachers { get; set; }
+        public SortedList<PersonModel> People { get; set; }
     }
 }

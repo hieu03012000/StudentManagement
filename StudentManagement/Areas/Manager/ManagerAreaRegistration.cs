@@ -16,6 +16,12 @@ namespace StudentManagement.Areas.Manager
         {
             context.MapRoute("", "teachers/{id}", new { area = "Manager", controller = "Manager", action = "SearchTeacher" });
             context.MapRoute("", "teachers", new { area = "Manager", controller = "Manager", action = "SearchTeacher" });
+
+            context.MapRoute("", "students/{id}", new { area = "Manager", controller = "Manager", action = "SearchStudent" });
+            context.MapRoute("", "students", new { area = "Manager", controller = "Manager", action = "SearchStudent" });
+
+            context.MapRoute("", "classes/{id}", new { area = "Manager", controller = "Manager", action = "SearchClass" });
+            context.MapRoute("", "classes", new { area = "Manager", controller = "Manager", action = "SearchClass" });
         }
     }
 }

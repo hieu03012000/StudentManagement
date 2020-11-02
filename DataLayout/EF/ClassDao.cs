@@ -1,12 +1,55 @@
-﻿using System;
+﻿using AutoMapper;
+using BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Dynamic;
 
 namespace DataObject.EF
 {
     public class ClassDao : IClassDao
     {
+        static ClassDao()
+        {
+            Mapper.CreateMap<Class, ClassEntity>();
+            Mapper.CreateMap<ClassEntity, Class>();
+        }
+
+        public Class GetClass(string ClassName)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var cs = context.ClassEntities.FirstOrDefault(c => c.ClassName == ClassName);
+                return Mapper.Map<ClassEntity, Class>(cs);
+            }
+        }
+
+        public List<Class> GetClasses(string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = context.ClassEntities.AsQueryable().Where(u => u.Status == 0);
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    query = query.Where(s => s.ClassName.Contains(searchValue));
+                }
+                var classes = query.OrderBy(sortExpression).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
+            }
+        }
+
+        public List<Class> GetClasses(string searchValue, string sortExpression = "ClassName ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = context.ClassEntities.AsQueryable().Where(u => u.Status == 0);
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    query = query.Where(s => s.ClassName.Contains(searchValue));
+                }
+                var classes = query.OrderBy(sortExpression).ToList();
+                return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
+            }
+        }
     }
 }
