@@ -30,7 +30,6 @@ namespace StudentManagement.Areas.Manager.Controllers
 
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult Teachers(string sort = "Username", string order = "desc", string message = null)
         public ActionResult SearchTeacher(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
             int pageSize = 1;
