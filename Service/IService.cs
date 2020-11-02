@@ -5,6 +5,13 @@ namespace ServiceObject
 {
     public interface IService
     {
+        
+        bool Login(string Username, string Password);
+
+        Person GetPersonByUsername(string Username);
+
+        void Logout();
+
         //Teacher respository
         Teacher GetTeacher(string Username);
 

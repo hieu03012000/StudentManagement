@@ -30,13 +30,15 @@ namespace StudentManagement.Areas.Auth.Controllers
             }
             else
             {
-                //String originalPath = new Uri(HttpContext.Current.Request.Url.AbsoluteUri).OriginalString;
-                //String parentDirectory = originalPath.Substring(0, originalPath.LastIndexOf("/"));
-                ////ckeck role Maneger
-                //if (session.Discriminator.Equals("Manager"))
-                //{
-                //    //if()
-                //}
+
+                String originalPath = new Uri(HttpContext.Current.Request.Url.AbsoluteUri).OriginalString;
+                String parentDirectory = originalPath.Substring(0, originalPath.LastIndexOf("/"));
+                //ckeck role Maneger
+                if (session.Discriminator.Equals("Manager"))
+                {
+                    //if()
+                }
+
             }
             base.OnActionExecuting(filterContext);
         }

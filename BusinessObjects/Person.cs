@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BusinessObjects
 {
 
-    public abstract class Person
+    public class Person
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -13,5 +13,6 @@ namespace BusinessObjects
         public string Phone { get; set; }
         public string Address { get; set; }
         public Status Status { get; set; }
+        public string Discriminator { get; set; }
     }
 }

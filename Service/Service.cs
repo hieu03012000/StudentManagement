@@ -19,6 +19,9 @@ namespace ServiceObject
         static readonly IClassDao classDao = factory.ClassDao;
         static readonly ITestDao testDao = factory.TestDao;
         static readonly IAnswerDao answerDao = factory.AnswerDao;
+        static readonly IPersonDao personDao = factory.PersonDao;
+
+ 
 
         //Teacher Services
         public Teacher GetTeacher(string Username)
@@ -34,6 +37,22 @@ namespace ServiceObject
         public List<Teacher> GetTeachers(string searchValue, string sortExpression)
         {
             return teacherDao.GetTeachers(searchValue, sortExpression);
+        }
+
+        //Person Services
+        public bool Login(string Username, string Password)
+        {
+            return personDao.GetPerson(Username, Password);
+        }
+
+        public Person GetPersonByUsername(string Username)
+        {
+            return personDao.GetPersonByUsername(Username);
+        }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
         }
     }
 }
