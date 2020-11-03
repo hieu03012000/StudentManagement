@@ -52,12 +52,25 @@ namespace StudentManagement.Areas.Manager.Controllers
 
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult SearchStudent(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
+        public ActionResult SearchStudent(string searchValue = null, string sort = "Username", string order = "desc", int page = 1, string className = null)
         {
+            List<BusinessObjects.Student> students;
             int pageSize = 10;
-            var students = service.GetStudents(searchValue, sort + " " + order, page, pageSize);
-            int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
-            var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            SearchModel model = new SearchModel();
+            if (string.IsNullOrEmpty(className))
+            {
+                students = service.GetStudents(searchValue, sort + " " + order, page, pageSize);
+                int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
+                model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            }
+            else
+            {
+                students = service.GetClassStudents(className, sort + " " + order);
+                var c = service.GetClass(className);
+                model.Class = Mapper.Map<Class, ClassModel>(c);
+
+            }
+                
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
             list.ForEach(c => c.Role = "Student");
             model.People = new SortedList<PersonModel>(list, sort, order);
@@ -71,7 +84,6 @@ namespace StudentManagement.Areas.Manager.Controllers
             int pageSize = 10;
             var classes = new List<Class>();
             int total = 0;
-            PersonModel p;
             var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize };
             if (!string.IsNullOrEmpty(id))
             {

@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "Students";
 }
-
+@if (Model.Class != null)
+{
+    @Html.Partial("_ClassDetail", Model.Class)
+}
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header">
@@ -11,6 +14,8 @@
     </div>
     <div class="card-body">
         <form>
+            @if (Model.Class == null)
+            {
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-4">
                     <div id="dataTable_filter" class="dataTables_filter">
@@ -22,10 +27,13 @@
                     </div>
                 </div>
             </div>
+            }
             @if (Model.People.List.Count > 0)
             {
                 <div class="row">
                     @Html.Partial("_PeopleList", Model.People)
+                    @if (Model.Class == null)
+                    {
                     <div class="mt-4 mx-auto">
                         <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
                             <ul class="pagination">
@@ -58,6 +66,8 @@
                             </ul>
                         </div>
                     </div>
+                    }
+
                 </div>
             }
             else

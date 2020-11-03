@@ -9,5 +9,6 @@ namespace StudentManagement.Areas.Manager.Data
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
         public SortedList<PersonModel> People { get; set; }
+        public ClassModel Class { get; set; }
     }
 }

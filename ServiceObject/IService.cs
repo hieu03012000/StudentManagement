@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using BusinessObjects.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace ServiceObject
@@ -23,6 +24,7 @@ namespace ServiceObject
 
         List<Student> GetStudents(string searchValue, string sortExpression, int page, int pageSize);
         List<Student> GetStudents(string searchValue, string sortExpression);
+        List<Student> GetClassStudents(string ClassName, string sortExpression);
 
         //Class respository
         Class GetClass(string ClassName);

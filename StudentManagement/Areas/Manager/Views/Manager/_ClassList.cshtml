@@ -16,13 +16,13 @@
                 int count = 0;
                 foreach (var item in Model.List)
                 {
-                    <tr>
-                        <td scope="row">@(++count)</td>
-                        <td scope="row">@item.ClassName</td>
-                        <td scope="row">@item.StartDate</td>
-                        <td scope="row">@item.EndDate</td>
-                        <td scope="row">@item.TeacherID</td>
-                    </tr>
+                        <tr>
+                            <td scope="row">@(++count)</td>
+                            <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { className = @item.ClassName })</td>
+                            <td scope="row">@item.StartDate</td>
+                            <td scope="row">@item.EndDate</td>
+                            <td scope="row">@item.TeacherID</td>
+                        </tr>
                 }
             }
         </tbody>

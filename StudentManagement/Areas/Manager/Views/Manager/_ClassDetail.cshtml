@@ -1,0 +1,20 @@
+﻿@model StudentManagement.Areas.Manager.Data.ClassModel
+
+<!-- Details -->
+<div class="card shadow mb-4">
+    <div class="card-header text-primary">
+        <h3>Details</h3>
+    </div>
+    <div class="card-body d-flex justify-content-around">
+        <div class="col-md-4">
+            <div><strong>Class name: @Model.ClassName</strong></div>
+            <div><strong>Teacher: </strong>@Model.TeacherID</div>
+        </div>
+        <div class="col-md-4">
+            <div><strong>Start Date: </strong>@Model.StartDate</div>
+            <div><strong>End Date: </strong>@Model.EndDate</div>
+        </div>
+
+
+    </div>
+</div>

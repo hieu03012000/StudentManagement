@@ -14,6 +14,9 @@ namespace DataObjects.EF
         {
             Mapper.CreateMap<PersonEntity, Student>();
             Mapper.CreateMap<Student, PersonEntity>();
+
+            Mapper.CreateMap<ClassStudent, ClassStudentEntity>();
+            Mapper.CreateMap<ClassStudentEntity, ClassStudent>();
         }
 
         public Student GetStudent(string Username)
@@ -53,5 +56,20 @@ namespace DataObjects.EF
                 return Mapper.Map<List<PersonEntity>, List<Student>>(students);
             }
         }
+
+
+        public List<Student> GetClassStudents(string ClassName, string sortExpression = "Username ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = from s in context.PersonEntities
+                            from e in s.ClassStudents
+                            where e.Class.ClassName == ClassName && s.Status == 0
+                            select s;
+                var students = query.OrderBy(sortExpression).ToList();
+                return Mapper.Map<List<PersonEntity>, List<Student>>(students);
+            }
+        }
+
     }
 }
