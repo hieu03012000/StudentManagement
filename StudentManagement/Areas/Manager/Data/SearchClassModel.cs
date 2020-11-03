@@ -1,4 +1,5 @@
-﻿using StudentManagement.Code;
+﻿using BusinessObjects;
+using StudentManagement.Code;
 
 namespace StudentManagement.Areas.Manager.Data
 {
@@ -8,6 +9,7 @@ namespace StudentManagement.Areas.Manager.Data
         public int Page { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
+        public PersonModel Person { get; set; }
         public SortedList<ClassModel> Classes { get; set; }
     }
 }

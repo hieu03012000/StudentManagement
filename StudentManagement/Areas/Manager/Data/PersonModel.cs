@@ -9,6 +9,7 @@ namespace StudentManagement.Areas.Manager.Data
 {
     public class PersonModel
     {
+        [Required]
         [StringLength(50, MinimumLength = 3)]
         public string Username { get; set; }
 
