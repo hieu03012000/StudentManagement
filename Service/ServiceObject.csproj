@@ -50,7 +50,7 @@
       <Project>{96d90dcc-b99f-4f02-b50d-0fd5369e94ad}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayout\DataObjects.csproj">
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
       <Project>{8f3d576e-ce2d-474e-9e23-d14b8be8046d}</Project>
       <Name>DataObjects</Name>
     </ProjectReference>

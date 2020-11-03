@@ -1,12 +1,7 @@
 ﻿using BusinessObjects;
 using BusinessObjects.Enums;
-using DataObject;
-using DataObject.EF;
-using System;
+using DataObjects;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceObject
 {
