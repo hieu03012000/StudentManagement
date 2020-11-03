@@ -1,6 +1,7 @@
 ﻿using BusinessObjects;
 using BusinessObjects.Enums;
 using DataObjects;
+using System;
 using System.Collections.Generic;
 
 namespace ServiceObject
@@ -33,6 +34,11 @@ namespace ServiceObject
         public List<Student> GetStudents(string searchValue, string sortExpression)
         {
             return studentDao.GetStudents(searchValue, sortExpression);
+        }
+
+        public List<Student> GetClassStudents(string ClassName, string sortExpression)
+        {
+            return studentDao.GetClassStudents(ClassName, sortExpression);
         }
 
         //Teacher Services

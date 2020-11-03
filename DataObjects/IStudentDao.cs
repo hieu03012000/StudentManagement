@@ -13,5 +13,7 @@ namespace DataObjects
 
         List<Student> GetStudents(string searchValue, int page, int pageSize, string sortExpression = "Username ASC");
         List<Student> GetStudents(string searchValue, string sortExpression = "Username ASC");
+
+        List<Student> GetClassStudents(string ClassName, string sortExpression = "Username ASC");
     }
 }
