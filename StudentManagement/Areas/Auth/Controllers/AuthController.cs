@@ -1,14 +1,6 @@
 ﻿using AutoMapper;
-using BusinessObjects;
-using DataObject.EF;
 using ServiceObject;
 using StudentManagement.Areas.Auth.Data;
-using StudentManagement.Areas.Manager.Controllers;
-using StudentManagement.Code.HtmlHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Auth.Controllers

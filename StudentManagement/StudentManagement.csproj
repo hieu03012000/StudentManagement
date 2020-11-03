@@ -2093,7 +2093,11 @@
       <Project>{96d90dcc-b99f-4f02-b50d-0fd5369e94ad}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\ServiceObject.csproj">
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
+      <Project>{8f3d576e-ce2d-474e-9e23-d14b8be8046d}</Project>
+      <Name>DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceObject\ServiceObject.csproj">
       <Project>{4994f331-af85-482d-b8da-9c292dff5c56}</Project>
       <Name>ServiceObject</Name>
     </ProjectReference>

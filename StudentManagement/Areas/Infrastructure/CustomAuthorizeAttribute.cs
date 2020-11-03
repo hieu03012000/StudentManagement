@@ -1,5 +1,5 @@
 ﻿using BusinessObjects;
-using DataObject.EF;
+using DataObjects.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
