@@ -17,13 +17,5 @@ namespace StudentManagement.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        [CustomAuthorize("Manager", "Teacher", "Student")]
-        public ActionResult ShowProfile()
-        {
-            return View();
-        }
-
     }
 }

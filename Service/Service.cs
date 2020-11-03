@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Enums;
 using DataObject;
 using DataObject.EF;
 using System;
@@ -66,9 +67,14 @@ namespace ServiceObject
             return personDao.GetPersonByUsername(Username);
         }
 
-        public void Logout()
+        public void ChangeProfile(string username, string fullName, Gender gender, string phone, string address)
         {
-            throw new NotImplementedException();
+            personDao.ChangeProfile(username, fullName, gender, phone, address);
+        }
+
+        public void ChangePassword(string username, string password)
+        {
+            personDao.ChangePassword(username, password);
         }
 
         //Class Services

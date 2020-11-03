@@ -146,6 +146,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
     <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Auth\Controllers\UpdateController.cs" />
+    <Compile Include="Areas\Auth\Data\ChangePasswordModel.cs" />
+    <Compile Include="Areas\Auth\Data\ChangeProfileModel.cs" />
     <Compile Include="Areas\Auth\Data\LoginModel.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\ClassModel.cs" />
@@ -2030,6 +2033,9 @@
     <Content Include="Areas\Manager\Views\Manager\_ClassList.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\SearchClass.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\_PersonDetail.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ChangeProfile.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ChangePassword.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ShowProfile.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2053,7 +2059,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\ShowProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,74 @@
+﻿@model StudentManagement.Areas.Auth.Data.ChangeProfileModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var person = (BusinessObjects.Person)Session["USER_DTO"];
+
+    ViewBag.Title = "Change Profile";
+}
+
+<div class="col-xl-11" style="margin:auto">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3 class="m-0 font-weight-bold text-primary">Your Profile</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-4" style="background-color:beige">
+                    Picture here
+                </div>
+                <div class="col-md-8 mx-auto" style="height:430px">
+                    <form method="post" action="changeProfile" class="nav-item">
+                        <div style="padding-top:10px" class="mx-auto">
+                            <table class="col-xl-10 mx-auto">
+                                <tr>
+                                    <td style="padding:15px"><strong>Username:</strong></td>
+                                    <td>
+                                        @person.Username
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>Fullname:</strong></td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control form-control-user", @Value = @person.Fullname })
+                                        @Html.ValidationMessageFor(m => m.Fullname, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px "><strong>Gender:</strong></td>
+                                    <td>
+                                        @Html.DropDownListFor(m => m.Gender,
+                                        new SelectList(Enum.GetValues(typeof(BusinessObjects.Enums.Gender))),
+                                        null,
+                                        new { @class = "form-control form-control-user" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>Phone:</strong></td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control form-control-user", @Value = @person.Phone })
+                                        @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>Address:</strong></td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control form-control-user", @Value = @person.Address })
+                                        @Html.ValidationMessageFor(m => m.Address, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:15px"><strong>Role:</strong></td>
+                                    <td>
+                                        @person.Discriminator
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <input type="submit" value="Change Profile" class="btn btn-primary btn-user btn-block col-xl-3 m-md-auto" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

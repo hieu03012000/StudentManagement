@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using BusinessObjects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,5 +42,33 @@ namespace DataObject.EF
                 return Mapper.Map<PersonEntity, Person>(result);
             }
         }
+
+        public void ChangePassword(string username, string password)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.PersonEntities.SingleOrDefault(m => m.Username == username);
+                entity.Password = password;
+
+                context.SaveChanges();
+
+            }
+        }
+
+        public void ChangeProfile(string username, string fullName, Gender gender, string phone, string address)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.PersonEntities.SingleOrDefault(m => m.Username == username);
+                entity.Fullname = fullName;
+                entity.Gender = gender == Gender.Male ? 0 : 1;
+                entity.Phone = phone;
+                entity.Address = address;
+
+                context.SaveChanges();
+
+            }
+        }
+
     }
 }

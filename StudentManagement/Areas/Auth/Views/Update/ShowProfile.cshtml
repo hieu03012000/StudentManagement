@@ -1,0 +1,57 @@
+﻿@{
+    var person = (BusinessObjects.Person)Session["USER_DTO"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Show Profile";
+}
+
+<!-- Approach -->
+
+<div class="col-xl-11" style="margin:auto">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3 class="m-0 font-weight-bold text-primary">Your Profile</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-4" style="background-color:beige">
+                    Picture here
+                </div>
+                <div class="col-md-8 mx-auto" style="height:430px">
+                    <div style="padding-top:20px" class="mx-auto">
+                        <table class="col-xl-10 mx-auto">
+                            <tr>
+                                <td style="padding:15px"><strong>Username:</strong></td>
+                                <td>@person.Username</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px"><strong>Fullname:</strong></td>
+                                <td>@person.Fullname</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px"><strong>Gender:</strong></td>
+                                <td>@person.Gender</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px"><strong>Phone:</strong></td>
+                                <td>@person.Phone</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px"><strong>Address:</strong></td>
+                                <td>@person.Address</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:15px"><strong>Role:</strong></td>
+                                <td>@person.Discriminator</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <form method="get" action="changeProfile" class="nav-item">
+                        <input type="submit" value="Change Profile" class="btn btn-primary btn-user btn-block col-xl-3 m-md-auto" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

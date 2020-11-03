@@ -19,6 +19,9 @@ namespace StudentManagement.Areas.Auth
             context.MapRoute("", "", new { area = "Auth", controller = "Auth", action = "Index" });
             context.MapRoute("", "login", new { area = "Auth", controller = "Auth", action = "Index" });
             context.MapRoute("", "logout", new { area = "Auth", controller = "Auth", action = "Logout" });
+            context.MapRoute("", "showProfile", new { area = "Auth", controller = "Update", action = "ShowProfile" });
+            context.MapRoute("", "changeProfile", new { area = "Auth", controller = "Update", action = "ChangeProfile" });
+            context.MapRoute("", "changePassword", new { area = "Auth", controller = "Update", action = "ChangePassword" });
 
 
         }
