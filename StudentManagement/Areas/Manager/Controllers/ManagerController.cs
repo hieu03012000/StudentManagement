@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using StudentManagement.Areas.Infrastructure;
 using BusinessObjects;
+using Microsoft.Ajax.Utilities;
 
 namespace StudentManagement.Areas.Manager.Controllers
 {
@@ -44,6 +45,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
             var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             var list = Mapper.Map<List<BusinessObjects.Teacher>, List<PersonModel>>(teachers);
+            list.ForEach(c => c.Role = "Teacher");
             model.People = new SortedList<PersonModel>(list, sort, order);
             return View(model);
         }
@@ -57,13 +59,14 @@ namespace StudentManagement.Areas.Manager.Controllers
             int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
             var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
+            list.ForEach(c => c.Role = "Student");
             model.People = new SortedList<PersonModel>(list, sort, order);
             return View(model);
         }
 
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult SearchClass(string searchValue = null, string sort = "ClassName", string order = "desc", int page = 1, string id = null)
+        public ActionResult SearchClass(string searchValue = null, string sort = "ClassName", string order = "desc", int page = 1, string id = null, string? role = null)
         {
             int pageSize = 10;
             var classes = new List<Class>();
@@ -72,10 +75,20 @@ namespace StudentManagement.Areas.Manager.Controllers
             var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize };
             if (!string.IsNullOrEmpty(id))
             {
-                classes = service.GetTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
-                total = service.GetTeacherClasses(id, searchValue, sort + " " + order).Count;
-                var teacher = service.GetTeacher(id);
-                model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
+                if (role.Equals("Teacher"))
+                {
+                    classes = service.GetTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetTeacherClasses(id, searchValue, sort + " " + order).Count;
+                    var teacher = service.GetTeacher(id);
+                    model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
+                }
+                if (role.Equals("Student"))
+                {
+                    classes = service.GetStudentClasses(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetStudentClasses(id, searchValue, sort + " " + order).Count;
+                    var student = service.GetStudent(id);
+                    model.Person = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
+                }
             } 
             else
             {

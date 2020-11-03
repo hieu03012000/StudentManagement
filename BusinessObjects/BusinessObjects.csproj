@@ -45,6 +45,7 @@
     <Compile Include="Answer.cs" />
     <Compile Include="BusinessObject.cs" />
     <Compile Include="Class.cs" />
+    <Compile Include="ClassStudent.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Status.cs" />
     <Compile Include="Manager.cs" />

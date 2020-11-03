@@ -19,7 +19,7 @@
                 {
                     <tr>
                         <td scope="row">@(++count)</td>
-                        <td scope="row">@Html.ActionLink(@item.Username, "SearchClass", new { id = @item.Username })</td>
+                        <td scope="row">@Html.ActionLink(@item.Username, "SearchClass", new { id = @item.Username, role = @item.Role })</td>
                         <td scope="row">@item.Fullname</td>
                         <td scope="row">@item.Gender</td>
                         <td scope="row">@item.Phone</td>

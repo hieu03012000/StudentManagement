@@ -32,9 +32,9 @@
         </EntityType>
         <EntityType Name="ClassStudent">
           <Key>
-            <PropertyRef Name="ClassID" />
-            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ClassID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="StudentID" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -48,8 +48,9 @@
           <Property Name="Gender" Type="int" Nullable="false" />
           <Property Name="Phone" Type="nvarchar(max)" />
           <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
@@ -223,8 +224,18 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="TeacherID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Self.FK_dbo_Class_dbo_Person_TeacherID" FromRole="Class" ToRole="Person" />
+          <NavigationProperty Name="ClassStudents" Relationship="Self.FK_dbo_ClassStudent_dbo_Class_ClassID" FromRole="Class" ToRole="ClassStudent" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_dbo_Test_dbo_Class_ClassID" FromRole="Class" ToRole="Test" />
-          <NavigationProperty Name="People" Relationship="Self.ClassStudent" FromRole="Class" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="ClassStudentEntity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ClassID" Type="Guid" Nullable="false" />
+          <Property Name="StudentID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="Self.FK_dbo_ClassStudent_dbo_Class_ClassID" FromRole="ClassStudent" ToRole="Class" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_dbo_ClassStudent_dbo_Person_StudentID" FromRole="ClassStudent" ToRole="Person" />
         </EntityType>
         <EntityType Name="PersonEntity">
           <Key>
@@ -236,12 +247,13 @@
           <Property Name="Gender" Type="Int32" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Answers" Relationship="Self.FK_dbo_Answer_dbo_Person_StudentID" FromRole="Person" ToRole="Answer" />
           <NavigationProperty Name="Classes" Relationship="Self.FK_dbo_Class_dbo_Person_TeacherID" FromRole="Person" ToRole="Class" />
+          <NavigationProperty Name="ClassStudents" Relationship="Self.FK_dbo_ClassStudent_dbo_Person_StudentID" FromRole="Person" ToRole="ClassStudent" />
           <NavigationProperty Name="Tests" Relationship="Self.FK_dbo_Test_dbo_Person_TeacherID" FromRole="Person" ToRole="Test" />
-          <NavigationProperty Name="Classes1" Relationship="Self.ClassStudent" FromRole="Person" ToRole="Class" />
         </EntityType>
         <EntityType Name="TestEntity">
           <Key>
@@ -297,6 +309,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_ClassStudent_dbo_Class_ClassID">
+          <End Role="Class" Type="StudentManagementModel.ClassEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassStudent" Type="StudentManagementModel.ClassStudentEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="ClassStudent">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_Test_dbo_Class_ClassID">
           <End Role="Class" Type="StudentManagementModel.ClassEntity" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -308,6 +334,20 @@
             </Principal>
             <Dependent Role="Test">
               <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ClassStudent_dbo_Person_StudentID">
+          <End Role="Person" Type="StudentManagementModel.PersonEntity" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassStudent" Type="StudentManagementModel.ClassStudentEntity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="ClassStudent">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -323,38 +363,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ClassStudent">
-          <End Role="Class" Type="StudentManagementModel.ClassEntity" Multiplicity="*" />
-          <End Role="Person" Type="StudentManagementModel.PersonEntity" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="StudentManagementDBContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AnswerEntities" EntityType="StudentManagementModel.AnswerEntity" />
           <EntitySet Name="ClassEntities" EntityType="StudentManagementModel.ClassEntity" />
+          <EntitySet Name="ClassStudentEntities" EntityType="StudentManagementModel.ClassStudentEntity" />
           <EntitySet Name="PersonEntities" EntityType="StudentManagementModel.PersonEntity" />
-          <EntitySet Name="TestEntities" EntityType="StudentManagementModel.TestEntity" />
+          <EntitySet Name="TestEntities1" EntityType="StudentManagementModel.TestEntity" />
           <AssociationSet Name="FK_dbo_Answer_dbo_Person_StudentID" Association="Self.FK_dbo_Answer_dbo_Person_StudentID">
             <End Role="Person" EntitySet="PersonEntities" />
             <End Role="Answer" EntitySet="AnswerEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Answer_dbo_Test_TestID" Association="Self.FK_dbo_Answer_dbo_Test_TestID">
-            <End Role="Test" EntitySet="TestEntities" />
+            <End Role="Test" EntitySet="TestEntities1" />
             <End Role="Answer" EntitySet="AnswerEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Class_dbo_Person_TeacherID" Association="Self.FK_dbo_Class_dbo_Person_TeacherID">
             <End Role="Person" EntitySet="PersonEntities" />
             <End Role="Class" EntitySet="ClassEntities" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_ClassStudent_dbo_Class_ClassID" Association="Self.FK_dbo_ClassStudent_dbo_Class_ClassID">
+            <End Role="Class" EntitySet="ClassEntities" />
+            <End Role="ClassStudent" EntitySet="ClassStudentEntities" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_Test_dbo_Class_ClassID" Association="Self.FK_dbo_Test_dbo_Class_ClassID">
             <End Role="Class" EntitySet="ClassEntities" />
-            <End Role="Test" EntitySet="TestEntities" />
+            <End Role="Test" EntitySet="TestEntities1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ClassStudent_dbo_Person_StudentID" Association="Self.FK_dbo_ClassStudent_dbo_Person_StudentID">
+            <End Role="Person" EntitySet="PersonEntities" />
+            <End Role="ClassStudent" EntitySet="ClassStudentEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Test_dbo_Person_TeacherID" Association="Self.FK_dbo_Test_dbo_Person_TeacherID">
             <End Role="Person" EntitySet="PersonEntities" />
-            <End Role="Test" EntitySet="TestEntities" />
-          </AssociationSet>
-          <AssociationSet Name="ClassStudent" Association="Self.ClassStudent">
-            <End Role="Class" EntitySet="ClassEntities" />
-            <End Role="Person" EntitySet="PersonEntities" />
+            <End Role="Test" EntitySet="TestEntities1" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -390,6 +431,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ClassStudentEntities">
+            <EntityTypeMapping TypeName="StudentManagementModel.ClassStudentEntity">
+              <MappingFragment StoreEntitySet="ClassStudent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PersonEntities">
             <EntityTypeMapping TypeName="StudentManagementModel.PersonEntity">
               <MappingFragment StoreEntitySet="Person">
@@ -399,12 +449,13 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TestEntities">
+          <EntitySetMapping Name="TestEntities1">
             <EntityTypeMapping TypeName="StudentManagementModel.TestEntity">
               <MappingFragment StoreEntitySet="Test">
                 <ScalarProperty Name="TestID" ColumnName="TestID" />
@@ -418,14 +469,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ClassStudent" TypeName="StudentManagementModel.ClassStudent" StoreEntitySet="ClassStudent">
-            <EndProperty Name="Class">
-              <ScalarProperty Name="ClassID" ColumnName="ClassID" />
-            </EndProperty>
-            <EndProperty Name="Person">
-              <ScalarProperty Name="Username" ColumnName="StudentID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

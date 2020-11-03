@@ -13,6 +13,9 @@ namespace DataObject.EF
         {
             Mapper.CreateMap<Class, ClassEntity>();
             Mapper.CreateMap<ClassEntity, Class>();
+
+            Mapper.CreateMap<ClassStudent, ClassStudentEntity>();
+            Mapper.CreateMap<ClassStudentEntity, ClassStudent>();
         }
 
         public Class GetClass(string ClassName)
@@ -76,10 +79,43 @@ namespace DataObject.EF
                     query = query.Where(s => s.ClassName.Contains(searchValue));
                 }
                 var classes = query.OrderBy(sortExpression).ToList();
+
                 return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
             }
         }
 
-        
+        public List<Class> GetStudentClasses(string studentID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = from s in context.ClassEntities
+                        from e in s.ClassStudents
+                        where e.Person.Username == studentID && s.Status == 0
+                        select s;
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    query = query.Where(s => s.ClassName.Contains(searchValue));
+                }
+                var classes = query.OrderBy(sortExpression).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
+            }
+        }
+
+        public List<Class> GetStudentClasses(string studentID, string searchValue, string sortExpression = "ClassName ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = from s in context.ClassEntities
+                            from e in s.ClassStudents
+                            where e.Person.Username == studentID && s.Status == 0
+                            select s;
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    query = query.Where(s => s.ClassName.Contains(searchValue));
+                }
+                var classes = query.OrderBy(sortExpression).ToList();
+                return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
+            }
+        }
     }
 }

@@ -27,7 +27,8 @@ namespace DataObject.EF
     
         public virtual DbSet<AnswerEntity> AnswerEntities { get; set; }
         public virtual DbSet<ClassEntity> ClassEntities { get; set; }
+        public virtual DbSet<ClassStudentEntity> ClassStudentEntities { get; set; }
         public virtual DbSet<PersonEntity> PersonEntities { get; set; }
-        public virtual DbSet<TestEntity> TestEntities { get; set; }
+        public virtual DbSet<TestEntity> TestEntities1 { get; set; }
     }
 }

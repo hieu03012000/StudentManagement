@@ -19,8 +19,8 @@ namespace DataObject.EF
         {
             this.Answers = new HashSet<AnswerEntity>();
             this.Classes = new HashSet<ClassEntity>();
+            this.ClassStudents = new HashSet<ClassStudentEntity>();
             this.Tests = new HashSet<TestEntity>();
-            this.Classes1 = new HashSet<ClassEntity>();
         }
     
         public string Username { get; set; }
@@ -29,16 +29,17 @@ namespace DataObject.EF
         public int Gender { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-        public int Status { get; set; }
         public string Discriminator { get; set; }
+        public string Image { get; set; }
+        public int Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerEntity> Answers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClassEntity> Classes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TestEntity> Tests { get; set; }
+        public virtual ICollection<ClassStudentEntity> ClassStudents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClassEntity> Classes1 { get; set; }
+        public virtual ICollection<TestEntity> Tests { get; set; }
     }
 }

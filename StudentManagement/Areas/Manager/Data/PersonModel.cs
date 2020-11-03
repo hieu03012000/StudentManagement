@@ -27,5 +27,6 @@ namespace StudentManagement.Areas.Manager.Data
         public string Phone { get; set; }
         public string Address { get; set; }
         public Status Status { get; set; }
+        public string? Role { get; set; }
     }
 }

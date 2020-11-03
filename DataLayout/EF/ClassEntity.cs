@@ -17,8 +17,8 @@ namespace DataObject.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ClassEntity()
         {
+            this.ClassStudents = new HashSet<ClassStudentEntity>();
             this.Tests = new HashSet<TestEntity>();
-            this.People = new HashSet<PersonEntity>();
         }
     
         public System.Guid ClassID { get; set; }
@@ -30,8 +30,8 @@ namespace DataObject.EF
     
         public virtual PersonEntity Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TestEntity> Tests { get; set; }
+        public virtual ICollection<ClassStudentEntity> ClassStudents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PersonEntity> People { get; set; }
+        public virtual ICollection<TestEntity> Tests { get; set; }
     }
 }
