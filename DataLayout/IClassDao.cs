@@ -16,5 +16,8 @@ namespace DataObject
 
         List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
         List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
+
+        List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
+        List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
     }
 }

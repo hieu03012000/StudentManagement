@@ -102,5 +102,15 @@ namespace ServiceObject
         {
             return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
         }
+
+        public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        {
+            return classDao.GetStudentClasses(teacherID, searchValue, page, pageSize, sortExpression);
+        }
+
+        public List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression)
+        {
+            return classDao.GetStudentClasses(teacherID, searchValue, sortExpression);
+        }
     }
 }
