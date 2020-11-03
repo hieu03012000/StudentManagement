@@ -19,8 +19,14 @@ namespace StudentManagement.Areas.Auth.Controllers
 
         static AuthController()
         {
-            Mapper.CreateMap<BusinessObjects.Person, LoginModel>();
-            Mapper.CreateMap<LoginModel, BusinessObjects.Person>();
+            Mapper.CreateMap<Person, LoginModel>();
+            Mapper.CreateMap<LoginModel, Person>();
+
+            Mapper.CreateMap<Person, ChangePasswordModel>();
+            Mapper.CreateMap<ChangePasswordModel, Person>();
+
+            Mapper.CreateMap<Person, ChangeProfileModel>();
+            Mapper.CreateMap<ChangeProfileModel, Person>();
         }
         public AuthController() : this(new Service()) { }
 

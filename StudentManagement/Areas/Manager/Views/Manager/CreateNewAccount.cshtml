@@ -1,0 +1,95 @@
+﻿@model StudentManagement.Areas.Manager.Data.PersonModel
+
+@{
+    ViewBag.Title = "New Account";
+}
+
+<div class="col-xl-11" style="margin:auto">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3 class="m-0 font-weight-bold text-primary">Create New Account</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-8 mx-auto" ">
+                <form method="post" action="createNewAccount" class="nav-item">
+                    <div class="col-xl-10 mx-auto">
+                        <div class="row">
+                            <div class="col-xl-12" style="padding:10px">
+                                <d style="padding:15px"><strong>Username:</strong></d>
+                                @Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-user", @autofocus = "autofocus" })
+                                @{
+                                    if (ViewBag.Duplicate != null)
+                                    {
+                                        <p class="col-xl-12" style="color:#e74a3b; position:absolute">@ViewBag.Duplicate</p>
+                                    }
+                                    else
+                                    {
+                                        @Html.ValidationMessageFor(m => m.Username, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6" style="padding:10px">
+                                <d style="padding:15px"><strong>Password:</strong></d>
+                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control form-control-user" })
+                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                            </div>
+                            <div class="col-xl-6" style="padding:10px">
+                                <d style="padding:15px"><strong>Confirm Password:</strong></d>
+                                @Html.TextBoxFor(m => m.Confirm, new { @class = "form-control form-control-user" })
+                                @Html.ValidationMessageFor(m => m.Confirm, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12" style="padding:10px">
+                                <d style="padding:15px"><strong>Fullname:</strong></d>
+                                @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control form-control-user" })
+                                @Html.ValidationMessageFor(m => m.Fullname, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6" style="padding:10px">
+                                <d style="padding:15px"><strong>Phone:</strong></d>
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control form-control-user" })
+                                @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                            </div>
+                            <div class="col-xl-6" style="padding:10px">
+
+                                <d style="padding:15px"><strong>Address:</strong></d>
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control form-control-user" })
+                                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6" style="padding:10px">
+                                <d style="padding:15px "><strong>Gender:</strong></d>
+                                @Html.DropDownListFor(m => m.Gender,
+                               new SelectList(Enum.GetValues(typeof(BusinessObjects.Enums.Gender))),
+                               null,
+                               new { @class = "form-control form-control-user" })
+                            </div>
+                            <div class="col-xl-6" style="padding:10px">
+                                <d style="padding:15px"><strong>Role:</strong></d>
+                                @Html.DropDownListFor(m => m.Role,
+                                new SelectList(new List<string> { "Teacher", "Student" }),
+                                null,
+                                new { @class = "form-control form-control-user" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12"style="padding:10px; padding-bottom:25px">
+                        <input type="submit" value="Create Account" class="btn btn-primary btn-user btn-block col-xl-3 m-md-auto" "  />
+                    </div>
+                    @{ 
+                        if( Session["CreateSuccess"] != null)
+                        {
+                             <p style="color:#1cc88a; margin:auto"><strong>@Session["CreateSuccess"]</strong></p>
+                            Session.Remove("CreateSuccess");
+                        }
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -70,5 +70,23 @@ namespace DataObject.EF
             }
         }
 
+        public void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                context.PersonEntities.Add(new PersonEntity
+                {
+                    Username = username,
+                    Password = password,
+                    Fullname = fullname,
+                    Phone = phone,
+                    Address = address,
+                    Gender = (gender == Gender.Male ? 0 : 1),
+                    Discriminator = role,
+                    Status = 0
+                });
+                context.SaveChanges();
+            }
+        }
     }
 }

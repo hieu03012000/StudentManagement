@@ -23,6 +23,9 @@ namespace StudentManagement.Areas.Manager.Controllers
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
+            
+            Mapper.CreateMap<BusinessObjects.Person, PersonModel>();
+            Mapper.CreateMap<PersonModel, BusinessObjects.Person>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -87,6 +90,34 @@ namespace StudentManagement.Areas.Manager.Controllers
             var list = Mapper.Map<List<Class>, List<ClassModel>>(classes);
             model.Classes = new SortedList<ClassModel>(list, sort, order);
             return View(model);
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult CreateNewAccount()
+        {
+            PersonModel model = new PersonModel();
+            return View(model);
+        }
+        
+        [HttpPost]
+        [CustomAuthorize("Manager")]
+        public ActionResult CreateNewAccount(PersonModel personModel)
+        {
+            if (ModelState.IsValid)
+            {
+                if (service.GetPersonByUsername(personModel.Username) == null)
+                {
+                    service.CreateAccount(personModel.Username, personModel.Password, personModel.Fullname,
+                                        personModel.Phone, personModel.Address, personModel.Gender, personModel.Role);
+                    Session.Add("CreateSuccess", "Create account successfully");
+                }
+                else
+                {
+                    ViewBag.Duplicate = "Duplicate username";
+                }
+            }
+            return View(personModel);
         }
     }
 }
