@@ -9,6 +9,8 @@
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Teacher</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -16,13 +18,18 @@
                 int count = 0;
                 foreach (var item in Model.List)
                 {
-                        <tr>
-                            <td scope="row">@(++count)</td>
-                            <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { className = @item.ClassName })</td>
-                            <td scope="row">@item.StartDate</td>
-                            <td scope="row">@item.EndDate</td>
-                            <td scope="row">@item.TeacherID</td>
-                        </tr>
+                    <tr>
+                        <td scope="row">@(++count)</td>
+                        <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { className = @item.ClassName })</td>
+                        <td scope="row">@item.StartDate</td>
+                        <td scope="row">@item.EndDate</td>
+                        <td scope="row">@item.TeacherID</td>
+                        <td scope="row">@item.Status</td>
+                        <td scope="row" class="d-flex justify-content-around">
+                            @Html.ActionLink("Inactive", "InactiveClass", new { id = @item.ClassID }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("Edit", "EditClass", new { id = @item.ClassID }, new { @class = "btn btn-success" })
+                        </td>
+                    </tr>
                 }
             }
         </tbody>

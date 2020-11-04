@@ -25,11 +25,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Teacher> GetTeachers(string searchValue, int page, int pageSize, string sortExpression = "Username ASC")
+        public List<Teacher> GetTeachersForManager(string searchValue, int page, int pageSize, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Teacher" && u.Status == 0));
+                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Teacher"));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.Username.Contains(searchValue) || s.Fullname.Contains(searchValue)); 
@@ -39,11 +39,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Teacher> GetTeachers(string searchValue, string sortExpression = "Username ASC")
+        public List<Teacher> GetTeachersForManager(string searchValue, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Teacher" && u.Status == 0));
+                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Teacher"));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.Username.Contains(searchValue) || s.Fullname.Contains(searchValue));

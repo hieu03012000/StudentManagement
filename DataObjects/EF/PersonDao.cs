@@ -88,5 +88,15 @@ namespace DataObjects.EF
                 context.SaveChanges();
             }
         }
+
+        public void InactivePerson(string username)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.PersonEntities.SingleOrDefault(c => c.Username == username);
+                entity.Status = 1;
+                context.SaveChanges();
+            }
+        }
     }
 }

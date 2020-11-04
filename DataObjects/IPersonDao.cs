@@ -19,5 +19,6 @@ namespace DataObjects
         void ChangePassword(string username, string password);
 
         void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role);
+        void InactivePerson(string username);
     }
 }

@@ -25,8 +25,8 @@ namespace StudentManagement.Areas.Manager.Controllers
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
 
-            Mapper.CreateMap<BusinessObjects.Person, PersonModel>();
-            Mapper.CreateMap<PersonModel, BusinessObjects.Person>();
+            Mapper.CreateMap<Person, PersonModel>();
+            Mapper.CreateMap<PersonModel, Person>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -44,8 +44,8 @@ namespace StudentManagement.Areas.Manager.Controllers
         public ActionResult SearchTeacher(string searchValue = null, string sort = "Username", string order = "desc", int page = 1)
         {
             int pageSize = 10;
-            var teachers = service.GetTeachers(searchValue, sort + " " + order, page, pageSize);
-            int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
+            var teachers = service.GetTeachersForManager(searchValue, sort + " " + order, page, pageSize);
+            int totalPages = (int)Math.Ceiling(service.GetTeachersForManager(searchValue, sort + " " + order).Count / (double)pageSize);
             var model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             var list = Mapper.Map<List<BusinessObjects.Teacher>, List<PersonModel>>(teachers);
             list.ForEach(c => c.Role = "Teacher");
@@ -62,13 +62,13 @@ namespace StudentManagement.Areas.Manager.Controllers
             SearchModel model = new SearchModel();
             if (string.IsNullOrEmpty(className))
             {
-                students = service.GetStudents(searchValue, sort + " " + order, page, pageSize);
-                int totalPages = (int)Math.Ceiling(service.GetTeachers(searchValue, sort + " " + order).Count / (double)pageSize);
+                students = service.GetStudentsForManager(searchValue, sort + " " + order, page, pageSize);
+                int totalPages = (int)Math.Ceiling(service.GetTeachersForManager(searchValue, sort + " " + order).Count / (double)pageSize);
                 model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             }
             else
             {
-                students = service.GetClassStudents(className, sort + " " + order);
+                students = service.GetClassStudentsForManager(className, sort + " " + order);
                 var c = service.GetClass(className);
                 model.Class = Mapper.Map<Class, ClassModel>(c);
 
@@ -88,27 +88,27 @@ namespace StudentManagement.Areas.Manager.Controllers
             var classes = new List<Class>();
             int total = 0;
             var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize };
-            if (!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(role))
             {
                 if (role.Equals("Teacher"))
                 {
-                    classes = service.GetTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
-                    total = service.GetTeacherClasses(id, searchValue, sort + " " + order).Count;
+                    classes = service.GetTeacherClassesForManager(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetTeacherClassesForManager(id, searchValue, sort + " " + order).Count;
                     var teacher = service.GetTeacher(id);
                     model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
                 }
                 if (role.Equals("Student"))
                 {
-                    classes = service.GetStudentClasses(id, searchValue, page, pageSize, sort + " " + order);
-                    total = service.GetStudentClasses(id, searchValue, sort + " " + order).Count;
+                    classes = service.GetStudentClassesForManager(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetStudentClassesForManager(id, searchValue, sort + " " + order).Count;
                     var student = service.GetStudent(id);
                     model.Person = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
                 }
             } 
             else
             {
-                classes = service.GetClasses(searchValue, sort + " " + order, page, pageSize);
-                total = service.GetClasses(searchValue, sort + " " + order).Count;
+                classes = service.GetClassesForManager(searchValue, sort + " " + order, page, pageSize);
+                total = service.GetClassesForManager(searchValue, sort + " " + order).Count;
             }
             int totalPages = (int)Math.Ceiling(total / (double)pageSize);
             model.TotalPages = totalPages;
@@ -144,5 +144,67 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             return View(personModel);
         }
+
+        //Delete Class
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult InactiveClass(string id = null)
+        {
+            service.InactiveClass(id);
+            return RedirectToAction("SearchClass");
+        }
+
+        //Edit Class
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditClass(string id = null)
+        {
+            service.InactiveClass(id);
+            return RedirectToAction("SearchClass");
+        }
+
+        //Delete Person
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult InactivePerson(string id = null, string role = null)
+        {
+            service.InactivePerson(id);
+            string action = "";
+            if (!string.IsNullOrEmpty(role))
+            {
+                if (role.Equals("Teacher"))
+                {
+                    action = "SearchTeacher";
+                }
+                if (role.Equals("Student"))
+                {
+                    action = "SearchStudent";
+                }
+            }
+            return RedirectToAction(action);
+        }
+
+        //Edit Person
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditPerson(string id = null, string role = null)
+        {
+            service.InactivePerson(id);
+            string action = "";
+            if (!string.IsNullOrEmpty(role))
+            {
+                if (role.Equals("Teacher"))
+                {
+                    action = "SearchTeacher";
+                }
+                if (role.Equals("Student"))
+                {
+                    action = "SearchStudent";
+                }
+            }
+            return RedirectToAction(action);
+        }
+
+
     }
 }
