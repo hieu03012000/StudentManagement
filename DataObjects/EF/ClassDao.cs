@@ -117,5 +117,15 @@ namespace DataObjects.EF
                 return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
             }
         }
+
+        public void DeleteClass(string classID)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.ClassEntities.SingleOrDefault(c => c.ClassID.ToString().Equals(classID));
+                entity.Status = 1;
+                context.SaveChanges();
+            }
+        }
     }
 }

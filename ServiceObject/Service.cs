@@ -82,6 +82,10 @@ namespace ServiceObject
         {
             personDao.CreateAccount(username, password, fullname, phone, address, gender, role);
         }
+        public void DeletePerson(string username)
+        {
+            personDao.DeletePerson(username);
+        }
 
         //Class Services
         public Class GetClass(string ClassName)
@@ -117,6 +121,12 @@ namespace ServiceObject
         public List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression)
         {
             return classDao.GetStudentClasses(teacherID, searchValue, sortExpression);
+        }
+
+        
+        public void DeleteClass(string classID)
+        {
+            classDao.DeleteClass(classID);
         }
     }
 }

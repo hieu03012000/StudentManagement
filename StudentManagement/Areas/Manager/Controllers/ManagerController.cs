@@ -88,7 +88,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             var classes = new List<Class>();
             int total = 0;
             var model = new SearchClassModel { SearchValue = searchValue, Page = page, PageSize = pageSize };
-            if (!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(role))
             {
                 if (role.Equals("Teacher"))
                 {
@@ -144,5 +144,37 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             return View(personModel);
         }
+
+        //Delete Class
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult DeleteClass(string id = null)
+        {
+            service.DeleteClass(id);
+            return RedirectToAction("SearchClass");
+        }
+
+        //Delete Person
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult DeletePerson(string id = null, string role = null)
+        {
+            service.DeletePerson(id);
+            string action = "";
+            if (!string.IsNullOrEmpty(role))
+            {
+                if (role.Equals("Teacher"))
+                {
+                    action = "SearchTeacher";
+                }
+                if (role.Equals("Student"))
+                {
+                    action = "SearchStudent";
+                }
+            }
+            return RedirectToAction(action);
+        }
+
+
     }
 }

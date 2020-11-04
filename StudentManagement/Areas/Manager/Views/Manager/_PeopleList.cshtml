@@ -10,6 +10,7 @@
                 <th scope="col">Gender</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Address</th>
+                <th scope="col" style="width:70px;"></th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,7 @@
                         <td scope="row">@item.Gender</td>
                         <td scope="row">@item.Phone</td>
                         <td scope="row">@item.Address</td>
+                        <td scope="row">@Html.ActionLink("Delete", "DeletePerson", new { id = @item.Username, role = @item.Role })</td>
                     </tr>
                 }
             }
