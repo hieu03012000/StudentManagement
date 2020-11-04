@@ -27,11 +27,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetClasses(string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        public List<Class> GetClassesForManager(string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.ClassEntities.AsQueryable().Where(u => u.Status == 0);
+                var query = context.ClassEntities.AsQueryable();
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.ClassName.Contains(searchValue));
@@ -41,11 +41,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetClasses(string searchValue, string sortExpression = "ClassName ASC")
+        public List<Class> GetClassesForManager(string searchValue, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.ClassEntities.AsQueryable().Where(u => u.Status == 0);
+                var query = context.ClassEntities.AsQueryable();
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.ClassName.Contains(searchValue));
@@ -55,11 +55,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.ClassEntities.AsQueryable().Where(u => (u.Status == 0 && u.TeacherID == teacherID));
+                var query = context.ClassEntities.AsQueryable().Where(u => (u.TeacherID == teacherID));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.ClassName.Contains(searchValue));
@@ -69,11 +69,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC")
+        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.ClassEntities.AsQueryable().Where(u => (u.Status == 0 && u.TeacherID == teacherID));
+                var query = context.ClassEntities.AsQueryable().Where(u => (u.TeacherID == teacherID));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.ClassName.Contains(searchValue));
@@ -84,13 +84,13 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetStudentClasses(string studentID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        public List<Class> GetStudentClassesForManager(string studentID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
                 var query = from s in context.ClassEntities
                         from e in s.ClassStudents
-                        where e.Person.Username == studentID && s.Status == 0
+                        where e.Person.Username == studentID 
                         select s;
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -101,13 +101,13 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetStudentClasses(string studentID, string searchValue, string sortExpression = "ClassName ASC")
+        public List<Class> GetStudentClassesForManager(string studentID, string searchValue, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
                 var query = from s in context.ClassEntities
                             from e in s.ClassStudents
-                            where e.Person.Username == studentID && s.Status == 0
+                            where e.Person.Username == studentID 
                             select s;
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -118,7 +118,7 @@ namespace DataObjects.EF
             }
         }
 
-        public void DeleteClass(string classID)
+        public void InactiveClass(string classID)
         {
             using (var context = new StudentManagementDBContext())
             {

@@ -89,7 +89,7 @@ namespace DataObjects.EF
             }
         }
 
-        public void DeletePerson(string username)
+        public void InactivePerson(string username)
         {
             using (var context = new StudentManagementDBContext())
             {

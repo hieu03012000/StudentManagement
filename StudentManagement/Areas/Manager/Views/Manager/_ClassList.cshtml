@@ -9,7 +9,8 @@
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Teacher</th>
-                <th scope="col" style="width:70px;"></th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +24,11 @@
                         <td scope="row">@item.StartDate</td>
                         <td scope="row">@item.EndDate</td>
                         <td scope="row">@item.TeacherID</td>
-                        <td scope="row">@Html.ActionLink("Delete", "DeleteClass", new { id = @item.ClassID })</td>
+                        <td scope="row">@item.Status</td>
+                        <td scope="row" class="d-flex justify-content-around">
+                            @Html.ActionLink("Inactive", "InactiveClass", new { id = @item.ClassID }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("Edit", "EditClass", new { id = @item.ClassID }, new { @class = "btn btn-success" })
+                        </td>
                     </tr>
                 }
             }

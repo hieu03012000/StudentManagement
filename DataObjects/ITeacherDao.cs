@@ -11,7 +11,7 @@ namespace DataObjects
     {
         Teacher GetTeacher(string Username);
 
-        List<Teacher> GetTeachers(string searchValue, int page, int pageSize,  string sortExpression = "Username ASC");
-        List<Teacher> GetTeachers(string searchValue,  string sortExpression = "Username ASC");
+        List<Teacher> GetTeachersForManager(string searchValue, int page, int pageSize,  string sortExpression = "Username ASC");
+        List<Teacher> GetTeachersForManager(string searchValue,  string sortExpression = "Username ASC");
     }
 }

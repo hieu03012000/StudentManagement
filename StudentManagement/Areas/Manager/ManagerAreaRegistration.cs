@@ -22,10 +22,12 @@ namespace StudentManagement.Areas.Manager
 
             context.MapRoute("", "classes/{id}", new { area = "Manager", controller = "Manager", action = "SearchClass" });
             context.MapRoute("", "classes", new { area = "Manager", controller = "Manager", action = "SearchClass" });
-            context.MapRoute("", "deleteClass/{id}", new { area = "Manager", controller = "Manager", action = "DeleteClass" });
+            context.MapRoute("", "inactiveClass/{id}", new { area = "Manager", controller = "Manager", action = "InactiveClass" });
+            context.MapRoute("", "editClass/{id}", new { area = "Manager", controller = "Manager", action = "EditClass" });
 
             context.MapRoute("", "createNewAccount", new { area = "Manager", controller = "Manager", action = "CreateNewAccount" });
-            context.MapRoute("", "deletePerson/{id}", new { area = "Manager", controller = "Manager", action = "DeletePerson" });
+            context.MapRoute("", "inactivePerson/{id}", new { area = "Manager", controller = "Manager", action = "InactivePerson" });
+            context.MapRoute("", "editPerson/{id}", new { area = "Manager", controller = "Manager", action = "EditPerson" });
         }
     }
 }

@@ -10,7 +10,8 @@
                 <th scope="col">Gender</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Address</th>
-                <th scope="col" style="width:70px;"></th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,11 @@
                         <td scope="row">@item.Gender</td>
                         <td scope="row">@item.Phone</td>
                         <td scope="row">@item.Address</td>
-                        <td scope="row">@Html.ActionLink("Delete", "DeletePerson", new { id = @item.Username, role = @item.Role })</td>
+                        <td scope="row">@item.Status</td>
+                        <td scope="row" class="d-flex justify-content-around">
+                            @Html.ActionLink("Inactive", "InactivePerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-danger" })
+                            @Html.ActionLink("Edit", "EditPerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-success" })
+                        </td>
                     </tr>
                 }
             }

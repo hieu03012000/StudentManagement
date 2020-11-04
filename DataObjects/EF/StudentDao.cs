@@ -28,11 +28,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Student> GetStudents(string searchValue, int page, int pageSize, string sortExpression = "Username ASC")
+        public List<Student> GetStudentsForManager(string searchValue, int page, int pageSize, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Student" && u.Status == 0));
+                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Student"));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.Username.Contains(searchValue) || s.Fullname.Contains(searchValue));
@@ -42,11 +42,11 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Student> GetStudents(string searchValue, string sortExpression = "Username ASC")
+        public List<Student> GetStudentsForManager(string searchValue, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Student" && u.Status == 0));
+                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Student"));
                 if (!string.IsNullOrEmpty(searchValue))
                 {
                     query = query.Where(s => s.Username.Contains(searchValue) || s.Fullname.Contains(searchValue));
@@ -58,13 +58,13 @@ namespace DataObjects.EF
         }
 
 
-        public List<Student> GetClassStudents(string ClassName, string sortExpression = "Username ASC")
+        public List<Student> GetClassStudentsForManager(string ClassName, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
                 var query = from s in context.PersonEntities
                             from e in s.ClassStudents
-                            where e.Class.ClassName == ClassName && s.Status == 0
+                            where e.Class.ClassName == ClassName
                             select s;
                 var students = query.OrderBy(sortExpression).ToList();
                 return Mapper.Map<List<PersonEntity>, List<Student>>(students);
