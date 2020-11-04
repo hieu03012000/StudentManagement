@@ -2037,6 +2037,7 @@
     <Content Include="Areas\Auth\Views\Update\ChangePassword.cshtml" />
     <Content Include="Areas\Auth\Views\Update\ShowProfile.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\_ClassDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\CreateNewAccount.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

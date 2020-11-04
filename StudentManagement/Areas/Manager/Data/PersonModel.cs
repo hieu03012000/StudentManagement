@@ -16,6 +16,9 @@ namespace StudentManagement.Areas.Manager.Data
         [Required]
         [StringLength(50, MinimumLength = 6)]
         public string Password { get; set; }
+        
+        [Compare("Password", ErrorMessage = "Not match with password")]
+        public string Confirm { get; set; }
 
         [Required]
         [Display(Name = "Full name")]
@@ -24,9 +27,13 @@ namespace StudentManagement.Areas.Manager.Data
 
         public Gender Gender { get; set; }
 
+        [Phone(ErrorMessage = "Invalid phone number")]
         public string Phone { get; set; }
+
         public string Address { get; set; }
+
         public Status Status { get; set; }
-        public string? Role { get; set; }
+
+        public string Role { get; set; }
     }
 }

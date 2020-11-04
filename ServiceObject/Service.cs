@@ -78,6 +78,11 @@ namespace ServiceObject
             personDao.ChangePassword(username, password);
         }
 
+        public void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role)
+        {
+            personDao.CreateAccount(username, password, fullname, phone, address, gender, role);
+        }
+
         //Class Services
         public Class GetClass(string ClassName)
         {

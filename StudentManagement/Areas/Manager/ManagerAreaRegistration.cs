@@ -22,6 +22,8 @@ namespace StudentManagement.Areas.Manager
 
             context.MapRoute("", "classes/{id}", new { area = "Manager", controller = "Manager", action = "SearchClass" });
             context.MapRoute("", "classes", new { area = "Manager", controller = "Manager", action = "SearchClass" });
+
+            context.MapRoute("", "createNewAccount", new { area = "Manager", controller = "Manager", action = "CreateNewAccount" });
         }
     }
 }

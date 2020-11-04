@@ -12,6 +12,7 @@ namespace ServiceObject
         Person GetPersonByUsername(string Username);
         void ChangeProfile(string username, string fullName, Gender gender, string phone, string address);
         void ChangePassword(string username, string password);
+        void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role);
 
         //Teacher respository
         Teacher GetTeacher(string Username);
