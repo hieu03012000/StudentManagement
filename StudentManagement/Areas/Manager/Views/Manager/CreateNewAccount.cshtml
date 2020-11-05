@@ -18,14 +18,7 @@
                                 <d style="padding:15px"><strong>Username:</strong></d>
                                 @Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-user", @autofocus = "autofocus" })
                                 @{
-                                    if (ViewBag.Duplicate != null)
-                                    {
-                                        <p class="col-xl-12" style="color:#e74a3b; position:absolute">@ViewBag.Duplicate</p>
-                                    }
-                                    else
-                                    {
-                                        @Html.ValidationMessageFor(m => m.Username, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
-                                    }
+                                     @Html.ValidationMessageFor(m => m.Username, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
                                 }
                             </div>
                         </div>

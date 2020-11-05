@@ -131,16 +131,10 @@ namespace StudentManagement.Areas.Manager.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (service.GetPersonByUsername(personModel.Username) == null)
-                {
+                
                     service.CreateAccount(personModel.Username, personModel.Password, personModel.Fullname,
                                         personModel.Phone, personModel.Address, personModel.Gender, personModel.Role);
                     Session.Add("CreateSuccess", "Create account successfully");
-                }
-                else
-                {
-                    ViewBag.Duplicate = "Duplicate username";
-                }
             }
             return View(personModel);
         }
