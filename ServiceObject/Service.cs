@@ -86,6 +86,10 @@ namespace ServiceObject
         {
             personDao.InactivePerson(username);
         }
+        public void EditPerson(Person person)
+        {
+            personDao.EditPerson(person);
+        }
 
         //Class Services
         public Class GetClass(string ClassName)
@@ -127,6 +131,10 @@ namespace ServiceObject
         public void InactiveClass(string classID)
         {
             classDao.InactiveClass(classID);
+        }
+        public void EditClass(Class c)
+        {
+            classDao.EditClass(c);
         }
     }
 }

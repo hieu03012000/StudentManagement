@@ -24,16 +24,16 @@ namespace StudentManagement.Areas.Manager.Data
         public string Confirm { get; set; }
 
         [Required]
-        [Display(Name = "Full name")]
         [CheckSpecialCharacter(ErrorMessage = "Fullname can not contain special character")]
         [StringLength(50, MinimumLength = 3)]
         public string Fullname { get; set; }
 
         public Gender Gender { get; set; }
 
-        [Phone(ErrorMessage = "Invalid phone number")]
+        [Phone(ErrorMessage = "Please enter a valid Phone number")]
         public string Phone { get; set; }
 
+        [StringLength(100, ErrorMessage = "Address can be at most 100 characters")]
         public string Address { get; set; }
 
         public Status Status { get; set; }
