@@ -155,13 +155,31 @@ namespace StudentManagement.Areas.Manager.Controllers
         }
 
         //Edit Class
-        [HttpGet]
+        //[HttpGet]
+        //[CustomAuthorize("Manager")]
+        //public ActionResult EditClass()
+        //{
+        //    UpdateClassModel model = new UpdateClassModel();
+        //    var teachers = service.GetTeachersForManager("", "Username desc");
+
+        //    var list = Mapper.Map<List<BusinessObjects.Teacher>, List<PersonModel>>(teachers);
+
+        //    model.Teachers = new SortedList<PersonModel>(list, "Username", "desc");
+        //    return View(model);
+        //}
+
+        [HttpPost]
         [CustomAuthorize("Manager")]
-        public ActionResult EditClass(string id = null)
+        public ActionResult EditClass(ClassModel changeModel)
         {
-            service.InactiveClass(id);
+            if (ModelState.IsValid)
+            {
+                var c = Mapper.Map<ClassModel, Class>(changeModel);
+                service.EditClass(c);
+            }
             return RedirectToAction("SearchClass");
         }
+
 
         //Delete Person
         [HttpGet]
@@ -184,12 +202,11 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction(action);
         }
 
-        //Edit Person
-        [HttpGet]
+
+        [HttpPost]
         [CustomAuthorize("Manager")]
-        public ActionResult EditPerson(string id = null, string role = null)
+        public ActionResult EditPerson(PersonModel changeModel, string role = null)
         {
-            service.InactivePerson(id);
             string action = "";
             if (!string.IsNullOrEmpty(role))
             {
@@ -202,9 +219,13 @@ namespace StudentManagement.Areas.Manager.Controllers
                     action = "SearchStudent";
                 }
             }
+            if (ModelState.IsValid)
+            {
+                var person = Mapper.Map<PersonModel, Person>(changeModel);
+                service.EditPerson(person);
+            }
             return RedirectToAction(action);
         }
-
 
     }
 }

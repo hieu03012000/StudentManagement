@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using BusinessObjects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,6 +125,19 @@ namespace DataObjects.EF
             {
                 var entity = context.ClassEntities.SingleOrDefault(c => c.ClassID.ToString().Equals(classID));
                 entity.Status = 1;
+                context.SaveChanges();
+            }
+        }
+        public void EditClass(Class c)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.ClassEntities.SingleOrDefault(m => m.ClassID == c.ClassID);
+                entity.ClassName = c.ClassName;
+                entity.StartDate = c.StartDate;
+                entity.EndDate = c.EndDate;
+                entity.TeacherID = c.TeacherID;
+                entity.Status = c.Status == Status.Active ? 0 : 1;
                 context.SaveChanges();
             }
         }

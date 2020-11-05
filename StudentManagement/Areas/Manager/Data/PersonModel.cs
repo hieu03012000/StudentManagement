@@ -20,16 +20,18 @@ namespace StudentManagement.Areas.Manager.Data
         [Compare("Password", ErrorMessage = "Not match with password")]
         public string Confirm { get; set; }
 
-        [Required]
-        [Display(Name = "Full name")]
-        [StringLength(50, MinimumLength = 3)]
+        [Required(ErrorMessage = "Fullname is required.")]
+        [StringLength(100, ErrorMessage = "Fullname can be at most 100 characters")]
         public string Fullname { get; set; }
 
         public Gender Gender { get; set; }
 
-        [Phone(ErrorMessage = "Invalid phone number")]
+        [Required(ErrorMessage = "Phone number is required.")]
+        [Phone(ErrorMessage = "Please enter a valid Phone number")]
         public string Phone { get; set; }
 
+        [Required(ErrorMessage = "Address is required.")]
+        [StringLength(100, ErrorMessage = "Address can be at most 100 characters")]
         public string Address { get; set; }
 
         public Status Status { get; set; }

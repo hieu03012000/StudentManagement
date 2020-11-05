@@ -27,7 +27,7 @@
                         <td scope="row">@item.Status</td>
                         <td scope="row" class="d-flex justify-content-around">
                             @Html.ActionLink("Inactive", "InactiveClass", new { id = @item.ClassID }, new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Edit", "EditClass", new { id = @item.ClassID }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Edit", "EditClass.cshtml", new { changeModel = @item }, new { @class = "btn btn-success" })
                         </td>
                     </tr>
                 }
