@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using StudentManagement.Areas.Infrastructure;
 using System.Web;
 
 namespace StudentManagement.Areas.Manager.Data
@@ -10,6 +11,8 @@ namespace StudentManagement.Areas.Manager.Data
     public class PersonModel
     {
         [Required]
+        [CheckDuplicateUsername(ErrorMessage = "Duplicate username")]
+        [RegularExpression("^[a-zA-Z0-9_]+$")]
         [StringLength(50, MinimumLength = 3)]
         public string Username { get; set; }
 
@@ -22,6 +25,7 @@ namespace StudentManagement.Areas.Manager.Data
 
         [Required]
         [Display(Name = "Full name")]
+        [CheckSpecialCharacter(ErrorMessage = "Fullname can not contain special character")]
         [StringLength(50, MinimumLength = 3)]
         public string Fullname { get; set; }
 

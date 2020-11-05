@@ -150,6 +150,8 @@
     <Compile Include="Areas\Auth\Data\ChangePasswordModel.cs" />
     <Compile Include="Areas\Auth\Data\ChangeProfileModel.cs" />
     <Compile Include="Areas\Auth\Data\LoginModel.cs" />
+    <Compile Include="Areas\Infrastructure\CheckDuplicateUsername.cs" />
+    <Compile Include="Areas\Infrastructure\CheckSpecialCharacter.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\ClassModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonModel.cs" />
