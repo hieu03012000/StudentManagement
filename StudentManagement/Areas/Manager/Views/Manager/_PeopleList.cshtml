@@ -19,19 +19,64 @@
                 int count = 0;
                 foreach (var item in Model.List)
                 {
-                    <tr>
-                        <td scope="row">@(++count)</td>
-                        <td scope="row">@Html.ActionLink(@item.Username, "SearchClass", new { id = @item.Username, role = @item.Role })</td>
-                        <td scope="row">@item.Fullname</td>
-                        <td scope="row">@item.Gender</td>
-                        <td scope="row">@item.Phone</td>
-                        <td scope="row">@item.Address</td>
-                        <td scope="row">@item.Status</td>
-                        <td scope="row" class="d-flex justify-content-around">
-                            @Html.ActionLink("Inactive", "InactivePerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Edit", "EditPerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-success" })
-                        </td>
-                    </tr>
+                        <tr>
+                            <td scope="row">@(++count)</td>
+                            <td scope="row">@Html.ActionLink(@item.Username, "SearchClass", new { id = @item.Username, role = @item.Role })</td>
+                            <td scope="row">@item.Fullname</td>
+                            <td scope="row">@item.Gender</td>
+                            <td scope="row">@item.Phone</td>
+                            <td scope="row">@item.Address</td>
+                            <td scope="row">@item.Status</td>
+                            <td scope="row" class="d-flex justify-content-around">
+                                @if (@item.Status == BusinessObjects.Enums.Status.Active)
+                                {
+                                    <a class="btn btn-danger text-white" data-toggle="modal" data-target="#inactiveModal@(count)">
+                                        Inactive
+                                    </a>
+                                } else
+                                {
+                                <a class="btn btn-danger text-white" data-toggle="modal" data-target="#alertModal@(count)">
+                                    Inactive
+                                </a>
+                                }
+                                         
+                                @Html.ActionLink("Edit", "EditPerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-success" })
+                            </td>
+                            <!-- Delete Modal-->
+                            <div class="modal fade" id="inactiveModal@(count)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Do you want to inactive this @item.Role?</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                            @Html.ActionLink("Inactive", "InactivePerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alert Modal-->
+                            <div class="modal fade" id="alertModal@(count)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">This @item.Role has already inactive.</h5>
+                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
                 }
             }
         </tbody>
