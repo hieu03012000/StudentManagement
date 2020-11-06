@@ -14,6 +14,7 @@ namespace ServiceObject
         void ChangePassword(string username, string password);
         void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role);
         void InactivePerson(string username);
+        void EditPerson(Person person);
 
         //Teacher respository
         Teacher GetTeacher(string Username);
@@ -43,6 +44,7 @@ namespace ServiceObject
         List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression);
         void InactiveClass(string classID);
+        void EditClass(Class c);
 
     }
 }

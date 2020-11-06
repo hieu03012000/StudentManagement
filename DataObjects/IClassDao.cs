@@ -24,5 +24,6 @@ namespace DataObjects
         List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
 
         void InactiveClass(string classID);
+        void EditClass(Class c);
     }
 }

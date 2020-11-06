@@ -98,5 +98,19 @@ namespace DataObjects.EF
                 context.SaveChanges();
             }
         }
+
+        public void EditPerson(Person person)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.PersonEntities.SingleOrDefault(c => c.Username == person.Username);
+                entity.Phone = person.Phone;
+                entity.Address = person.Address;
+                entity.Fullname = person.Fullname;
+                entity.Gender = person.Gender == Gender.Male ? 0 : 1;
+                entity.Status = person.Status == Status.Active ? 0 : 1;
+                context.SaveChanges();
+            }
+        }
     }
 }

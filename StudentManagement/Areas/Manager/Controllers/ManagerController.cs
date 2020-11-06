@@ -26,7 +26,10 @@ namespace StudentManagement.Areas.Manager.Controllers
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
 
             Mapper.CreateMap<Person, PersonModel>();
-            Mapper.CreateMap<PersonModel, Person>();
+            Mapper.CreateMap<PersonModel, Person>();         
+            
+            Mapper.CreateMap<Person, PersonUpdateModel>();
+            Mapper.CreateMap<PersonUpdateModel, Person>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -117,6 +120,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return View(model);
         }
 
+        //Create Account
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult CreateNewAccount()
@@ -149,13 +153,31 @@ namespace StudentManagement.Areas.Manager.Controllers
         }
 
         //Edit Class
-        [HttpGet]
+        //[HttpGet]
+        //[CustomAuthorize("Manager")]
+        //public ActionResult EditClass()
+        //{
+        //    UpdateClassModel model = new UpdateClassModel();
+        //    var teachers = service.GetTeachersForManager("", "Username desc");
+
+        //    var list = Mapper.Map<List<BusinessObjects.Teacher>, List<PersonModel>>(teachers);
+
+        //    model.Teachers = new SortedList<PersonModel>(list, "Username", "desc");
+        //    return View(model);
+        //}
+
+        [HttpPost]
         [CustomAuthorize("Manager")]
-        public ActionResult EditClass(string id = null)
+        public ActionResult EditClass(ClassModel changeModel)
         {
-            service.InactiveClass(id);
+            if (ModelState.IsValid)
+            {
+                var c = Mapper.Map<ClassModel, Class>(changeModel);
+                service.EditClass(c);
+            }
             return RedirectToAction("SearchClass");
         }
+
 
         //Delete Person
         [HttpGet]
@@ -178,27 +200,36 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction(action);
         }
 
-        //Edit Person
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult EditPerson(string id = null, string role = null)
+        public ActionResult EditPerson(string id)
         {
-            service.InactivePerson(id);
-            string action = "";
-            if (!string.IsNullOrEmpty(role))
+            PersonUpdateModel model = new PersonUpdateModel();
+            Person person = service.GetPersonByUsername(id);
+            model = Mapper.Map<Person, PersonUpdateModel>(person);
+            return View(model);
+        }
+        
+        [HttpPost]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditPerson(PersonUpdateModel changeModel)
+        {
+            if (ModelState.IsValid)
             {
+                Person person = service.GetPersonByUsername(changeModel.Username);
+                string role = person.Discriminator;
+                service.EditPerson(Mapper.Map<PersonUpdateModel, Person>(changeModel));
                 if (role.Equals("Teacher"))
                 {
-                    action = "SearchTeacher";
+                    return Redirect("teachers");
                 }
                 if (role.Equals("Student"))
                 {
-                    action = "SearchStudent";
+                    return Redirect("students");
                 }
             }
-            return RedirectToAction(action);
+            return View(changeModel);
         }
-
 
     }
 }
