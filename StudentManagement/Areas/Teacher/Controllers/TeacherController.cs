@@ -107,5 +107,14 @@ namespace StudentManagement.Areas.Teacher.Controllers
             service.InactiveTest(id);
             return RedirectToAction("SearchTest");
         }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult ShowStudentDetail(string username)
+        {
+            var student = service.GetStudent(username);
+            var model = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
+            return View(model);
+        }
     }
 }
