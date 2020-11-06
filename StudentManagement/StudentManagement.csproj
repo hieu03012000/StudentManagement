@@ -2051,7 +2051,7 @@
     <Content Include="Areas\Teacher\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\_StudentList.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\_ClassDetail.cshtml" />
-    <Content Include="Areas\Teacher\Views\Teacher\SearchStudent.cshtml" /
+    <Content Include="Areas\Teacher\Views\Teacher\SearchStudent.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\EditPerson.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\EditClass.cshtml" />
 
