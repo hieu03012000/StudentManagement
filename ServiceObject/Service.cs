@@ -163,5 +163,10 @@ namespace ServiceObject
         {
             testDao.InactiveTest(testID);
         }
+
+        public List<Test> GetClassTestsForTeacher(string classID, string searchValue, string sortExpression)
+        {
+            return testDao.GetClassTestsForTeacher(classID, searchValue, sortExpression);
+        }
     }
 }

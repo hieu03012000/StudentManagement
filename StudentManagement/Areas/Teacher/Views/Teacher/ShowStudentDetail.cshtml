@@ -1,0 +1,36 @@
+﻿@model StudentManagement.Areas.Teacher.Data.PersonModel
+
+<!-- Details -->
+<div class="card shadow mb-4">
+    <div class="card-header text-primary">
+        <h3>Details</h3>
+    </div>
+    <div class="card-body d-flex justify-content-around">
+        <div class="col-md-4" style="background-color:beige">
+            Picture here
+        </div>
+        <div class="col-md-6" style="height:430px">
+            <div style="padding-top:20px" class="mx-auto">
+                <table class="col-md-10 mx-auto">
+                    <tr>
+                        <td style="padding:15px"><strong>Fullname:</strong></td>
+                        <td>@Model.Fullname</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:15px"><strong>Gender:</strong></td>
+                        <td>@Model.Gender</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:15px"><strong>Phone:</strong></td>
+                        <td>@Model.Phone</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:15px"><strong>Address:</strong></td>
+                        <td>@Model.Address</td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

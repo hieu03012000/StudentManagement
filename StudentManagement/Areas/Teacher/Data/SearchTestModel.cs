@@ -1,4 +1,5 @@
-﻿using StudentManagement.Code;
+﻿using BusinessObjects;
+using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace StudentManagement.Areas.Teacher.Data
         public int Page { get; set; }
         public int PageSize { get; set; }
         public int TotalPages { get; set; }
+
+        public ClassModel Class { get; set; }
         public SortedList<TestModel> Tests { get; set; }
     }
 }

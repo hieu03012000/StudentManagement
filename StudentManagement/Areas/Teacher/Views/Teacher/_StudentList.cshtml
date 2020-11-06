@@ -16,7 +16,7 @@
                 {
                     <tr>
                         <td scope="row">@(++count)</td>
-                        <td scope="row">@item.Fullname</td>
+                        <td scope="row">@Html.ActionLink(@item.Fullname, "showStudentDetail", new { username = @item.Username })</td>
                         <td scope="row">@item.Gender</td>
                     </tr>
                 }

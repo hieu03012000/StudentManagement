@@ -85,16 +85,27 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
         [HttpGet]
         [CustomAuthorize("Teacher")]
-        public ActionResult SearchTest(string searchValue = null, string sort = "TestTitle", string order = "desc", int page = 1)
+        public ActionResult SearchTest(string searchValue = null, string sort = "TestTitle", string order = "desc", int page = 1, string? classID = null)
         {
             int pageSize = 10;
             var s = (Person)Session["USER_DTO"];
-
-            var tests = service.GetTestsForTeacher(s.Username, searchValue, page, pageSize, sort + " " + order);
-            var total = service.GetTestsForTeacher(s.Username, searchValue, sort + " " + order).Count;
-
-            int totalPages = (int)Math.Ceiling(total / (double)pageSize);
-            var model = new SearchTestModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            List<Test> tests;
+            int total = 0;
+            SearchTestModel model;
+            if (!string.IsNullOrEmpty(classID))
+            {
+                tests = service.GetClassTestsForTeacher(classID, searchValue, sort + " " + order);
+                model = new SearchTestModel { SearchValue = searchValue };
+                var c = service.GetClass(classID);
+                model.Class = Mapper.Map<Class, ClassModel>(c);
+            }
+            else
+            {
+                tests = service.GetTestsForTeacher(s.Username, searchValue, page, pageSize, sort + " " + order);
+                total = service.GetTestsForTeacher(s.Username, searchValue, sort + " " + order).Count;
+                int totalPages = (int)Math.Ceiling(total / (double)pageSize);
+                model = new SearchTestModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            }
             var list = Mapper.Map<List<Test>, List<TestModel>>(tests);
             model.Tests = new SortedList<TestModel>(list, sort, order);
             return View(model);
@@ -106,6 +117,15 @@ namespace StudentManagement.Areas.Teacher.Controllers
         {
             service.InactiveTest(id);
             return RedirectToAction("SearchTest");
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult ShowStudentDetail(string username)
+        {
+            var student = service.GetStudent(username);
+            var model = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
+            return View(model);
         }
     }
 }
