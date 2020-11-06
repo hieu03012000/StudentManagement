@@ -14,6 +14,6 @@ namespace DataObjects
         List<Student> GetStudentsForManager(string searchValue, int page, int pageSize, string sortExpression = "Username ASC");
         List<Student> GetStudentsForManager(string searchValue, string sortExpression = "Username ASC");
 
-        List<Student> GetClassStudentsForManager(string ClassName, string sortExpression = "Username ASC");
+        List<Student> GetClassStudents(string classID, string sortExpression = "Username ASC");
     }
 }

@@ -55,12 +55,12 @@ namespace StudentManagement.Areas.Manager.Controllers
 
         [HttpGet]
         [CustomAuthorize("Manager")]
-        public ActionResult SearchStudent(string searchValue = null, string sort = "Username", string order = "desc", int page = 1, string className = null)
+        public ActionResult SearchStudent(string searchValue = null, string sort = "Username", string order = "desc", int page = 1, string classID = null)
         {
             List<BusinessObjects.Student> students;
             int pageSize = 10;
             SearchModel model = new SearchModel();
-            if (string.IsNullOrEmpty(className))
+            if (string.IsNullOrEmpty(classID))
             {
                 students = service.GetStudentsForManager(searchValue, sort + " " + order, page, pageSize);
                 int totalPages = (int)Math.Ceiling(service.GetTeachersForManager(searchValue, sort + " " + order).Count / (double)pageSize);
@@ -68,8 +68,8 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             else
             {
-                students = service.GetClassStudentsForManager(className, sort + " " + order);
-                var c = service.GetClass(className);
+                students = service.GetClassStudents(classID, sort + " " + order);
+                var c = service.GetClass(classID);
                 model.Class = Mapper.Map<Class, ClassModel>(c);
 
             }
@@ -99,8 +99,8 @@ namespace StudentManagement.Areas.Manager.Controllers
                 }
                 if (role.Equals("Student"))
                 {
-                    classes = service.GetStudentClassesForManager(id, searchValue, page, pageSize, sort + " " + order);
-                    total = service.GetStudentClassesForManager(id, searchValue, sort + " " + order).Count;
+                    classes = service.GetStudentClasses(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetStudentClasses(id, searchValue, sort + " " + order).Count;
                     var student = service.GetStudent(id);
                     model.Person = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
                 }

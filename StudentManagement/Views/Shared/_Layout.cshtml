@@ -87,13 +87,13 @@
                 if (user.Discriminator.Equals("Teacher"))
                 {
                     <div class="nav-item btn btn-block" type="submit">
-                        <a href="/classes" class="nav-link py-1">
+                        <a href="/classest" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Class</span>
                         </a>
                     </div>
                     <div class="nav-item btn btn-block" type="submit">
-                        <a href="/classes" class="nav-link py-1">
+                        <a href="" class="nav-link py-1">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Test</span>
                         </a>
@@ -197,9 +197,9 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <form method="get" action="logout">
-                        <input type="submit" value="Logout" class="btn btn-primary btn-user btn-block" />
-                    </form>
+                    <a href="/logout" class="btn btn-primary">
+                        <span>Logout</span>
+                    </a>
                 </div>
             </div>
         </div>

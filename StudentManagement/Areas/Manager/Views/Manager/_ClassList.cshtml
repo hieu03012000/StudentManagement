@@ -1,7 +1,7 @@
 ﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Manager.Data.ClassModel>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+    <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col" style="width:50px;">No.</th>
@@ -20,7 +20,7 @@
                 {
                         <tr>
                             <td scope="row">@(++count)</td>
-                            <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { className = @item.ClassName })</td>
+                            <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { classID = @item.ClassID })</td>
                             <td scope="row">@item.StartDate</td>
                             <td scope="row">@item.EndDate</td>
                             <td scope="row">@item.TeacherID</td>
