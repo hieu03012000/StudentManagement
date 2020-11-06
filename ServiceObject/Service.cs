@@ -116,6 +116,7 @@ namespace ServiceObject
         {
             return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
         }
+
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
             return classDao.GetTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
@@ -125,7 +126,6 @@ namespace ServiceObject
         {
             return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
         }
-
         public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
             return classDao.GetStudentClasses(teacherID, searchValue, page, pageSize, sortExpression);
@@ -145,5 +145,7 @@ namespace ServiceObject
         {
             classDao.EditClass(c);
         }
+
+        
     }
 }
