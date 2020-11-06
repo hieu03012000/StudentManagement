@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using BusinessObjects;
 using ServiceObject;
 using StudentManagement.Areas.Infrastructure;
@@ -26,6 +26,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
+
+            Mapper.CreateMap<Test, TestModel>();
+            Mapper.CreateMap<TestModel, Test>();
         }
         public TeacherController() : this(new Service()) { }
 
@@ -78,6 +81,31 @@ namespace StudentManagement.Areas.Teacher.Controllers
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
             model.People = new SortedList<PersonModel>(list, sort, order);
             return View(model);
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult SearchTest(string searchValue = null, string sort = "TestTitle", string order = "desc", int page = 1)
+        {
+            int pageSize = 10;
+            var s = (Person)Session["USER_DTO"];
+
+            var tests = service.GetTestsForTeacher(s.Username, searchValue, page, pageSize, sort + " " + order);
+            var total = service.GetTestsForTeacher(s.Username, searchValue, sort + " " + order).Count;
+
+            int totalPages = (int)Math.Ceiling(total / (double)pageSize);
+            var model = new SearchTestModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
+            var list = Mapper.Map<List<Test>, List<TestModel>>(tests);
+            model.Tests = new SortedList<TestModel>(list, sort, order);
+            return View(model);
+        }
+        //Delete Test
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult InactiveTest(string id = null)
+        {
+            service.InactiveTest(id);
+            return RedirectToAction("SearchTest");
         }
     }
 }

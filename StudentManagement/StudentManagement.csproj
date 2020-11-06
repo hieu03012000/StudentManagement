@@ -166,6 +166,8 @@
     <Compile Include="Areas\Teacher\Data\PersonModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchTestModel.cs" />
+    <Compile Include="Areas\Teacher\Data\TestModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumbHelper.cs" />
@@ -2044,7 +2046,6 @@
     <Content Include="Areas\Auth\Views\Update\ShowProfile.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\_ClassDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\CreateNewAccount.cshtml" />
-
     <Content Include="Areas\Teacher\Views\web.config" />
     <Content Include="Areas\Teacher\Views\Teacher\SearchClass.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\_ClassList.cshtml" />
@@ -2054,7 +2055,8 @@
     <Content Include="Areas\Teacher\Views\Teacher\SearchStudent.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\EditPerson.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\EditClass.cshtml" />
-
+    <Content Include="Areas\Teacher\Views\Teacher\SearchTest.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_TestList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
