@@ -135,8 +135,6 @@ namespace ServiceObject
         {
             return classDao.GetStudentClasses(teacherID, searchValue, sortExpression);
         }
-
-        
         public void InactiveClass(string classID)
         {
             classDao.InactiveClass(classID);
@@ -146,6 +144,24 @@ namespace ServiceObject
             classDao.EditClass(c);
         }
 
-        
+
+
+        //Test Services
+        public Test GetTest(string testID)
+        {
+            return testDao.GetTest(testID);
+        }
+        public List<Test> GetTestsForTeacher(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        {
+            return testDao.GetTestsForTeacher(teacherID, searchValue, page, pageSize, sortExpression);
+        }
+        public List<Test> GetTestsForTeacher(string teacherID, string searchValue, string sortExpression)
+        {
+            return testDao.GetTestsForTeacher(teacherID, searchValue, sortExpression);
+        }
+        public void InactiveTest(string testID)
+        {
+            testDao.InactiveTest(testID);
+        }
     }
 }
