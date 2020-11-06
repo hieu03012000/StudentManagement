@@ -51,6 +51,7 @@ namespace ServiceObject
         void InactiveTest(string testID);
         List<Test> GetTestsForTeacher(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Test> GetTestsForTeacher(string teacherID, string searchValue, string sortExpression);
+        List<Test> GetClassTestsForTeacher(string classID, string searchValue, string sortExpression);
 
     }
 }

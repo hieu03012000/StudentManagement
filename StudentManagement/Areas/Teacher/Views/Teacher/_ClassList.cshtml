@@ -26,6 +26,8 @@
                         <td scope="row">@item.TotalStudents</td>
                         <td scope="row">@item.Status</td>
                         <td scope="row" class="d-flex justify-content-around">
+                            @Html.ActionLink("Tests", "SearchTest", new { classID = @item.ClassID }, new { @class = "btn btn-info" })
+
                             @if (@item.Status == BusinessObjects.Enums.Status.Active)
                             {
                                 <a class="btn btn-danger text-white" data-toggle="modal" data-target="#inactiveModal@(count)">
