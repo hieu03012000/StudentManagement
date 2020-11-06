@@ -58,14 +58,11 @@ namespace DataObjects.EF
         }
 
 
-        public List<Student> GetClassStudentsForManager(string ClassName, string sortExpression = "Username ASC")
+        public List<Student> GetClassStudents(string classID, string sortExpression = "Username ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
-                var query = from s in context.PersonEntities
-                            from e in s.ClassStudents
-                            where e.Class.ClassName == ClassName
-                            select s;
+                var query = context.PersonEntities.Where(x => x.ClassStudents.Any(c => c.ClassID.ToString() == classID) && x.Status == 0);
                 var students = query.OrderBy(sortExpression).ToList();
                 return Mapper.Map<List<PersonEntity>, List<Student>>(students);
             }

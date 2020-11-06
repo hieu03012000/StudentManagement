@@ -1,0 +1,29 @@
+﻿@model StudentManagement.Areas.Teacher.Data.SearchStudentModel
+
+@{
+    ViewBag.Title = "Students";
+}
+@if (Model.Class != null)
+{
+    @Html.Partial("_ClassDetail", Model.Class)
+}
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header">
+        <h3 class="m-0 text-primary font-weight-bold">Students</h3>
+    </div>
+    <div class="card-body">
+        <form>
+            @if (Model.People.List.Count > 0)
+            {
+                <div class="row">
+                    @Html.Partial("_StudentList", Model.People)
+                </div>
+            }
+            else
+            {
+                @: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No students found...
+            }
+        </form>
+    </div>
+</div>

@@ -36,9 +36,9 @@ namespace ServiceObject
             return studentDao.GetStudentsForManager(searchValue, sortExpression);
         }
 
-        public List<Student> GetClassStudentsForManager(string ClassName, string sortExpression)
+        public List<Student> GetClassStudents(string classID, string sortExpression)
         {
-            return studentDao.GetClassStudentsForManager(ClassName, sortExpression);
+            return studentDao.GetClassStudents(classID, sortExpression);
         }
 
         //Teacher Services
@@ -92,9 +92,9 @@ namespace ServiceObject
         }
 
         //Class Services
-        public Class GetClass(string ClassName)
+        public Class GetClass(string classID)
         {
-            return classDao.GetClass(ClassName);
+            return classDao.GetClass(classID);
         }
 
         public List<Class> GetClassesForManager(string searchValue, string sortExpression, int page, int pageSize)
@@ -116,15 +116,24 @@ namespace ServiceObject
         {
             return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
         }
-
-        public List<Class> GetStudentClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetStudentClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
-        public List<Class> GetStudentClassesForManager(string teacherID, string searchValue, string sortExpression)
+        public List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetStudentClassesForManager(teacherID, searchValue, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
+        }
+
+        public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        {
+            return classDao.GetStudentClasses(teacherID, searchValue, page, pageSize, sortExpression);
+        }
+
+        public List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression)
+        {
+            return classDao.GetStudentClasses(teacherID, searchValue, sortExpression);
         }
 
         

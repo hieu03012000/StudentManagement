@@ -14,11 +14,11 @@ namespace StudentManagement.Areas.Teacher
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
-            context.MapRoute(
-                "Teacher_default",
-                "Teacher/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
-            );
+            context.MapRoute("", "classest/{id}", new { area = "Teacher", controller = "Teacher", action = "SearchClass" });
+            context.MapRoute("", "classest", new { area = "Teacher", controller = "Teacher", action = "SearchClass" });
+            context.MapRoute("", "inactiveClasst/{id}", new { area = "Teacher", controller = "Teacher", action = "InactiveClass" });
+            context.MapRoute("", "students/{id}", new { area = "Teacher", controller = "Teacher", action = "SearchStudent" });
+            context.MapRoute("", "students", new { area = "Teacher", controller = "Teacher", action = "SearchStudent" });
         }
     }
 }

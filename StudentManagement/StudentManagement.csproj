@@ -161,7 +161,11 @@
     <Compile Include="Areas\Manager\Data\PeopleModel.cs" />
     <Compile Include="Areas\Manager\Data\UpdateClassModel.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
-    <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Compile Include="Areas\Teacher\Controllers\TeacherController.cs" />
+    <Compile Include="Areas\Teacher\Data\ClassModel.cs" />
+    <Compile Include="Areas\Teacher\Data\PersonModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumbHelper.cs" />
@@ -1854,8 +1858,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Manager\Views\web.config" />
-    <Content Include="Areas\Teacher\Views\web.config" />
-    <Content Include="Areas\Student\Views\web.config" />
     <Content Include="Assets\scss\navs\_global.scss" />
     <Content Include="Assets\scss\navs\_sidebar.scss" />
     <Content Include="Assets\scss\navs\_topbar.scss" />
@@ -2042,8 +2044,17 @@
     <Content Include="Areas\Auth\Views\Update\ShowProfile.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\_ClassDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\CreateNewAccount.cshtml" />
+
+    <Content Include="Areas\Teacher\Views\web.config" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_ClassList.cshtml" />
+    <Content Include="Areas\Teacher\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_StudentList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_ClassDetail.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchStudent.cshtml" /
     <Content Include="Areas\Manager\Views\Manager\EditPerson.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\EditClass.cshtml" />
+
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2072,11 +2083,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Auth\Views\Shared\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
-    <Folder Include="Areas\Student\Controllers\" />
-    <Folder Include="Areas\Student\Data\" />
-    <Folder Include="Areas\Student\Views\Shared\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
-    <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>

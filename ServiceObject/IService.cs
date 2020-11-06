@@ -27,17 +27,22 @@ namespace ServiceObject
 
         List<Student> GetStudentsForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Student> GetStudentsForManager(string searchValue, string sortExpression);
-        List<Student> GetClassStudentsForManager(string ClassName, string sortExpression);
+        List<Student> GetClassStudents(string classID, string sortExpression);
 
         //Class respository
-        Class GetClass(string ClassName);
+        Class GetClass(string classID);
 
         List<Class> GetClassesForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Class> GetClassesForManager(string searchValue, string sortExpression);
+
+        List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
+        List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression);
+
         List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression);
-        List<Class> GetStudentClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
-        List<Class> GetStudentClassesForManager(string teacherID, string searchValue, string sortExpression);
+
+        List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
+        List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression);
         void InactiveClass(string classID);
         void EditClass(Class c);
 
