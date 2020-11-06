@@ -48,7 +48,7 @@ namespace StudentManagement.Areas.Auth.Controllers
         [HttpGet]
         public ActionResult Logout(LoginModel model)
         {
-            Session.Remove("USER_DTO");
+            Session.RemoveAll();
             return Redirect("login");
         }
 

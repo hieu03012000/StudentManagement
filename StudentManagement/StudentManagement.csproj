@@ -155,6 +155,7 @@
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Manager\Data\ClassModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonModel.cs" />
+    <Compile Include="Areas\Manager\Data\PersonUpdateModel.cs" />
     <Compile Include="Areas\Manager\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Manager\Data\SearchModel.cs" />
     <Compile Include="Areas\Manager\Data\PeopleModel.cs" />

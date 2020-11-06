@@ -26,7 +26,10 @@ namespace StudentManagement.Areas.Manager.Controllers
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
 
             Mapper.CreateMap<Person, PersonModel>();
-            Mapper.CreateMap<PersonModel, Person>();
+            Mapper.CreateMap<PersonModel, Person>();         
+            
+            Mapper.CreateMap<Person, PersonUpdateModel>();
+            Mapper.CreateMap<PersonUpdateModel, Person>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -117,6 +120,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return View(model);
         }
 
+        //Create Account
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult CreateNewAccount()
@@ -196,29 +200,35 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction(action);
         }
 
-
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditPerson(string id)
+        {
+            PersonUpdateModel model = new PersonUpdateModel();
+            Person person = service.GetPersonByUsername(id);
+            model = Mapper.Map<Person, PersonUpdateModel>(person);
+            return View(model);
+        }
+        
         [HttpPost]
         [CustomAuthorize("Manager")]
-        public ActionResult EditPerson(PersonModel changeModel, string role = null)
+        public ActionResult EditPerson(PersonUpdateModel changeModel)
         {
-            string action = "";
-            if (!string.IsNullOrEmpty(role))
+            if (ModelState.IsValid)
             {
+                Person person = service.GetPersonByUsername(changeModel.Username);
+                string role = person.Discriminator;
+                service.EditPerson(Mapper.Map<PersonUpdateModel, Person>(changeModel));
                 if (role.Equals("Teacher"))
                 {
-                    action = "SearchTeacher";
+                    return Redirect("teachers");
                 }
                 if (role.Equals("Student"))
                 {
-                    action = "SearchStudent";
+                    return Redirect("students");
                 }
             }
-            if (ModelState.IsValid)
-            {
-                var person = Mapper.Map<PersonModel, Person>(changeModel);
-                service.EditPerson(person);
-            }
-            return RedirectToAction(action);
+            return View(changeModel);
         }
 
     }

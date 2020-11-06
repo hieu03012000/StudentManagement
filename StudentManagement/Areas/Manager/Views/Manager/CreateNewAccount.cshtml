@@ -17,20 +17,18 @@
                             <div class="col-xl-12" style="padding:10px">
                                 <d style="padding:15px"><strong>Username:</strong></d>
                                 @Html.TextBoxFor(m => m.Username, new { @class = "form-control form-control-user", @autofocus = "autofocus" })
-                                @{
-                                     @Html.ValidationMessageFor(m => m.Username, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
-                                }
+                                @Html.ValidationMessageFor(m => m.Username, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xl-6" style="padding:10px">
                                 <d style="padding:15px"><strong>Password:</strong></d>
-                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control form-control-user" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user" })
                                 @Html.ValidationMessageFor(m => m.Password, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
                             </div>
                             <div class="col-xl-6" style="padding:10px">
                                 <d style="padding:15px"><strong>Confirm Password:</strong></d>
-                                @Html.TextBoxFor(m => m.Confirm, new { @class = "form-control form-control-user" })
+                                @Html.PasswordFor(m => m.Confirm, new { @class = "form-control form-control-user" })
                                 @Html.ValidationMessageFor(m => m.Confirm, null, new { @class = "col-xl-12", @style = "color:#e74a3b; position:absolute" })
                             </div>
                         </div>

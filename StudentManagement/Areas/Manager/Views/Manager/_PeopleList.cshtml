@@ -29,7 +29,7 @@
                         <td scope="row">@item.Status</td>
                         <td scope="row" class="d-flex justify-content-around">
                             @Html.ActionLink("Inactive", "InactivePerson", new { id = @item.Username, role = @item.Role }, new { @class = "btn btn-danger" })
-                            @Html.ActionLink("Edit", "EditPerson", new { changeModel = @item, role = @item.Role }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Edit", "editPerson", new { id = item.Username}, new { @class = "btn btn-success" })
                         </td>
                     </tr>
                 }

@@ -1,4 +1,4 @@
-﻿@model StudentManagement.Areas.Manager.Data.PersonModel
+﻿@model StudentManagement.Areas.Manager.Data.PersonUpdateModel
 
 @{
     ViewBag.Title = "Update Profile";
@@ -15,12 +15,13 @@
                     Picture here
                 </div>
                 <div class="col-md-8 mx-auto" style="height:430px">
-                    <form method="post" action="changeProfile" class="nav-item">
+                    <form method="post" action="editPerson" class="nav-item">
                         <div style="padding-top:10px" class="mx-auto">
                             <table class="col-xl-10 mx-auto">
                                 <tr>
                                     <td style="padding:15px"><strong>Username:</strong></td>
                                     <td>
+                                        @Html.HiddenFor(m => m.Username, new { @Value =Model.Username })
                                         @Model.Username
                                     </td>
                                 </tr>
