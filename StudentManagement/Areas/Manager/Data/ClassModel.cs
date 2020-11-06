@@ -1,4 +1,5 @@
-﻿using BusinessObjects.Enums;
+﻿using BusinessObjects;
+using BusinessObjects.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,9 +10,8 @@ namespace StudentManagement.Areas.Manager.Data
     {
         public Guid ClassID { get; set; }
 
-        [Required]
-        [Display(Name = "Class name")]
-        [StringLength(50, MinimumLength = 3)]
+        [Required(ErrorMessage = "Class name is required.")]
+        [StringLength(100, ErrorMessage = "Class name can be at most 100 characters")]
         public string ClassName { get; set; }
 
         [DataType(DataType.Date)]
