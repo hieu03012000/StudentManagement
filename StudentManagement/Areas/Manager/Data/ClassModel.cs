@@ -23,5 +23,7 @@ namespace StudentManagement.Areas.Manager.Data
         public DateTime EndDate { get; set; }
         public Status Status { get; set; }
         public string TeacherID { get; set; }
+
+        public PersonModel Teacher { get; set; }
     }
 }

@@ -162,8 +162,10 @@
     <Compile Include="Areas\Manager\Data\UpdateClassModel.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Teacher\Controllers\TeacherController.cs" />
+    <Compile Include="Areas\Teacher\Data\AnswerModel.cs" />
     <Compile Include="Areas\Teacher\Data\ClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\PersonModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchAnswerModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchTestModel.cs" />
@@ -2058,6 +2060,9 @@
     <Content Include="Areas\Teacher\Views\Teacher\SearchTest.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\_TestList.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\ShowStudentDetail.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchAnswer.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_AnswerList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_TestDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

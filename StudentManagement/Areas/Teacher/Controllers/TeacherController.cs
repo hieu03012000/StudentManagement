@@ -1,5 +1,6 @@
 ﻿ using AutoMapper;
 using BusinessObjects;
+using DataObjects.EF;
 using ServiceObject;
 using StudentManagement.Areas.Infrastructure;
 using StudentManagement.Areas.Teacher.Data;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace StudentManagement.Areas.Teacher.Controllers
 {
@@ -29,6 +31,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<Test, TestModel>();
             Mapper.CreateMap<TestModel, Test>();
+
+            Mapper.CreateMap<Answer, AnswerModel>();
+            Mapper.CreateMap<AnswerModel, Answer>();
         }
         public TeacherController() : this(new Service()) { }
 
@@ -75,8 +80,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
             SearchStudentModel model = new SearchStudentModel();
             
             students = service.GetClassStudents(classID, sort + " " + order);
-            var c = service.GetClass(classID);
-            model.Class = Mapper.Map<Class, ClassModel>(c);
+            var c = Mapper.Map < Class, ClassModel> (service.GetClass(classID));
+            c.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(c.TeacherID));
+            model.Class = c;
 
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
             model.People = new SortedList<PersonModel>(list, sort, order);
@@ -127,5 +133,28 @@ namespace StudentManagement.Areas.Teacher.Controllers
             var model = Mapper.Map<BusinessObjects.Student, PersonModel>(student);
             return View(model);
         }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult SearchAnswer(string testID = null)
+        {
+            var answers = service.GetAnswersForTeacher(testID);
+            var test = service.GetTest(testID);
+            var model = new SearchAnswerModel();
+            model.Test = Mapper.Map<Test, TestModel>(test);
+            var teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(test.TeacherID));
+            model.Test.Teacher = teacher;
+            var c = Mapper.Map<Class, ClassModel>(service.GetClass(test.ClassID.ToString()));
+            model.Test.Class = c;
+            var list = Mapper.Map<List<Answer>, List<AnswerModel>>(answers);
+            foreach (var a in list)
+            {
+                a.Student = Mapper.Map<BusinessObjects.Student, PersonModel >(service.GetStudent(a.StudentID));
+            }
+
+            model.Answers = new SortedList<AnswerModel>(list, "AnswerTitle", "desc");
+            return View(model);
+        }
+        
     }
 }
