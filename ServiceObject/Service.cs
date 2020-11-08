@@ -57,6 +57,11 @@ namespace ServiceObject
             return teacherDao.GetTeachersForManager(searchValue, sortExpression);
         }
 
+        public List<Teacher> GetTeachersForManager()
+        {
+            return teacherDao.GetTeachersForManager();
+        }
+
         //Person Services
         public bool Login(string Username, string Password)
         {
@@ -119,12 +124,12 @@ namespace ServiceObject
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetTeacherClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
+            return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
         }
         public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
@@ -143,7 +148,6 @@ namespace ServiceObject
         {
             classDao.EditClass(c);
         }
-
 
 
         //Test Services
@@ -180,5 +184,6 @@ namespace ServiceObject
         {
             return answerDao.GetAnswersForTeacher(testID);
         }
+
     }
 }
