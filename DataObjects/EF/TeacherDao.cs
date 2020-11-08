@@ -7,6 +7,7 @@ using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DataObjects.EF
 {
     public class TeacherDao : ITeacherDao
@@ -49,6 +50,16 @@ namespace DataObjects.EF
                     query = query.Where(s => s.Username.Contains(searchValue) || s.Fullname.Contains(searchValue));
                 }
 
+                var teachers = query.OrderBy(sortExpression).ToList();
+                return Mapper.Map<List<PersonEntity>, List<Teacher>>(teachers);
+            }
+        }
+
+        public List<Teacher> GetTeachersForManager(string sortExpression = "Username ASC")
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = context.PersonEntities.AsQueryable().Where(u => (u.Discriminator == "Teacher" && u.Status == 0));
                 var teachers = query.OrderBy(sortExpression).ToList();
                 return Mapper.Map<List<PersonEntity>, List<Teacher>>(teachers);
             }

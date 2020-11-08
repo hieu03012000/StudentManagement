@@ -59,6 +59,7 @@ namespace StudentManagement.Areas.Auth.Controllers
                 service.ChangeProfile(s.Username, changeModel.Fullname, changeModel.Gender, changeModel.Phone, changeModel.Address);
                 var person = service.GetPersonByUsername(s.Username);
                 Session.Add("USER_DTO", person);
+                return Redirect("showProfile");
             }
             return View(changeModel);
         }

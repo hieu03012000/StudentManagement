@@ -24,6 +24,9 @@ namespace StudentManagement.Areas.Manager.Controllers
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
+            
+            Mapper.CreateMap<List<BusinessObjects.Teacher>, LinkedList<PersonModel>>();
+            Mapper.CreateMap<LinkedList<PersonModel>, List<BusinessObjects.Teacher>>();
 
             Mapper.CreateMap<Person, PersonModel>();
             Mapper.CreateMap<PersonModel, Person>();         
@@ -152,33 +155,6 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction("SearchClass");
         }
 
-        //Edit Class
-        //[HttpGet]
-        //[CustomAuthorize("Manager")]
-        //public ActionResult EditClass()
-        //{
-        //    UpdateClassModel model = new UpdateClassModel();
-        //    var teachers = service.GetTeachersForManager("", "Username desc");
-
-        //    var list = Mapper.Map<List<BusinessObjects.Teacher>, List<PersonModel>>(teachers);
-
-        //    model.Teachers = new SortedList<PersonModel>(list, "Username", "desc");
-        //    return View(model);
-        //}
-
-        [HttpPost]
-        [CustomAuthorize("Manager")]
-        public ActionResult EditClass(ClassModel changeModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var c = Mapper.Map<ClassModel, Class>(changeModel);
-                service.EditClass(c);
-            }
-            return RedirectToAction("SearchClass");
-        }
-
-
         //Delete Person
         [HttpGet]
         [CustomAuthorize("Manager")]
@@ -231,5 +207,40 @@ namespace StudentManagement.Areas.Manager.Controllers
             return View(changeModel);
         }
 
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditClass(string id)
+        {
+            ClassModel model = new ClassModel();
+            Class c = service.GetClass(id);
+            model = Mapper.Map<Class, ClassModel>(c);
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for(int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            model.Teachers = list;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Manager")]
+        public ActionResult EditClass(ClassModel changeModel)
+        {
+            if (ModelState.IsValid)
+            {
+                service.EditClass(Mapper.Map<ClassModel, Class>(changeModel));
+                return Redirect("classes");
+            }
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            changeModel.Teachers = list;
+            return View(changeModel);
+        }
     }
 }

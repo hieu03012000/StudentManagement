@@ -21,6 +21,7 @@ namespace ServiceObject
 
         List<Teacher> GetTeachersForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Teacher> GetTeachersForManager(string searchValue, string sortExpression);
+        List<Teacher> GetTeachersForManager();
 
         //Student respository
         Student GetStudent(string Username);

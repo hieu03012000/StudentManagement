@@ -1,4 +1,4 @@
-﻿@model StudentManagement.Areas.Manager.Data.UpdateClassModel
+﻿@model StudentManagement.Areas.Manager.Data.ClassModel
 
 @{
     ViewBag.Title = "Update Class";
@@ -15,34 +15,36 @@
                     Picture here
                 </div>
                 <div class="col-md-8 mx-auto" style="height:430px">
-                    <form method="post" action="changeProfile" class="nav-item">
+                    <form method="post" action="/editClass" class="nav-item">
                         <div style="padding-top:10px" class="mx-auto">
                             <table class="col-xl-10 mx-auto">
                                 <tr>
                                     <td style="padding:20px"><strong>Class name:</strong></td>
                                     <td>
-                                        @Html.TextBoxFor(m => m.Class.ClassName, new { @class = "form-control form-control-user", @Value = @Model.Class.ClassName })
-                                        @Html.ValidationMessageFor(m => m.Class.ClassName, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        @Html.HiddenFor(m => m.ClassID, new { @Value = Model.ClassID})
+                                        @Html.TextBoxFor(m => m.ClassName, new { @class = "form-control form-control-user", @Value = @Model.ClassName })
+                                        @Html.ValidationMessageFor(m => m.ClassName, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding:20px"><strong>Start Date:</strong></td>
                                     <td>
-                                        @Html.EditorFor(m => m.Class.StartDate, new { htmlAttributes = new { @class = "form-control" }, @Value = @Model.Class.StartDate })
-                                        @Html.ValidationMessageFor(m => m.Class.StartDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        @Html.EditorFor(m => m.StartDate, new { htmlAttributes = new { @class = "form-control" }, @Value = @Model.StartDate })
+                                        @Html.ValidationMessageFor(m => m.StartDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding:20px"><strong>End Date:</strong></td>
                                     <td>
-                                        @Html.EditorFor(m => m.Class.EndDate, new { htmlAttributes = new { @class = "form-control" }, @Value = @Model.Class.EndDate })
-                                        @Html.ValidationMessageFor(m => m.Class.EndDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        @Html.EditorFor(m => m.EndDate, new { htmlAttributes = new { @class = "form-control" }, @Value = @Model.EndDate })
+                                        @Html.ValidationMessageFor(m => m.EndDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="padding:20px "><strong>Teacher:</strong></td>
                                     <td>
-                                        @Html.DropDownListFor(m => m.Teachers,
+                                        @Html.DropDownListFor(m => m.TeacherID,
+                                        new SelectList(Model.Teachers, "Value", "Text"),
                                         null,
                                         new { @class = "form-control form-control-user" })
                                     </td>
