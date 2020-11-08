@@ -1,0 +1,24 @@
+﻿@model StudentManagement.Areas.Teacher.Data.TestModel
+
+<!-- Details -->
+<div class="card shadow mb-4">
+    <div class="card-header text-primary">
+        <h3>Details</h3>
+    </div>
+    <div class="card-body">
+        <div class="row  d-flex justify-content-around">
+            <div class="col-md-4">
+                <div><strong>Teacher name: @Model.Teacher.Fullname</strong></div>
+                <div><strong>Class: </strong>@Model.Class.ClassName</div>
+            </div>
+            <div class="col-md-4">
+                <div><strong>Create Date: </strong>@Model.CreateDate</div>
+                <div><strong>End Date: </strong>@Model.EndDate</div>
+            </div>
+        </div>
+        <div class="row d-flex flex-column text-center">
+            <h3 class="m-3">@Model.TestTitle</h3>
+            <div>@Model.Description</div>
+        </div>
+    </div>
+</div>

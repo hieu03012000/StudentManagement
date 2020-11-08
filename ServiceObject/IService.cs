@@ -53,5 +53,9 @@ namespace ServiceObject
         List<Test> GetTestsForTeacher(string teacherID, string searchValue, string sortExpression);
         List<Test> GetClassTestsForTeacher(string classID, string searchValue, string sortExpression);
 
+        //Answer Repository
+        Answer GetAnswer(String answerID);
+        List<Answer> GetAnswersForTeacher(string testID);
+
     }
 }

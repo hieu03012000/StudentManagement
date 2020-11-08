@@ -21,7 +21,7 @@
                 {
                     <tr>
                         <td scope="row">@(++count)</td>
-                        <td scope="row">@Html.ActionLink(@item.TestTitle, "SearchTest", new { testID = @item.TestID })</td>
+                        <td scope="row">@Html.ActionLink(@item.TestTitle, "SearchAnswer", new { testID = @item.TestID })</td>
                         <td scope="row">@item.CreateDate</td>
                         <td scope="row">@item.EndDate</td>
                         <td scope="row">@item.Class.ClassName</td>

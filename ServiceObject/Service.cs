@@ -168,5 +168,17 @@ namespace ServiceObject
         {
             return testDao.GetClassTestsForTeacher(classID, searchValue, sortExpression);
         }
+
+        //Answer Services
+
+        public Answer GetAnswer(string answerID)
+        {
+            return answerDao.GetAnswer(answerID);
+        }
+
+        public List<Answer> GetAnswersForTeacher(string testID)
+        {
+            return answerDao.GetAnswersForTeacher(testID);
+        }
     }
 }
