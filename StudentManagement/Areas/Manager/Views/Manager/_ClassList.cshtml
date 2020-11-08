@@ -23,7 +23,7 @@
                             <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { classID = @item.ClassID })</td>
                             <td scope="row">@item.StartDate</td>
                             <td scope="row">@item.EndDate</td>
-                            <td scope="row">@item.TeacherID</td>
+                            <td scope="row">@item.Teacher.Fullname</td>
                             <td scope="row">@item.Status</td>
                             <td scope="row" class="d-flex justify-content-around">
                                 @if (@item.Status == BusinessObjects.Enums.Status.Active)

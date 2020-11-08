@@ -25,9 +25,11 @@ namespace StudentManagement.Areas.Manager.Data
 
         public Status Status { get; set; }
 
-        [Required]
         public string TeacherID { get; set; }
 
         public IEnumerable<SelectListItem> Teachers { get; set; }
+
+        public PersonModel Teacher { get; set; }
+
     }
 }

@@ -368,13 +368,13 @@
           <EntitySet Name="ClassEntities" EntityType="StudentManagementModel.ClassEntity" />
           <EntitySet Name="ClassStudentEntities" EntityType="StudentManagementModel.ClassStudentEntity" />
           <EntitySet Name="PersonEntities" EntityType="StudentManagementModel.PersonEntity" />
-          <EntitySet Name="TestEntities1" EntityType="StudentManagementModel.TestEntity" />
+          <EntitySet Name="TestEntities" EntityType="StudentManagementModel.TestEntity" />
           <AssociationSet Name="FK_dbo_Answer_dbo_Person_StudentID" Association="Self.FK_dbo_Answer_dbo_Person_StudentID">
             <End Role="Person" EntitySet="PersonEntities" />
             <End Role="Answer" EntitySet="AnswerEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Answer_dbo_Test_TestID" Association="Self.FK_dbo_Answer_dbo_Test_TestID">
-            <End Role="Test" EntitySet="TestEntities1" />
+            <End Role="Test" EntitySet="TestEntities" />
             <End Role="Answer" EntitySet="AnswerEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Class_dbo_Person_TeacherID" Association="Self.FK_dbo_Class_dbo_Person_TeacherID">
@@ -387,7 +387,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Test_dbo_Class_ClassID" Association="Self.FK_dbo_Test_dbo_Class_ClassID">
             <End Role="Class" EntitySet="ClassEntities" />
-            <End Role="Test" EntitySet="TestEntities1" />
+            <End Role="Test" EntitySet="TestEntities" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_ClassStudent_dbo_Person_StudentID" Association="Self.FK_dbo_ClassStudent_dbo_Person_StudentID">
             <End Role="Person" EntitySet="PersonEntities" />
@@ -395,7 +395,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Test_dbo_Person_TeacherID" Association="Self.FK_dbo_Test_dbo_Person_TeacherID">
             <End Role="Person" EntitySet="PersonEntities" />
-            <End Role="Test" EntitySet="TestEntities1" />
+            <End Role="Test" EntitySet="TestEntities" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -455,7 +455,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TestEntities1">
+          <EntitySetMapping Name="TestEntities">
             <EntityTypeMapping TypeName="StudentManagementModel.TestEntity">
               <MappingFragment StoreEntitySet="Test">
                 <ScalarProperty Name="TestID" ColumnName="TestID" />

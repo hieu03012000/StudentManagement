@@ -26,5 +26,7 @@ namespace StudentManagement.Areas.Teacher.Data
         public Status Status { get; set; }
         public string TeacherID { get; set; }
         public int TotalStudents { get; set; }
+        public PersonModel Teacher { get; set; }
+
     }
 }

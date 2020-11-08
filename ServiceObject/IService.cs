@@ -7,7 +7,7 @@ namespace ServiceObject
 {
     public interface IService
     {
-        //User respository
+        //User Repository
         bool Login(string Username, string Password);
         Person GetPersonByUsername(string Username);
         void ChangeProfile(string username, string fullName, Gender gender, string phone, string address);
@@ -16,21 +16,21 @@ namespace ServiceObject
         void InactivePerson(string username);
         void EditPerson(Person person);
 
-        //Teacher respository
+        //Teacher Repository
         Teacher GetTeacher(string Username);
 
         List<Teacher> GetTeachersForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Teacher> GetTeachersForManager(string searchValue, string sortExpression);
         List<Teacher> GetTeachersForManager();
 
-        //Student respository
+        //Student Repository
         Student GetStudent(string Username);
 
         List<Student> GetStudentsForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Student> GetStudentsForManager(string searchValue, string sortExpression);
         List<Student> GetClassStudents(string classID, string sortExpression);
 
-        //Class respository
+        //Class Repository
         Class GetClass(string classID);
 
         List<Class> GetClassesForManager(string searchValue, string sortExpression, int page, int pageSize);
@@ -46,6 +46,17 @@ namespace ServiceObject
         List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression);
         void InactiveClass(string classID);
         void EditClass(Class c);
+
+        //Test Repository
+        Test GetTest(string testID);
+        void InactiveTest(string testID);
+        List<Test> GetTestsForTeacher(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
+        List<Test> GetTestsForTeacher(string teacherID, string searchValue, string sortExpression);
+        List<Test> GetClassTestsForTeacher(string classID, string searchValue, string sortExpression);
+
+        //Answer Repository
+        Answer GetAnswer(String answerID);
+        List<Answer> GetAnswersForTeacher(string testID);
 
     }
 }

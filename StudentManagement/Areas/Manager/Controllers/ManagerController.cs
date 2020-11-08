@@ -75,8 +75,9 @@ namespace StudentManagement.Areas.Manager.Controllers
             else
             {
                 students = service.GetClassStudents(classID, sort + " " + order);
-                var c = service.GetClass(classID);
-                model.Class = Mapper.Map<Class, ClassModel>(c);
+                var c = Mapper.Map<Class, ClassModel>(service.GetClass(classID));
+                model.Class = c;
+                model.Class.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(c.TeacherID));
 
             }
                 
@@ -119,6 +120,10 @@ namespace StudentManagement.Areas.Manager.Controllers
             int totalPages = (int)Math.Ceiling(total / (double)pageSize);
             model.TotalPages = totalPages;
             var list = Mapper.Map<List<Class>, List<ClassModel>>(classes);
+            foreach (var item in list)
+            {
+                item.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(item.TeacherID));
+            }
             model.Classes = new SortedList<ClassModel>(list, sort, order);
             return View(model);
         }

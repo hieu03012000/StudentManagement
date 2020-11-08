@@ -1,14 +1,15 @@
-﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Teacher.Data.ClassModel>
+﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Teacher.Data.TestModel>
 
 <div class="table-responsive">
     <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col" style="width:50px;">No.</th>
-                <th scope="col">Class Name</th>
-                <th scope="col">Start Date</th>
+                <th scope="col">Test Title</th>
+                <th scope="col">Create Date</th>
                 <th scope="col">End Date</th>
-                <th scope="col">Total Students</th>
+                <th scope="col">Class</th>
+                <th scope="col">Total Answers</th>
                 <th scope="col">Status</th>
                 <th scope="col"></th>
             </tr>
@@ -20,14 +21,13 @@
                 {
                     <tr>
                         <td scope="row">@(++count)</td>
-                        <td scope="row">@Html.ActionLink(@item.ClassName, "SearchStudent", new { classID = @item.ClassID })</td>
-                        <td scope="row">@item.StartDate</td>
+                        <td scope="row">@Html.ActionLink(@item.TestTitle, "SearchAnswer", new { testID = @item.TestID })</td>
+                        <td scope="row">@item.CreateDate</td>
                         <td scope="row">@item.EndDate</td>
-                        <td scope="row">@item.TotalStudents</td>
+                        <td scope="row">@item.Class.ClassName</td>
+                        <td scope="row">@*@item.*@</td>
                         <td scope="row">@item.Status</td>
                         <td scope="row" class="d-flex justify-content-around">
-                            @Html.ActionLink("Tests", "SearchTest", new { classID = @item.ClassID }, new { @class = "btn btn-info" })
-
                             @if (@item.Status == BusinessObjects.Enums.Status.Active)
                             {
                                 <a class="btn btn-danger text-white" data-toggle="modal" data-target="#inactiveModal@(count)">
@@ -40,7 +40,7 @@
                                     Inactive
                                 </a>
                             }
-                            @Html.ActionLink("Edit", "editClasst", new { id = @item.ClassID }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Edit", "editTest", new { id = @item.ClassID }, new { @class = "btn btn-success" })
                         </td>
                     </tr>
                     <!-- Delete Modal-->
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    @Html.ActionLink("Inactive", "InactiveClass", new { id = @item.ClassID }, new { @class = "btn btn-danger" })
+                                    @Html.ActionLink("Inactive", "inactiveTest", new { id = @item.TestID }, new { @class = "btn btn-danger" })
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">This Class has already inactive.</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">This Test has already inactive.</h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
