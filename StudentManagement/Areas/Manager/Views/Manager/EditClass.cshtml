@@ -11,10 +11,8 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-xl-4" style="background-color:beige">
-                    Picture here
-                </div>
-                <div class="col-md-8 mx-auto" style="height:430px">
+                
+                <div class="col-md-12 mx-auto" style="height:430px">
                     <form method="post" action="/editClass" class="nav-item">
                         <div style="padding-top:10px" class="mx-auto">
                             <table class="col-xl-10 mx-auto">
@@ -45,6 +43,15 @@
                                     <td>
                                         @Html.DropDownListFor(m => m.TeacherID,
                                         new SelectList(Model.Teachers, "Value", "Text"),
+                                        null,
+                                        new { @class = "form-control form-control-user" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px "><strong>Teacher:</strong></td>
+                                    <td>
+                                        @Html.DropDownListFor(m => m.Status,
+                                        new SelectList(Enum.GetValues(typeof(BusinessObjects.Enums.Status))),
                                         null,
                                         new { @class = "form-control form-control-user" })
                                     </td>
