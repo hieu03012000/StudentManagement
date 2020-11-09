@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessObjects;
+using BusinessObjects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace DataObjects.EF
         static TestDao()
         {
             Mapper.CreateMap<TestEntity, Test>();
+            Mapper.CreateMap<Test, TestEntity>();
             Mapper.CreateMap<Teacher, TestEntity>();
         }
 
@@ -85,6 +87,34 @@ namespace DataObjects.EF
             {
                 var entity = context.TestEntities.SingleOrDefault(c => c.TestID.ToString().Equals(testID));
                 entity.Status = 1;
+                context.SaveChanges();
+            }
+        }
+
+        public void EditTest(Test test)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.TestEntities.SingleOrDefault(m => m.TestID == test.TestID);
+                entity.TestTitle = test.TestTitle;
+                entity.Description = test.Description;
+                entity.CreateDate = test.CreateDate;
+                entity.EndDate = test.EndDate;
+                entity.TeacherID = test.TeacherID;
+                entity.ClassID = test.ClassID;
+                entity.Status = test.Status == Status.Active ? 0 : 1;
+                context.SaveChanges();
+            }
+        }
+
+        public void AddTest(Test test)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = Mapper.Map<Test, TestEntity>(test);
+                entity.Status = 0;
+                entity.TestID = Guid.NewGuid();
+                context.TestEntities.Add(entity);
                 context.SaveChanges();
             }
         }

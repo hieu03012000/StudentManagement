@@ -1,7 +1,8 @@
-﻿using BusinessObjects;
+﻿
+
+using BusinessObjects;
 using BusinessObjects.Enums;
 using DataObjects;
-using System;
 using System.Collections.Generic;
 
 namespace ServiceObject
@@ -59,7 +60,7 @@ namespace ServiceObject
 
         public List<Teacher> GetTeachersForManager()
         {
-            return teacherDao.GetTeachersForManager();
+            return teacherDao.GetTeachersForManager("Username desc");
         }
 
         //Person Services
@@ -112,24 +113,24 @@ namespace ServiceObject
             return classDao.GetClassesForManager(searchValue, sortExpression);
         }
 
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetActiveTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression)
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
+            return classDao.GetActiveTeacherClasses(teacherID, searchValue, sortExpression);
         }
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
         }
         public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
@@ -147,6 +148,10 @@ namespace ServiceObject
         public void EditClass(Class c)
         {
             classDao.EditClass(c);
+        }
+        public void AddClass(Class c)
+        {
+            classDao.AddClass(c);
         }
 
 
@@ -172,7 +177,15 @@ namespace ServiceObject
         {
             return testDao.GetClassTestsForTeacher(classID, searchValue, sortExpression);
         }
+        public void EditTest(Test test)
+        {
+            testDao.EditTest(test);
+        }
 
+        public void AddTest(Test test)
+        {
+            testDao.AddTest(test);
+        }
         //Answer Services
 
         public Answer GetAnswer(string answerID)
