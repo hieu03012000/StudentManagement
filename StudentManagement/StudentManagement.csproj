@@ -153,12 +153,12 @@
     <Compile Include="Areas\Infrastructure\CheckDuplicateUsername.cs" />
     <Compile Include="Areas\Infrastructure\CheckSpecialCharacter.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Manager\Data\StudentClassModel.cs" />
     <Compile Include="Areas\Manager\Data\ClassModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonUpdateModel.cs" />
     <Compile Include="Areas\Manager\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Manager\Data\SearchModel.cs" />
-    <Compile Include="Areas\Manager\Data\PeopleModel.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
     <Compile Include="Areas\Student\Controllers\StudentController.cs" />
     <Compile Include="Areas\Student\Data\AnswerModel.cs" />
@@ -171,6 +171,7 @@
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Content Include="Areas\Student\Views\Student\ShowAnswer.cshtml" />
     <Content Include="Areas\Student\Views\Student\_AnswerDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\AddStudentClass.cshtml" />
     <None Include="Areas\Student\Views\Student\_ClassDetail.cshtml" />
     <None Include="Areas\Student\Views\Student\_TeacherDetail.cshtml" />
     <Content Include="Areas\Student\Views\Student\SearchTest.cshtml" />
@@ -183,6 +184,7 @@
     <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchTestModel.cs" />
+    <Compile Include="Areas\Teacher\Data\StudentClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\TestModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
@@ -2087,6 +2089,7 @@
     <Content Include="Areas\Student\Views\Student\SearchClass.cshtml" />
     <Content Include="Areas\Student\Views\Student\_ClassList.cshtml" />
     <Content Include="Areas\Student\Views\Student\_TestList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddStudentClass.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

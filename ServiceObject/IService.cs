@@ -29,6 +29,8 @@ namespace ServiceObject
         List<Student> GetStudentsForManager(string searchValue, string sortExpression, int page, int pageSize);
         List<Student> GetStudentsForManager(string searchValue, string sortExpression);
         List<Student> GetClassStudents(string classID, string sortExpression);
+        List<Student> GetAvailableClassStudents(List<Student> list);
+
 
         //Class Repository
         Class GetClass(string classID);
@@ -47,6 +49,8 @@ namespace ServiceObject
         void InactiveClass(string classID);
         void EditClass(Class c);
         void AddClass(Class c);
+        void AddStudentClass(ClassStudent classStudent);
+        void RemoveStudentClass(ClassStudent classStudent);
 
 
         //Test Repository
