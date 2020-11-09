@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using BusinessObjects;
 using BusinessObjects.Enums;
 using System;
@@ -55,15 +56,16 @@ namespace DataObjects.EF
             }
         }
 
-        public void ChangeProfile(string username, string fullName, Gender gender, string phone, string address)
+        public void ChangeProfile(Person person)
         {
             using (var context = new StudentManagementDBContext())
             {
-                var entity = context.PersonEntities.SingleOrDefault(m => m.Username == username);
-                entity.Fullname = fullName;
-                entity.Gender = gender == Gender.Male ? 0 : 1;
-                entity.Phone = phone;
-                entity.Address = address;
+                var entity = context.PersonEntities.SingleOrDefault(m => m.Username == person.Username);
+                entity.Fullname = person.Fullname;
+                entity.Gender = person.Gender == Gender.Male ? 0 : 1;
+                entity.Phone = person.Phone;
+                entity.Address = person.Address;
+                entity.Image = person.Image;
 
                 context.SaveChanges();
 

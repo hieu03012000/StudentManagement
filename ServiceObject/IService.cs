@@ -10,7 +10,7 @@ namespace ServiceObject
         //User Repository
         bool Login(string Username, string Password);
         Person GetPersonByUsername(string Username);
-        void ChangeProfile(string username, string fullName, Gender gender, string phone, string address);
+        void ChangeProfile(Person person);
         void ChangePassword(string username, string password);
         void CreateAccount(string username, string password, string fullname, string phone, string address, Gender gender, string role);
         void InactivePerson(string username);

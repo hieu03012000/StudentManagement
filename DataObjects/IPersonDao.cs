@@ -14,7 +14,7 @@ namespace DataObjects
 
         Person GetPersonByUsername(string Username);
 
-        void ChangeProfile(string username, string fullName, Gender gender, string phone, string address);
+        void ChangeProfile(Person person);
 
         void ChangePassword(string username, string password);
 
