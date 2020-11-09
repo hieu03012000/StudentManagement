@@ -41,14 +41,21 @@
                                 <tr>
                                     <td style="padding:20px "><strong>Teacher:</strong></td>
                                     <td>
-                                        @Html.DropDownListFor(m => m.TeacherID,
-                                        new SelectList(Model.Teachers, "Value", "Text"),
-                                        null,
-                                        new { @class = "form-control form-control-user" })
+                                        @if (Model.Teachers.Any())
+                                        {
+                                            @Html.DropDownListFor(m => m.TeacherID,
+                                            new SelectList(Model.Teachers, "Value", "Text"),
+                                            null,
+                                            new { @class = "form-control form-control-user" })
+                                        }
+                                        else
+                                        {
+                                        <p>No teachers available</p>
+                                        }
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding:20px "><strong>Teacher:</strong></td>
+                                    <td style="padding:20px "><strong>Status:</strong></td>
                                     <td>
                                         @Html.DropDownListFor(m => m.Status,
                                         new SelectList(Enum.GetValues(typeof(BusinessObjects.Enums.Status))),
