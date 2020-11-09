@@ -28,5 +28,6 @@ namespace DataObjects
         void AddClass(Class c);
 
         void AddStudentClass(ClassStudent classStudent);
+        void RemoveStudentClass(ClassStudent classStudent);
     }
 }

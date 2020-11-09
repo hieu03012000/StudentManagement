@@ -162,7 +162,10 @@ namespace ServiceObject
         {
             classDao.AddStudentClass(classStudent);
         }
-
+        public void RemoveStudentClass(ClassStudent classStudent)
+        {
+            classDao.RemoveStudentClass(classStudent);
+        }
 
         //Test Services
         public Test GetTest(string testID)

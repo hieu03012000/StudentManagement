@@ -78,12 +78,14 @@ namespace StudentManagement.Areas.Manager.Controllers
                 var c = Mapper.Map<Class, ClassModel>(service.GetClass(classID));
                 model.Class = c;
                 model.Class.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(c.TeacherID));
-
-                
             }
                 
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
             list.ForEach(c => c.Role = "Student");
+            if (!string.IsNullOrEmpty(classID))
+            {
+                list.ForEach(c => c.ClassID = classID);
+            }
             model.People = new SortedList<PersonModel>(list, sort, order);
             return View(model);
         }
@@ -324,6 +326,16 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             newModel.AvailableStudents = availableStudentsList;
             return RedirectToAction("SearchStudent", new { classID = newModel.ClassID });
+        }
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult RemoveStudentClass(string studentID, string classID)
+        {
+            var model = new StudentClassModel();
+            model.ClassID = classID;
+            model.StudentID = studentID;
+            service.RemoveStudentClass(Mapper.Map<StudentClassModel, ClassStudent>(model));
+            return RedirectToAction("SearchStudent", new { classID = classID });
         }
     }
 }

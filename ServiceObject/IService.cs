@@ -50,6 +50,7 @@ namespace ServiceObject
         void EditClass(Class c);
         void AddClass(Class c);
         void AddStudentClass(ClassStudent classStudent);
+        void RemoveStudentClass(ClassStudent classStudent);
 
 
         //Test Repository
