@@ -74,9 +74,9 @@ namespace ServiceObject
             return personDao.GetPersonByUsername(Username);
         }
 
-        public void ChangeProfile(string username, string fullName, Gender gender, string phone, string address)
+        public void ChangeProfile(Person person)
         {
-            personDao.ChangeProfile(username, fullName, gender, phone, address);
+            personDao.ChangeProfile(person);
         }
 
         public void ChangePassword(string username, string password)

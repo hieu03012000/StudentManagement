@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -55,9 +56,27 @@ namespace StudentManagement.Areas.Auth.Controllers
         {
             if (ModelState.IsValid)
             {
-                var s = (Person)Session["USER_DTO"];
-                service.ChangeProfile(s.Username, changeModel.Fullname, changeModel.Gender, changeModel.Phone, changeModel.Address);
-                var person = service.GetPersonByUsername(s.Username);
+                try
+                {
+                    if (changeModel.File != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Assets/img/"), Path.GetFileName(changeModel.File.FileName));
+                        changeModel.File.SaveAs(path);
+                        changeModel.Image = Path.GetFileName(changeModel.File.FileName);
+                        System.Diagnostics.Debug.WriteLine("Done");
+                    }
+                    System.Diagnostics.Debug.WriteLine("Not if");
+
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("Not Done");
+
+                    ViewBag.Mess = "File upload failed";
+                    return View(changeModel);
+                }
+                service.ChangeProfile(Mapper.Map<ChangeProfileModel, Person>(changeModel));
+                var person = service.GetPersonByUsername(changeModel.Username);
                 Session.Add("USER_DTO", person);
                 return Redirect("showProfile");
             }

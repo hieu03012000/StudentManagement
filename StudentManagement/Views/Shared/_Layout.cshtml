@@ -132,7 +132,14 @@
 
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">@user.Fullname</span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                @if (user.Image != null)
+                                {
+                                    <img src="~/Assets/img/@user.Image" style="width:40px; height:40px; border-radius: 50%; box-shadow: 0 0 3px black   " />
+                                }
+                                else
+                                {
+                                    <img src="~/Assets/img/Default.jpg" style="width:40px; height:40px; border-radius: 50%; box-shadow: 0 0 3px black" />
+                                }
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

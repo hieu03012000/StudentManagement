@@ -14,5 +14,6 @@ namespace BusinessObjects
         public string Address { get; set; }
         public Status Status { get; set; }
         public string Discriminator { get; set; }
+        public string Image { get; set; }
     }
 }

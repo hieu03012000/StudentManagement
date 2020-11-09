@@ -2117,6 +2117,7 @@
     <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Areas\Student\Views\Shared\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
