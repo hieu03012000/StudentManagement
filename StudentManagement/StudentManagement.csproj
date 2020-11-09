@@ -184,6 +184,7 @@
     <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
     <Compile Include="Areas\Teacher\Data\SearchTestModel.cs" />
+    <Compile Include="Areas\Teacher\Data\StudentClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\TestModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
     <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
@@ -2088,6 +2089,7 @@
     <Content Include="Areas\Student\Views\Student\SearchClass.cshtml" />
     <Content Include="Areas\Student\Views\Student\_ClassList.cshtml" />
     <Content Include="Areas\Student\Views\Student\_TestList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddStudentClass.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
