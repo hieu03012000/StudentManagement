@@ -55,7 +55,7 @@ namespace DataObjects.EF
                 return Mapper.Map<List<ClassEntity>, List<Class>>(classes);
             }
         }
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
@@ -69,7 +69,7 @@ namespace DataObjects.EF
             }
         }
 
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression = "ClassName ASC")
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC")
         {
             using (var context = new StudentManagementDBContext())
             {
@@ -166,6 +166,18 @@ namespace DataObjects.EF
                 entity.EndDate = c.EndDate;
                 entity.TeacherID = c.TeacherID;
                 entity.Status = c.Status == Status.Active ? 0 : 1;
+                context.SaveChanges();
+            }
+        }
+
+        public void AddClass(Class c)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = Mapper.Map<Class, ClassEntity>(c);
+                entity.Status = 0;
+                entity.ClassID = Guid.NewGuid();
+                context.ClassEntities.Add(entity);
                 context.SaveChanges();
             }
         }

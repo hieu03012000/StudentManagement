@@ -1,16 +1,13 @@
 ﻿ using AutoMapper;
 using BusinessObjects;
-using DataObjects.EF;
+using Microsoft.Ajax.Utilities;
 using ServiceObject;
 using StudentManagement.Areas.Infrastructure;
 using StudentManagement.Areas.Teacher.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 
 namespace StudentManagement.Areas.Teacher.Controllers
 {
@@ -25,6 +22,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
+
+            Mapper.CreateMap<List<BusinessObjects.Teacher>, LinkedList<PersonModel>>();
+            Mapper.CreateMap<LinkedList<PersonModel>, List<BusinessObjects.Teacher>>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -113,6 +113,10 @@ namespace StudentManagement.Areas.Teacher.Controllers
                 model = new SearchTestModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             }
             var list = Mapper.Map<List<Test>, List<TestModel>>(tests);
+            foreach (var c in list)
+            {
+                c.TotalAnswers = service.GetAnswersForTeacher(c.TestID.ToString()).Count;
+            }
             model.Tests = new SortedList<TestModel>(list, sort, order);
             return View(model);
         }
@@ -155,6 +159,115 @@ namespace StudentManagement.Areas.Teacher.Controllers
             model.Answers = new SortedList<AnswerModel>(list, "AnswerTitle", "desc");
             return View(model);
         }
-        
+
+
+        //Add Class
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddClass()
+        {
+            ClassModel model = new ClassModel();
+            model.EndDate = DateTime.Now;
+            model.StartDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddClass(ClassModel newModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var s = (Person)Session["USER_DTO"];
+                newModel.TeacherID = s.Username;
+                service.AddClass(Mapper.Map<ClassModel, Class>(newModel));
+                return Redirect("classest");
+            }
+            newModel.EndDate = DateTime.Now;
+            newModel.StartDate = DateTime.Now;
+            return View(newModel);
+        }
+
+        //Edit Class
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditClass(string id)
+        {
+            ClassModel model = new ClassModel();
+            Class c = service.GetClass(id);
+            model = Mapper.Map<Class, ClassModel>(c);
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditClass(ClassModel changeModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var s = (Person)Session["USER_DTO"];
+                changeModel.TeacherID = s.Username;
+                service.EditClass(Mapper.Map<ClassModel, Class>(changeModel));
+                return Redirect("classest");
+            }
+            return View(changeModel);
+        }
+
+        //Add Test
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddTest(Guid classID)
+        {
+            TestModel model = new TestModel();
+            model.ClassID = classID;
+            model.EndDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddTest(TestModel newModel)
+        {
+            var s = (Person)Session["USER_DTO"];
+            if (ModelState.IsValid)
+            {
+                newModel.TeacherID = s.Username;
+                service.AddTest(Mapper.Map<TestModel, Test>(newModel));
+                return RedirectToAction("SearchTest", new { classID = newModel.ClassID });
+            }
+            newModel.EndDate = DateTime.Now;
+            newModel.CreateDate = DateTime.Now;
+            return View(newModel);
+        }
+
+        //Edit Test
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditTest(string id)
+        {
+            TestModel model = new TestModel();
+            Test t = service.GetTest(id);
+            model = Mapper.Map<Test, TestModel>(t);
+            model.EndDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditTest(TestModel changeModel)
+        {
+            var s = (Person)Session["USER_DTO"];
+            if (ModelState.IsValid)
+            {
+                changeModel.TeacherID = s.Username;
+                service.EditTest(Mapper.Map<TestModel, Test>(changeModel));
+                return Redirect("tests");
+            }
+            changeModel.EndDate = DateTime.Now;
+            changeModel.CreateDate = DateTime.Now;
+            return View(changeModel);
+        }
     }
 }

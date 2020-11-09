@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ServiceObject;
-using StudentManagement.Areas.Auth.Controllers;
 using StudentManagement.Areas.Manager.Data;
 using StudentManagement.Code;
 using System;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using StudentManagement.Areas.Infrastructure;
 using BusinessObjects;
-using Microsoft.Ajax.Utilities;
 
 namespace StudentManagement.Areas.Manager.Controllers
 {
@@ -99,8 +97,8 @@ namespace StudentManagement.Areas.Manager.Controllers
             {
                 if (role.Equals("Teacher"))
                 {
-                    classes = service.GetTeacherClassesForManager(id, searchValue, page, pageSize, sort + " " + order);
-                    total = service.GetTeacherClassesForManager(id, searchValue, sort + " " + order).Count;
+                    classes = service.GetActiveTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetActiveTeacherClasses(id, searchValue, sort + " " + order).Count;
                     var teacher = service.GetTeacher(id);
                     model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
                 }
@@ -181,6 +179,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction(action);
         }
 
+        //Edit Person
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult EditPerson(string id)
@@ -212,6 +211,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return View(changeModel);
         }
 
+        //Edit Class
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult EditClass(string id)
@@ -246,6 +246,45 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             changeModel.Teachers = list;
             return View(changeModel);
+        }
+
+        //Add Class
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult AddClass()
+        {
+            ClassModel model = new ClassModel();
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            model.Teachers = list;
+            model.EndDate = DateTime.Now;
+            model.StartDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Manager")]
+        public ActionResult AddClass(ClassModel newModel)
+        {
+            if (ModelState.IsValid)
+            {
+                service.AddClass(Mapper.Map<ClassModel, Class>(newModel));
+                return Redirect("classes");
+            }
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            newModel.Teachers = list;
+            newModel.EndDate = DateTime.Now;
+            newModel.StartDate = DateTime.Now;
+            return View(newModel);
         }
     }
 }

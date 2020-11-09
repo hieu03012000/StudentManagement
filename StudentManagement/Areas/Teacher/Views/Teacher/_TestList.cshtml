@@ -6,7 +6,7 @@
             <tr>
                 <th scope="col" style="width:50px;">No.</th>
                 <th scope="col">Test Title</th>
-                <th scope="col">Create Date</th>
+                <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
                 <th scope="col">Class</th>
                 <th scope="col">Total Answers</th>
@@ -25,7 +25,7 @@
                         <td scope="row">@item.CreateDate</td>
                         <td scope="row">@item.EndDate</td>
                         <td scope="row">@item.Class.ClassName</td>
-                        <td scope="row">@*@item.*@</td>
+                        <td scope="row">@item.TotalAnswers</td>
                         <td scope="row">@item.Status</td>
                         <td scope="row" class="d-flex justify-content-around">
                             @if (@item.Status == BusinessObjects.Enums.Status.Active)
@@ -40,7 +40,7 @@
                                     Inactive
                                 </a>
                             }
-                            @Html.ActionLink("Edit", "editTest", new { id = @item.ClassID }, new { @class = "btn btn-success" })
+                            @Html.ActionLink("Edit", "EditTest", new { id = @item.TestID }, new { @class = "btn btn-success" })
                         </td>
                     </tr>
                     <!-- Delete Modal-->

@@ -1,0 +1,56 @@
+﻿@model StudentManagement.Areas.Teacher.Data.TestModel
+
+@{
+    ViewBag.Title = "Add Test";
+}
+
+<div class="col-xl-11" style="margin:auto">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3 class="m-0 font-weight-bold text-primary">Add Test</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-12 mx-auto" style="height:430px">
+                    <form method="post" action="/addTest" class="nav-item">
+                        <div style="padding-top:10px" class="mx-auto">
+                            <table class="col-xl-10 mx-auto">
+                                @Html.HiddenFor(m => m.ClassID, new { @Value = Model.ClassID })
+                                <tr>
+                                    <td style="padding:20px"><strong>Test name:</strong></td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.TestTitle, new { @class = "form-control form-control-user" })
+                                        @Html.ValidationMessageFor(m => m.TestTitle, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>Description:</strong></td>
+                                    <td>
+                                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control form-control-user" })
+                                        @Html.ValidationMessageFor(m => m.Description, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>Start Date:</strong></td>
+                                    <td>
+                                        @Html.EditorFor(m => m.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.CreateDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:20px"><strong>End Date:</strong></td>
+                                    <td>
+                                        @Html.EditorFor(m => m.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(m => m.EndDate, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <input type="submit" value="Add" class="btn btn-primary btn-user btn-block col-xl-3 mx-auto mt-4" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
