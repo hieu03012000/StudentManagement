@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Teacher.Data
 {
@@ -29,7 +26,6 @@ namespace StudentManagement.Areas.Teacher.Data
         public Status Status { get; set; }
         public PersonModel Teacher { get; set; }
         public ClassModel Class { get; set; }
-
-        //public List<Answer> Answers { get; set; }
+        public int TotalAnswers { get; set; }
     }
 }

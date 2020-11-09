@@ -113,6 +113,10 @@ namespace StudentManagement.Areas.Teacher.Controllers
                 model = new SearchTestModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             }
             var list = Mapper.Map<List<Test>, List<TestModel>>(tests);
+            foreach (var c in list)
+            {
+                c.TotalAnswers = service.GetAnswersForTeacher(c.TestID.ToString()).Count;
+            }
             model.Tests = new SortedList<TestModel>(list, sort, order);
             return View(model);
         }
