@@ -113,14 +113,14 @@ namespace ServiceObject
             return classDao.GetClassesForManager(searchValue, sortExpression);
         }
 
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetActiveTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
-        public List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression)
+        public List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
+            return classDao.GetActiveTeacherClasses(teacherID, searchValue, sortExpression);
         }
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
@@ -177,7 +177,15 @@ namespace ServiceObject
         {
             return testDao.GetClassTestsForTeacher(classID, searchValue, sortExpression);
         }
+        public void EditTest(Test test)
+        {
+            testDao.EditTest(test);
+        }
 
+        public void AddTest(Test test)
+        {
+            testDao.AddTest(test);
+        }
         //Answer Services
 
         public Answer GetAnswer(string answerID)

@@ -97,8 +97,8 @@ namespace StudentManagement.Areas.Manager.Controllers
             {
                 if (role.Equals("Teacher"))
                 {
-                    classes = service.GetTeacherClassesForManager(id, searchValue, page, pageSize, sort + " " + order);
-                    total = service.GetTeacherClassesForManager(id, searchValue, sort + " " + order).Count;
+                    classes = service.GetActiveTeacherClasses(id, searchValue, page, pageSize, sort + " " + order);
+                    total = service.GetActiveTeacherClasses(id, searchValue, sort + " " + order).Count;
                     var teacher = service.GetTeacher(id);
                     model.Person = Mapper.Map<BusinessObjects.Teacher, PersonModel>(teacher);
                 }

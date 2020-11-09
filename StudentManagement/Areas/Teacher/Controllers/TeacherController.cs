@@ -1,5 +1,6 @@
 ﻿ using AutoMapper;
 using BusinessObjects;
+using Microsoft.Ajax.Utilities;
 using ServiceObject;
 using StudentManagement.Areas.Infrastructure;
 using StudentManagement.Areas.Teacher.Data;
@@ -205,6 +206,63 @@ namespace StudentManagement.Areas.Teacher.Controllers
                 service.EditClass(Mapper.Map<ClassModel, Class>(changeModel));
                 return Redirect("classest");
             }
+            return View(changeModel);
+        }
+
+        //Add Test
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddTest(Guid classID)
+        {
+            TestModel model = new TestModel();
+            model.ClassID = classID;
+            model.EndDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddTest(TestModel newModel)
+        {
+            var s = (Person)Session["USER_DTO"];
+            if (ModelState.IsValid)
+            {
+                newModel.TeacherID = s.Username;
+                service.AddTest(Mapper.Map<TestModel, Test>(newModel));
+                return RedirectToAction("SearchTest", new { classID = newModel.ClassID });
+            }
+            newModel.EndDate = DateTime.Now;
+            newModel.CreateDate = DateTime.Now;
+            return View(newModel);
+        }
+
+        //Edit Test
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditTest(string id)
+        {
+            TestModel model = new TestModel();
+            Test t = service.GetTest(id);
+            model = Mapper.Map<Test, TestModel>(t);
+            model.EndDate = DateTime.Now;
+            model.CreateDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditTest(TestModel changeModel)
+        {
+            var s = (Person)Session["USER_DTO"];
+            if (ModelState.IsValid)
+            {
+                changeModel.TeacherID = s.Username;
+                service.EditTest(Mapper.Map<TestModel, Test>(changeModel));
+                return Redirect("tests");
+            }
+            changeModel.EndDate = DateTime.Now;
+            changeModel.CreateDate = DateTime.Now;
             return View(changeModel);
         }
     }

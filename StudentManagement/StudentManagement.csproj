@@ -2065,6 +2065,8 @@
     <Content Include="Areas\Manager\Views\Manager\AddClass.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\AddClass.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\EditClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddTest.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\EditTest.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

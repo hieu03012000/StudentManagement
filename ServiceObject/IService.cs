@@ -39,8 +39,8 @@ namespace ServiceObject
         List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression);
 
-        List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
-        List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression);
+        List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
+        List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, string sortExpression);
 
         List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression);
@@ -55,6 +55,8 @@ namespace ServiceObject
         List<Test> GetTestsForTeacher(string teacherID, string searchValue, int page, int pageSize, string sortExpression);
         List<Test> GetTestsForTeacher(string teacherID, string searchValue, string sortExpression);
         List<Test> GetClassTestsForTeacher(string classID, string searchValue, string sortExpression);
+        void EditTest(Test test);
+        void AddTest(Test test);
 
         //Answer Repository
         Answer GetAnswer(String answerID);

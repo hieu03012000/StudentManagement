@@ -14,8 +14,8 @@ namespace DataObjects
         List<Class> GetClassesForManager(string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
         List<Class> GetClassesForManager(string searchValue, string sortExpression = "ClassName ASC");
 
-        List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
-        List<Class> GetTeacherClassesForManager(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
+        List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
+        List<Class> GetActiveTeacherClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
 
         List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression = "ClassName ASC");
         List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression = "ClassName ASC");
