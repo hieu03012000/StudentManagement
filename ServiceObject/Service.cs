@@ -148,6 +148,10 @@ namespace ServiceObject
         {
             classDao.EditClass(c);
         }
+        public void AddClass(Class c)
+        {
+            classDao.AddClass(c);
+        }
 
 
         //Test Services

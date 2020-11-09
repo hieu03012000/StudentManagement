@@ -181,6 +181,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return RedirectToAction(action);
         }
 
+        //Edit Person
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult EditPerson(string id)
@@ -212,6 +213,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             return View(changeModel);
         }
 
+        //Edit Class
         [HttpGet]
         [CustomAuthorize("Manager")]
         public ActionResult EditClass(string id)
@@ -246,6 +248,45 @@ namespace StudentManagement.Areas.Manager.Controllers
             }
             changeModel.Teachers = list;
             return View(changeModel);
+        }
+
+        //Add Class
+        [HttpGet]
+        [CustomAuthorize("Manager")]
+        public ActionResult AddClass()
+        {
+            ClassModel model = new ClassModel();
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            model.Teachers = list;
+            model.EndDate = DateTime.Now;
+            model.StartDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Manager")]
+        public ActionResult AddClass(ClassModel newModel)
+        {
+            if (ModelState.IsValid)
+            {
+                service.AddClass(Mapper.Map<ClassModel, Class>(newModel));
+                return Redirect("classes");
+            }
+            var teachers = service.GetTeachersForManager();
+            List<SelectListItem> list = new List<SelectListItem>();
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                list.Add(new SelectListItem { Value = teachers[i].Username, Text = teachers[i].Fullname });
+            }
+            newModel.Teachers = list;
+            newModel.EndDate = DateTime.Now;
+            newModel.StartDate = DateTime.Now;
+            return View(newModel);
         }
     }
 }

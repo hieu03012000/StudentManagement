@@ -46,6 +46,8 @@ namespace ServiceObject
         List<Class> GetStudentClasses(string teacherID, string searchValue, string sortExpression);
         void InactiveClass(string classID);
         void EditClass(Class c);
+        void AddClass(Class c);
+
 
         //Test Repository
         Test GetTest(string testID);

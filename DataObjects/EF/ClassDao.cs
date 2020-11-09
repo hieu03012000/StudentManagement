@@ -169,5 +169,17 @@ namespace DataObjects.EF
                 context.SaveChanges();
             }
         }
+
+        public void AddClass(Class c)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = Mapper.Map<Class, ClassEntity>(c);
+                entity.Status = 0;
+                entity.ClassID = Guid.NewGuid();
+                context.ClassEntities.Add(entity);
+                context.SaveChanges();
+            }
+        }
     }
 }
