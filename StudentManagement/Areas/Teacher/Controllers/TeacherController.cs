@@ -1,16 +1,12 @@
 ﻿ using AutoMapper;
 using BusinessObjects;
-using DataObjects.EF;
 using ServiceObject;
 using StudentManagement.Areas.Infrastructure;
 using StudentManagement.Areas.Teacher.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 
 namespace StudentManagement.Areas.Teacher.Controllers
 {
@@ -25,6 +21,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
+
+            Mapper.CreateMap<List<BusinessObjects.Teacher>, LinkedList<PersonModel>>();
+            Mapper.CreateMap<LinkedList<PersonModel>, List<BusinessObjects.Teacher>>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -155,6 +154,58 @@ namespace StudentManagement.Areas.Teacher.Controllers
             model.Answers = new SortedList<AnswerModel>(list, "AnswerTitle", "desc");
             return View(model);
         }
-        
+
+
+        //Add Class
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddClass()
+        {
+            ClassModel model = new ClassModel();
+            model.EndDate = DateTime.Now;
+            model.StartDate = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddClass(ClassModel newModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var s = (Person)Session["USER_DTO"];
+                newModel.TeacherID = s.Username;
+                service.AddClass(Mapper.Map<ClassModel, Class>(newModel));
+                return Redirect("classest");
+            }
+            newModel.EndDate = DateTime.Now;
+            newModel.StartDate = DateTime.Now;
+            return View(newModel);
+        }
+
+        //Edit Class
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditClass(string id)
+        {
+            ClassModel model = new ClassModel();
+            Class c = service.GetClass(id);
+            model = Mapper.Map<Class, ClassModel>(c);
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult EditClass(ClassModel changeModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var s = (Person)Session["USER_DTO"];
+                changeModel.TeacherID = s.Username;
+                service.EditClass(Mapper.Map<ClassModel, Class>(changeModel));
+                return Redirect("classest");
+            }
+            return View(changeModel);
+        }
     }
 }

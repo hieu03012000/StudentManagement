@@ -1,7 +1,8 @@
-﻿using BusinessObjects;
+﻿
+
+using BusinessObjects;
 using BusinessObjects.Enums;
 using DataObjects;
-using System;
 using System.Collections.Generic;
 
 namespace ServiceObject
@@ -59,7 +60,7 @@ namespace ServiceObject
 
         public List<Teacher> GetTeachersForManager()
         {
-            return teacherDao.GetTeachersForManager();
+            return teacherDao.GetTeachersForManager("Username desc");
         }
 
         //Person Services
@@ -124,12 +125,12 @@ namespace ServiceObject
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, page, pageSize, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, page, pageSize, sortExpression);
         }
 
         public List<Class> GetTeacherClasses(string teacherID, string searchValue, string sortExpression)
         {
-            return classDao.GetTeacherClassesForManager(teacherID, searchValue, sortExpression);
+            return classDao.GetTeacherClasses(teacherID, searchValue, sortExpression);
         }
         public List<Class> GetStudentClasses(string teacherID, string searchValue, int page, int pageSize, string sortExpression)
         {

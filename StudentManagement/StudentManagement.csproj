@@ -2063,6 +2063,8 @@
     <Content Include="Areas\Teacher\Views\Teacher\_AnswerList.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\_TestDetail.cshtml" />
     <Content Include="Areas\Manager\Views\Manager\AddClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\EditClass.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

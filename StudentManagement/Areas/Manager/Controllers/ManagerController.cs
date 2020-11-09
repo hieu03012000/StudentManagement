@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ServiceObject;
-using StudentManagement.Areas.Auth.Controllers;
 using StudentManagement.Areas.Manager.Data;
 using StudentManagement.Code;
 using System;
@@ -8,7 +7,6 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using StudentManagement.Areas.Infrastructure;
 using BusinessObjects;
-using Microsoft.Ajax.Utilities;
 
 namespace StudentManagement.Areas.Manager.Controllers
 {

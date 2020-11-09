@@ -10,8 +10,6 @@ namespace StudentManagement.Areas.Manager.Data
 {
     public class ClassModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public Guid ClassID { get; set; }
 
         [Required(ErrorMessage = "Class name is required.")]
