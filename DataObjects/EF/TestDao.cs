@@ -118,5 +118,15 @@ namespace DataObjects.EF
                 context.SaveChanges();
             }
         }
+
+        public List<Test> GetClassTestsForStudent(string classID)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = context.TestEntities.AsQueryable().Where(x => x.ClassID.ToString() == classID && x.Status == 0);
+                var tests = query.OrderBy("TestTitle ASC").ToList();
+                return Mapper.Map<List<TestEntity>, List<Test>>(tests);
+            }
+        }
     }
 }

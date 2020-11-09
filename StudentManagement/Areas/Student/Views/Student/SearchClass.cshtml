@@ -1,4 +1,4 @@
-﻿@model StudentManagement.Areas.Teacher.Data.SearchClassModel
+﻿@model StudentManagement.Areas.Student.Data.SearchClassModel
 
 @{
     ViewBag.Title = "Classes";
@@ -20,9 +20,6 @@
                            new { @class = "form-control form-control-sm", style = "width: 500px; margin-left: 2rem;", aria_controls = "dataTable" })
                         </label>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-12 mb-4 text-right font-weight-bold">
-                    @Html.ActionLink("+ Add Class", "AddClass")
                 </div>
             </div>
             @if (Model.Classes.List.Count > 0)

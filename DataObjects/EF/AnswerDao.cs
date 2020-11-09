@@ -33,5 +33,14 @@ namespace DataObjects.EF
                 return Mapper.Map<List<AnswerEntity>, List<Answer>>(answers);
             }
         }
+
+        public Answer GetAnswerForStudent(string testID, string studentID)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var answer = context.AnswerEntities.FirstOrDefault(c => c.TestID.ToString() == testID && c.StudentID == studentID) as AnswerEntity;
+                return Mapper.Map<AnswerEntity, Answer>(answer);
+            }
+        }
     }
 }
