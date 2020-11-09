@@ -1,0 +1,30 @@
+﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Student.Data.ClassModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col" style="width:50px;">No.</th>
+                <th scope="col">Class Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td scope="row">@(++count)</td>
+                        <td scope="row">@Html.ActionLink(@item.ClassName, "SearchTest", new { classID = @item.ClassID })</td>
+                        <td scope="row">@item.StartDate</td>
+                        <td scope="row">@item.EndDate</td>
+                        <td scope="row">@item.Teacher.Fullname</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

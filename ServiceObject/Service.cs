@@ -177,6 +177,11 @@ namespace ServiceObject
         {
             return testDao.GetClassTestsForTeacher(classID, searchValue, sortExpression);
         }
+        public List<Test> GetClassTestsForStudent(string classID)
+        {
+            return testDao.GetClassTestsForStudent(classID);
+        }
+
         public void EditTest(Test test)
         {
             testDao.EditTest(test);
@@ -198,5 +203,10 @@ namespace ServiceObject
             return answerDao.GetAnswersForTeacher(testID);
         }
 
+        public Answer GetAnswerForStudent(string testID, string studentID)
+        {
+            return answerDao.GetAnswerForStudent(testID, studentID);
+        }
+        
     }
 }
