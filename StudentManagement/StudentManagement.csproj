@@ -153,6 +153,7 @@
     <Compile Include="Areas\Infrastructure\CheckDuplicateUsername.cs" />
     <Compile Include="Areas\Infrastructure\CheckSpecialCharacter.cs" />
     <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Manager\Data\StudentClassModel.cs" />
     <Compile Include="Areas\Manager\Data\ClassModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonModel.cs" />
     <Compile Include="Areas\Manager\Data\PersonUpdateModel.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Content Include="Areas\Student\Views\Student\ShowAnswer.cshtml" />
     <Content Include="Areas\Student\Views\Student\_AnswerDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\AddStudentClass.cshtml" />
     <None Include="Areas\Student\Views\Student\_ClassDetail.cshtml" />
     <None Include="Areas\Student\Views\Student\_TeacherDetail.cshtml" />
     <Content Include="Areas\Student\Views\Student\SearchTest.cshtml" />

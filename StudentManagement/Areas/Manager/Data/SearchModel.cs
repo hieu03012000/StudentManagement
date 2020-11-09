@@ -1,4 +1,7 @@
 ﻿using StudentManagement.Code;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Manager.Data
 {
@@ -10,5 +13,7 @@ namespace StudentManagement.Areas.Manager.Data
         public int TotalPages { get; set; }
         public SortedList<PersonModel> People { get; set; }
         public ClassModel Class { get; set; }
+        public StudentClassModel AddStudentToClass { get; set; }
+
     }
 }

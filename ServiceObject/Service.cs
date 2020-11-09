@@ -41,6 +41,11 @@ namespace ServiceObject
         {
             return studentDao.GetClassStudents(classID, sortExpression);
         }
+        public List<Student> GetAvailableClassStudents(List<Student> list)
+        {
+            return studentDao.GetAvailableClassStudents(list);
+        }
+
 
         //Teacher Services
         public Teacher GetTeacher(string Username)
@@ -152,6 +157,10 @@ namespace ServiceObject
         public void AddClass(Class c)
         {
             classDao.AddClass(c);
+        }
+        public void AddStudentClass(ClassStudent classStudent)
+        {
+            classDao.AddStudentClass(classStudent);
         }
 
 

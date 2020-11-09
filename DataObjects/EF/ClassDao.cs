@@ -181,5 +181,16 @@ namespace DataObjects.EF
                 context.SaveChanges();
             }
         }
+
+        public void AddStudentClass(ClassStudent classStudent)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = Mapper.Map<ClassStudent, ClassStudentEntity>(classStudent);
+                entity.ID = Guid.NewGuid();
+                context.ClassStudentEntities.Add(entity);
+                context.SaveChanges();
+            }
+        }
     }
 }
