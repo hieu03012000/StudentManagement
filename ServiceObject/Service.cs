@@ -14,7 +14,6 @@ namespace ServiceObject
 
         static readonly ITeacherDao teacherDao = factory.TeacherDao;
         static readonly IStudentDao studentDao = factory.StudentDao;
-        static readonly IManagerDao managerDao = factory.ManagerDao;
         static readonly IClassDao classDao = factory.ClassDao;
         static readonly ITestDao testDao = factory.TestDao;
         static readonly IAnswerDao answerDao = factory.AnswerDao;

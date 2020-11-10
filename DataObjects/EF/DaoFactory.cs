@@ -12,8 +12,6 @@ namespace DataObjects.EF
 
         public ITeacherDao TeacherDao { get { return new TeacherDao(); } }
 
-        public IManagerDao ManagerDao { get { return new ManagerDao(); } }
-
         public IClassDao ClassDao { get { return new ClassDao(); } }
 
         public ITestDao TestDao { get { return new TestDao(); } }

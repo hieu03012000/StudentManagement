@@ -3,7 +3,7 @@
 @{
     var person = (BusinessObjects.Person)Session["USER_DTO"];
 
-    ViewBag.Title = "Change Profile";
+    ViewBag.Title = "Add Answer";
 }
 
 @using (Html.BeginForm("UploadFiles", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -11,7 +11,7 @@
     <div class="col-xl-11" style="margin:auto">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h3 class="m-0 font-weight-bold text-primary">Your Profile</h3>
+                <h3 class="m-0 font-weight-bold text-primary">Add Answer</h3>
             </div>
             <div class="card-body">
                 <div class="row">
