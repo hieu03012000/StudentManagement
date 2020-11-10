@@ -171,6 +171,7 @@
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
     <Content Include="Areas\Student\Views\Student\ShowAnswer.cshtml" />
     <Content Include="Areas\Student\Views\Student\_AnswerDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Student\AddAnswer.cshtml" />
     <None Include="Areas\Student\Views\Student\_ClassDetail.cshtml" />
     <None Include="Areas\Student\Views\Student\_TeacherDetail.cshtml" />
     <Content Include="Areas\Student\Views\Student\SearchTest.cshtml" />
@@ -2117,6 +2118,7 @@
     <Folder Include="Areas\Manager\Views\Shared\" />
     <Folder Include="Areas\Student\Views\Shared\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
+    <Folder Include="Assets\file\" />
     <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>

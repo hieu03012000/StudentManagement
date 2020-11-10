@@ -207,6 +207,11 @@ namespace ServiceObject
         {
             return answerDao.GetAnswerForStudent(testID, studentID);
         }
+
+        public void AddAnswer(Answer answer)
+        {
+            answerDao.AddAnswer(answer);
+        }
         
     }
 }

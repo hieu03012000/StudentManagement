@@ -42,5 +42,26 @@ namespace DataObjects.EF
                 return Mapper.Map<AnswerEntity, Answer>(answer);
             }
         }
+
+        public void AddAnswer(Answer answer)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                context.AnswerEntities.Add(new AnswerEntity
+                {
+                    AnswerID = new Guid(),
+                    AnswerTitle = answer.AnswerTitle,
+                    Description = answer.Description,
+                    File = answer.File,
+                    CreateDate = DateTime.Now,
+                    StudentID = answer.StudentID,
+                    TestID = answer.TestID  ,
+                    Status = 0
+                });
+                context.SaveChanges();
+            }
+        }
+
+
     }
 }
