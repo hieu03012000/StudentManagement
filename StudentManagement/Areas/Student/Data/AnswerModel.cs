@@ -16,6 +16,7 @@ namespace StudentManagement.Areas.Student.Data
         public string AnswerTitle { get; set; }
         public string Description { get; set; }
         public string File { get; set; }
+        public HttpPostedFileBase FileName { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -23,6 +24,8 @@ namespace StudentManagement.Areas.Student.Data
         public float Mark { get; set; }
         public Status Status { get; set; }
         public string StudentID { get; set; }
+
+        [Required(ErrorMessage = "File is unloaded.")]
         public Guid TestID { get; set; }
         public PersonModel Student { get; set; }
         public TestModel Test { get; set; }

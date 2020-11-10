@@ -6,6 +6,7 @@ using StudentManagement.Areas.Student.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Student.Controllers
@@ -55,7 +56,7 @@ namespace StudentManagement.Areas.Student.Controllers
             {
                 item.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(item.TeacherID));
             }
-            
+
             model.Classes = new SortedList<ClassModel>(list, sort, order);
             return View(model);
         }
@@ -87,6 +88,48 @@ namespace StudentManagement.Areas.Student.Controllers
             model.Test = Mapper.Map<Test, TestModel>(test);
             model.Test.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(test.TeacherID));
             return View(model);
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Student")]
+        public ActionResult AddAnswer(Guid testID)
+        {
+            AnswerModel model = new AnswerModel();
+            model.TestID = testID;
+            return View(model);
+        }
+
+        [HttpPost]
+        [CustomAuthorize("Student")]
+        public ActionResult AddAnswer(AnswerModel answerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    if (answerModel.FileName != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Assets/file/"), Path.GetFileName(answerModel.FileName.FileName));
+                        answerModel.FileName.SaveAs(path);
+                        answerModel.File = Path.GetFileName(answerModel.FileName.FileName);
+                        System.Diagnostics.Debug.WriteLine("Done file");
+                    }else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Not if file");
+
+                    }
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine(" not Done file");
+
+                    ViewBag.Mess = "File upload failed";
+                    return View(answerModel);
+                }
+                service.AddAnswer(Mapper.Map<AnswerModel, Answer>(answerModel));
+                return Redirect("answer?testID=" + answerModel.TestID);
+            }
+            return View(answerModel);
         }
     }
 }

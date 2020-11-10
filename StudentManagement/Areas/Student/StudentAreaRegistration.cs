@@ -21,6 +21,8 @@ namespace StudentManagement.Areas.Student
             context.MapRoute("", "testss", new { area = "Student", controller = "Student", action = "SearchTest" });
 
             context.MapRoute("", "answer", new { area = "Student", controller = "Student", action = "ShowAnswer" });
+
+            context.MapRoute("", "addAnswer", new { area = "Student", controller = "Student", action = "AddAnswer" });
         }
     }
 }

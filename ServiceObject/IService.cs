@@ -67,7 +67,7 @@ namespace ServiceObject
         Answer GetAnswer(String answerID);
         List<Answer> GetAnswersForTeacher(string testID);
         Answer GetAnswerForStudent(string testID, string studentID);
-
+        void AddAnswer(Answer answer);
 
     }
 }
