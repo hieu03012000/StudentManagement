@@ -321,5 +321,15 @@ namespace StudentManagement.Areas.Teacher.Controllers
             service.RemoveStudentClass(Mapper.Map<StudentClassModel, ClassStudent>(model));
             return RedirectToAction("SearchStudent", new { classID = classID });
         }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult ShowAnswer(string answerID)
+        {
+            var model = new AnswerModel();
+            var a = service.GetAnswer(answerID);
+            model = Mapper.Map<Answer, AnswerModel>(a);
+            return View(model);
+        }
     }
 }

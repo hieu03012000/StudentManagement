@@ -19,12 +19,11 @@
                 {
                     <tr>
                         <td scope="row">@(++count)</td>
-                        <td scope="row">@item.AnswerTitle</td>
+                        <td scope="row">@Html.ActionLink(@item.AnswerTitle, "ShowAnswer", new { answerID = @item.AnswerID })</td>
                         <td scope="row">@item.CreateDate</td>
                         <td scope="row">@item.Student.Fullname</td>
                         <td scope="row">@item.Mark</td>
                         <td scope="row" class="d-flex justify-content-around">
-                            
                         </td>
                     </tr>
                 }
