@@ -22,7 +22,7 @@ namespace DataObjects.EF
             using (var context = new StudentManagementDBContext())
             {
                 var teacher = context.PersonEntities.FirstOrDefault(c => c.Username == Username) as PersonEntity;
-                return Mapper.Map<PersonEntity, Teacher>(teacher);
+                return Mapper.Map<PersonEntity, Teacher>(teacher); 
             }
         }
 
