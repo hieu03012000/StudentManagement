@@ -49,7 +49,7 @@ namespace DataObjects.EF
             {
                 context.AnswerEntities.Add(new AnswerEntity
                 {
-                    AnswerID = new Guid(),
+                    AnswerID = Guid.NewGuid(),
                     AnswerTitle = answer.AnswerTitle,
                     Description = answer.Description,
                     File = answer.File,
