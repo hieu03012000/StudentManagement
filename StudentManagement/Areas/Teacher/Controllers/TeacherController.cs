@@ -344,8 +344,6 @@ namespace StudentManagement.Areas.Teacher.Controllers
                 string baseFolder = "~/Assets/file/";///path 
                 string[] sElement = fileName.Split('.');
                 int vt = sElement.Length - 1;
-                System.Diagnostics.Debug.WriteLine("begin");
-
                 nameDisplay += "." + sElement[vt];
                 if (!string.IsNullOrEmpty(fileName))
                 {
@@ -354,14 +352,10 @@ namespace StudentManagement.Areas.Teacher.Controllers
                     System.Diagnostics.Debug.WriteLine("downfile");
                     return File(bytes, "application/octet-stream", nameDisplay);
                 }
-                System.Diagnostics.Debug.WriteLine("not found");
-
                 return RedirectToAction("ShowAnswer", new { answerID = answerID });
             }
             catch (Exception)
             {
-                System.Diagnostics.Debug.WriteLine("err");
-
                 return Content("Download Err");
             }
         }
