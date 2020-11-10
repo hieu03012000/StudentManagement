@@ -16,17 +16,23 @@
         <form>
             @if (Model.Class == null)
             {
-            <div class="row">
-                <div class="col-md-6 col-sm-12 mb-4">
-                    <div id="dataTable_filter" class="dataTables_filter">
-                        <label class="d-flex align-items-center justify-content-center">
-                            Search:
-                            @Html.TextBox("SearchValue", Model.SearchValue,
-                           new { @class = "form-control form-control-sm", style = "width: 500px; margin-left: 2rem;", aria_controls = "dataTable" })
-                        </label>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 mb-4">
+                        <div id="dataTable_filter" class="dataTables_filter">
+                            <label class="d-flex align-items-center justify-content-center">
+                                Search:
+                                @Html.TextBox("SearchValue", Model.SearchValue,
+                               new { @class = "form-control form-control-sm", style = "width: 500px; margin-left: 2rem;", aria_controls = "dataTable" })
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="text-right m-3 font-weight-bold">
+                    @Html.ActionLink("+ Add Student To Class", "addStudentClass", new { classID = Model.Class.ClassID })
+                </div>
             }
             @if (Model.People.List.Count > 0)
             {
@@ -34,38 +40,38 @@
                     @Html.Partial("_PeopleList", Model.People)
                     @if (Model.Class == null)
                     {
-                    <div class="mt-4 mx-auto">
-                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                            <ul class="pagination">
-                                @if (Model.Page != 1)
-                                {
-                                    <li class="paginate_button page-item previous" id="dataTable_previous">
-                                        <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"
-                                           href="/students?SearchValue=@(Model.SearchValue)&Page=@(Model.Page - 1)">
-                                            <span>←</span>Previous
-                                        </a>
-                                    </li>
-                                }
-                                @for (int i = 1; i <= Model.TotalPages; i++)
-                                {
-                                    <li class="paginate_button page-item @(i == Model.Page ? "active" : "")">
-                                        <a href="/students?SearchValue=@(Model.SearchValue)&Page=@(i)"
-                                           aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">@(i)</a>
-                                    </li>
-                                }
-                                @if (Model.Page < Model.TotalPages)
-                                {
-                                    <li class="paginate_button page-item next" id="dataTable_next">
-                                        <a href="/students?SearchValue=@(Model.SearchValue)&Page=@(Model.Page + 1)"
-                                           aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">
-                                            Next<span>→</span>
-                                        </a>
-                                    </li>
-                                }
+                        <div class="mt-4 mx-auto">
+                            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                                <ul class="pagination">
+                                    @if (Model.Page != 1)
+                                    {
+                                        <li class="paginate_button page-item previous" id="dataTable_previous">
+                                            <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"
+                                               href="/students?SearchValue=@(Model.SearchValue)&Page=@(Model.Page - 1)">
+                                                <span>←</span>Previous
+                                            </a>
+                                        </li>
+                                    }
+                                    @for (int i = 1; i <= Model.TotalPages; i++)
+                                    {
+                                        <li class="paginate_button page-item @(i == Model.Page ? "active" : "")">
+                                            <a href="/students?SearchValue=@(Model.SearchValue)&Page=@(i)"
+                                               aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">@(i)</a>
+                                        </li>
+                                    }
+                                    @if (Model.Page < Model.TotalPages)
+                                    {
+                                        <li class="paginate_button page-item next" id="dataTable_next">
+                                            <a href="/students?SearchValue=@(Model.SearchValue)&Page=@(Model.Page + 1)"
+                                               aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">
+                                                Next<span>→</span>
+                                            </a>
+                                        </li>
+                                    }
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     }
 
                 </div>
@@ -78,3 +84,4 @@
         </form>
     </div>
 </div>
+

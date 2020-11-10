@@ -7,6 +7,7 @@
                 <th scope="col" style="width:50px;">No.</th>
                 <th scope="col">Fullname</th>
                 <th scope="col">Gender</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@
                         <td scope="row">@(++count)</td>
                         <td scope="row">@Html.ActionLink(@item.Fullname, "showStudentDetail", new { username = @item.Username })</td>
                         <td scope="row">@item.Gender</td>
+                        <td scope="row">
+                            @Html.ActionLink("Remove", "RemoveStudentClass", new { studentID = @item.Username, classID = item.ClassID }, new { @class = "btn btn-secondary" })
+                        </td>
                     </tr>
                 }
             }

@@ -34,6 +34,9 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<Answer, AnswerModel>();
             Mapper.CreateMap<AnswerModel, Answer>();
+
+            Mapper.CreateMap<StudentClassModel, ClassStudent>();
+            Mapper.CreateMap<ClassStudent, StudentClassModel>();
         }
         public TeacherController() : this(new Service()) { }
 
@@ -85,6 +88,10 @@ namespace StudentManagement.Areas.Teacher.Controllers
             model.Class = c;
 
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
+            if (!string.IsNullOrEmpty(classID))
+            {
+                list.ForEach(c => c.ClassID = classID);
+            }
             model.People = new SortedList<PersonModel>(list, sort, order);
             return View(model);
         }
@@ -268,6 +275,51 @@ namespace StudentManagement.Areas.Teacher.Controllers
             changeModel.EndDate = DateTime.Now;
             changeModel.CreateDate = DateTime.Now;
             return View(changeModel);
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddStudentClass(string classID)
+        {
+            var model = new StudentClassModel();
+            model.ClassID = classID;
+            var students = service.GetClassStudents(classID, "Username asc");
+            var availableStudents = service.GetAvailableClassStudents(students);
+            List<SelectListItem> availableStudentsList = new List<SelectListItem>();
+            for (int i = 0; i < availableStudents.Count; i++)
+            {
+                availableStudentsList.Add(new SelectListItem { Value = availableStudents[i].Username, Text = availableStudents[i].Fullname });
+            }
+            model.AvailableStudents = availableStudentsList;
+            return View(model);
+        }
+        [HttpPost]
+        [CustomAuthorize("Teacher")]
+        public ActionResult AddStudentClass(StudentClassModel newModel)
+        {
+            if (ModelState.IsValid)
+            {
+                service.AddStudentClass(Mapper.Map<StudentClassModel, ClassStudent>(newModel));
+            }
+            var students = service.GetClassStudents(newModel.ClassID, "Username asc");
+            var availableStudents = service.GetAvailableClassStudents(students);
+            List<SelectListItem> availableStudentsList = new List<SelectListItem>();
+            for (int i = 0; i < availableStudents.Count; i++)
+            {
+                availableStudentsList.Add(new SelectListItem { Value = availableStudents[i].Username, Text = availableStudents[i].Fullname });
+            }
+            newModel.AvailableStudents = availableStudentsList;
+            return RedirectToAction("SearchStudent", new { classID = newModel.ClassID });
+        }
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult RemoveStudentClass(string studentID, string classID)
+        {
+            var model = new StudentClassModel();
+            model.ClassID = classID;
+            model.StudentID = studentID;
+            service.RemoveStudentClass(Mapper.Map<StudentClassModel, ClassStudent>(model));
+            return RedirectToAction("SearchStudent", new { classID = classID });
         }
     }
 }

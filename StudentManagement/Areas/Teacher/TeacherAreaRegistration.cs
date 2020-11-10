@@ -19,6 +19,8 @@ namespace StudentManagement.Areas.Teacher
             context.MapRoute("", "inactiveClasst/{id}", new { area = "Teacher", controller = "Teacher", action = "InactiveClass" });
             context.MapRoute("", "editClasst", new { area = "Teacher", controller = "Teacher", action = "EditClass" });
             context.MapRoute("", "addClasst", new { area = "Teacher", controller = "Teacher", action = "AddClass" });
+            context.MapRoute("", "addStudentClasst", new { area = "Teacher", controller = "Teacher", action = "AddStudentClass" });
+            context.MapRoute("", "removeStudentClasst", new { area = "Teacher", controller = "Teacher", action = "RemoveStudentClass" });
 
             context.MapRoute("", "studentst/{id}", new { area = "Teacher", controller = "Teacher", action = "SearchStudent" });
             context.MapRoute("", "studentst", new { area = "Teacher", controller = "Teacher", action = "SearchStudent" });

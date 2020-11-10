@@ -40,6 +40,7 @@ namespace StudentManagement.Areas.Manager.Data
         public Status Status { get; set; }
 
         public string Role { get; set; }
+        public string ClassID { get; set; }
 
     }
 }

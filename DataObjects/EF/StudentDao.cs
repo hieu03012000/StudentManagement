@@ -68,5 +68,28 @@ namespace DataObjects.EF
             }
         }
 
+        public List<Student> GetAvailableClassStudents(List<Student> list)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var query = context.PersonEntities.AsQueryable().Where(x => x.Status == 0 && x.Discriminator == "Student");
+                var students = Mapper.Map<List<PersonEntity>, List<Student>>(query.OrderBy("Username ASC").ToList());
+                foreach (var item in list)
+                {
+                    System.Diagnostics.Debug.WriteLine("list " + item.Username);
+                }
+                foreach (var item in students)
+                {
+                    System.Diagnostics.Debug.WriteLine("stu " + item.Username);
+                }
+                //Dong nay ko hd
+                var s = students.Except(list).ToList();
+                foreach (var item in s)
+                {
+                    System.Diagnostics.Debug.WriteLine("student " + item.Username);
+                }
+                return s;
+            }
+        }
     }
 }

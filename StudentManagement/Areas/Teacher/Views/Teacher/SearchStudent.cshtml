@@ -13,6 +13,13 @@
         <h3 class="m-0 text-primary font-weight-bold">Students</h3>
     </div>
     <div class="card-body">
+        @if (Model.Class != null)
+        {
+            <div class="text-right m-3 font-weight-bold">
+                @Html.ActionLink("+ Add Student To Class", "AddStudentClass", new { classID = Model.Class.ClassID })
+            </div>
+        }
+        
         <form>
             @if (Model.People.List.Count > 0)
             {
