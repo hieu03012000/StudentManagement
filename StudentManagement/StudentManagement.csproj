@@ -2091,6 +2091,7 @@
     <Content Include="Areas\Student\Views\Student\_ClassList.cshtml" />
     <Content Include="Areas\Student\Views\Student\_TestList.cshtml" />
     <Content Include="Areas\Teacher\Views\Teacher\AddStudentClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\ShowAnswer.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
