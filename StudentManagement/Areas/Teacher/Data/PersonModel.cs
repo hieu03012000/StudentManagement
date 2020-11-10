@@ -16,5 +16,7 @@ namespace StudentManagement.Areas.Teacher.Data
         public string Address { get; set; }
         public Status Status { get; set; }
         public string Role { get; set; }
+        public string ClassID { get; set; }
+
     }
 }

@@ -26,5 +26,8 @@ namespace DataObjects
         void InactiveClass(string classID);
         void EditClass(Class c);
         void AddClass(Class c);
+
+        void AddStudentClass(ClassStudent classStudent);
+        void RemoveStudentClass(ClassStudent classStudent);
     }
 }
