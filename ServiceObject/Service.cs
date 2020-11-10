@@ -3,6 +3,7 @@
 using BusinessObjects;
 using BusinessObjects.Enums;
 using DataObjects;
+using System;
 using System.Collections.Generic;
 
 namespace ServiceObject
@@ -224,6 +225,12 @@ namespace ServiceObject
         {
             answerDao.AddAnswer(answer);
         }
-        
+
+        public void UpdateMark(float mark, Guid answerID)
+        {
+            answerDao.UpdateMark(mark, answerID);
+        }
+
+
     }
 }

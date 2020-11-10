@@ -35,6 +35,8 @@ namespace StudentManagement.Areas.Teacher
             context.MapRoute("", "answers/{id}", new { area = "Teacher", controller = "Teacher", action = "SearchAnswer" });
             context.MapRoute("", "answers", new { area = "Teacher", controller = "Teacher", action = "SearchAnswer" });
             context.MapRoute("", "showAnswers", new { area = "Teacher", controller = "Teacher", action = "ShowAnswer" });
+            context.MapRoute("", "updateMark", new { area = "Teacher", controller = "Teacher", action = "UpdateMark" });
+            context.MapRoute("", "downFile", new { area = "Teacher", controller = "Teacher", action = "DownloadFile" });
         }
     }
 }

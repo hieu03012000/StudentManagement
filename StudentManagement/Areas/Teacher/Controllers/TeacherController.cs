@@ -7,6 +7,7 @@ using StudentManagement.Areas.Teacher.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Teacher.Controllers
@@ -330,6 +331,46 @@ namespace StudentManagement.Areas.Teacher.Controllers
             var a = service.GetAnswer(answerID);
             model = Mapper.Map<Answer, AnswerModel>(a);
             return View(model);
+        }
+
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult DownloadFile(string fileName, string studentName, Guid answerID)
+        {
+            string nameDisplay = studentName;//name replace
+            HttpRequestMessage request = new HttpRequestMessage();
+            try
+            {
+                string baseFolder = "~/Assets/file/";///path 
+                string[] sElement = fileName.Split('.');
+                int vt = sElement.Length - 1;
+                System.Diagnostics.Debug.WriteLine("begin");
+
+                nameDisplay += "." + sElement[vt];
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    string path = Server.MapPath(baseFolder + fileName);
+                    var bytes = System.IO.File.ReadAllBytes(path);
+                    System.Diagnostics.Debug.WriteLine("downfile");
+                    return File(bytes, "application/octet-stream", nameDisplay);
+                }
+                System.Diagnostics.Debug.WriteLine("not found");
+
+                return RedirectToAction("ShowAnswer", new { answerID = answerID });
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Debug.WriteLine("err");
+
+                return Content("Download Err");
+            }
+        }
+        [HttpGet]
+        [CustomAuthorize("Teacher")]
+        public ActionResult UpdateMark(AnswerModel model)
+        {
+            service.UpdateMark(model.Mark, model.AnswerID);
+            return RedirectToAction("SearchAnswer", new { testID = model.TestID });
         }
     }
 }

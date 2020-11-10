@@ -14,6 +14,7 @@ namespace DataObjects
         List<Answer> GetAnswersForTeacher(string testID, string sortExpression = "AnswerTitle ASC");
         Answer GetAnswerForStudent(string testID, string studentID);
         void AddAnswer(Answer answer);
+        void UpdateMark(float mark, Guid answerID);
 
     }
 }

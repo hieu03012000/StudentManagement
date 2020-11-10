@@ -62,6 +62,17 @@ namespace DataObjects.EF
             }
         }
 
+        public void UpdateMark(float mark, Guid answerID)
+        {
+            using (var context = new StudentManagementDBContext())
+            {
+                var entity = context.AnswerEntities.SingleOrDefault(m => m.AnswerID == answerID);
+                entity.Mark = mark;
+
+                context.SaveChanges();
+            }
+        }
+
 
     }
 }

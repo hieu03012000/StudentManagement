@@ -68,6 +68,7 @@ namespace ServiceObject
         List<Answer> GetAnswersForTeacher(string testID);
         Answer GetAnswerForStudent(string testID, string studentID);
         void AddAnswer(Answer answer);
+        void UpdateMark(float mark, Guid answerID);
 
     }
 }
