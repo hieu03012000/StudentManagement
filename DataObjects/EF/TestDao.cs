@@ -14,7 +14,6 @@ namespace DataObjects.EF
         {
             Mapper.CreateMap<TestEntity, Test>();
             Mapper.CreateMap<Test, TestEntity>();
-            Mapper.CreateMap<Teacher, TestEntity>();
         }
 
         public List<Test> GetClassTestsForTeacher(string classID, string searchValue, int page, int pageSize, string sortExpression = "TestTitle ASC")
