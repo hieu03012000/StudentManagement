@@ -27,7 +27,7 @@ namespace DataObjects.EF
                 {
                     return false;
                 }
-                if (result.Password.Equals(Password))
+                if (result.Password.Equals(Password) && result.Status == 0)
                 {
                     return true;
                 }

@@ -145,9 +145,10 @@ namespace StudentManagement.Areas.Manager.Controllers
             if (ModelState.IsValid)
             {
                 
-                    service.CreateAccount(personModel.Username, personModel.Password, personModel.Fullname,
-                                        personModel.Phone, personModel.Address, personModel.Gender, personModel.Role);
-                    Session.Add("CreateSuccess", "Create account successfully");
+                service.CreateAccount(personModel.Username, personModel.Password, personModel.Fullname,
+                                    personModel.Phone, personModel.Address, personModel.Gender, personModel.Role);
+                Session.Add("CreateSuccess", "Create account successfully");
+                return Redirect("home");
             }
             return View(personModel);
         }
