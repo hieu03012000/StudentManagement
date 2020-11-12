@@ -5,7 +5,15 @@
     <h3 class="m-3">@Model.AnswerTitle</h3>
     <h6 class="m-2">@Model.CreateDate</h6>
     <div>@Model.Description</div>
-    <div>@Model.File</div><br/>
-    <h4><strong>Mark: </strong>@Model.Mark</h4>
+    <div>@Model.File</div><br />
+
+    @if (Model.Mark >= 0)
+    {
+        <h4><strong>Mark: </strong>@Model.Mark</h4>
+    }
+    else
+    {
+        <h4>Not marked</h4>
+    }
 
 </div>

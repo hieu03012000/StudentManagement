@@ -55,7 +55,8 @@ namespace DataObjects.EF
                     File = answer.File,
                     CreateDate = DateTime.Now,
                     StudentID = answer.StudentID,
-                    TestID = answer.TestID  ,
+                    TestID = answer.TestID,
+                    Mark = -1,
                     Status = 0
                 });
                 context.SaveChanges();

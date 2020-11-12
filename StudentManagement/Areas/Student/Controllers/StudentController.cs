@@ -112,18 +112,10 @@ namespace StudentManagement.Areas.Student.Controllers
                         string path = Path.Combine(Server.MapPath("~/Assets/file/"), Path.GetFileName(answerModel.FileName.FileName));
                         answerModel.FileName.SaveAs(path);
                         answerModel.File = Path.GetFileName(answerModel.FileName.FileName);
-                        System.Diagnostics.Debug.WriteLine("Done file");
-                    }else
-                    {
-                        System.Diagnostics.Debug.WriteLine("Not if file");
-
                     }
                 }
                 catch
                 {
-                    System.Diagnostics.Debug.WriteLine(" not Done file");
-
-                    ViewBag.Mess = "File upload failed";
                     return View(answerModel);
                 }
                 service.AddAnswer(Mapper.Map<AnswerModel, Answer>(answerModel));

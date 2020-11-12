@@ -21,7 +21,16 @@
                         <td scope="row">@Html.ActionLink(@item.AnswerTitle, "ShowAnswer", new { answerID = @item.AnswerID })</td>
                         <td scope="row">@item.CreateDate</td>
                         <td scope="row">@item.Student.Fullname</td>
-                        <td scope="row">@item.Mark</td>
+                        <td scope="row">
+                            @if(item.Mark >= 0)
+                            {
+                                <p>@item.Mark</p>
+                            }
+                            else
+                            {
+                                <p>Not marked</p>
+                            }
+                        </td>
                     </tr>
                 }
             }
