@@ -7,7 +7,6 @@ using StudentManagement.Areas.Teacher.Data;
 using StudentManagement.Code;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Web.Mvc;
 
 namespace StudentManagement.Areas.Teacher.Controllers
@@ -23,9 +22,6 @@ namespace StudentManagement.Areas.Teacher.Controllers
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
             Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
-
-            Mapper.CreateMap<List<BusinessObjects.Teacher>, LinkedList<PersonModel>>();
-            Mapper.CreateMap<LinkedList<PersonModel>, List<BusinessObjects.Teacher>>();
 
             Mapper.CreateMap<Class, ClassModel>();
             Mapper.CreateMap<ClassModel, Class>();
@@ -278,6 +274,7 @@ namespace StudentManagement.Areas.Teacher.Controllers
             return View(changeModel);
         }
 
+        //Add student in class
         [HttpGet]
         [CustomAuthorize("Teacher")]
         public ActionResult AddStudentClass(string classID)
@@ -312,6 +309,8 @@ namespace StudentManagement.Areas.Teacher.Controllers
             newModel.AvailableStudents = availableStudentsList;
             return RedirectToAction("SearchStudent", new { classID = newModel.ClassID });
         }
+
+        //remove student class
         [HttpGet]
         [CustomAuthorize("Teacher")]
         public ActionResult RemoveStudentClass(string studentID, string classID)
@@ -323,6 +322,7 @@ namespace StudentManagement.Areas.Teacher.Controllers
             return RedirectToAction("SearchStudent", new { classID = classID });
         }
 
+        //Show answer
         [HttpGet]
         [CustomAuthorize("Teacher")]
         public ActionResult ShowAnswer(string answerID)
@@ -333,32 +333,27 @@ namespace StudentManagement.Areas.Teacher.Controllers
             return View(model);
         }
 
+        //download answer
         [HttpGet]
         [CustomAuthorize("Teacher")]
         public ActionResult DownloadFile(string fileName, string studentName, Guid answerID)
         {
             string nameDisplay = studentName;//name replace
-            HttpRequestMessage request = new HttpRequestMessage();
-            try
+            string baseFolder = "~/Assets/file/";///path 
+            string[] sElement = fileName.Split('.');
+            int vt = sElement.Length - 1;
+            nameDisplay += "." + sElement[vt];
+            if (!string.IsNullOrEmpty(fileName))
             {
-                string baseFolder = "~/Assets/file/";///path 
-                string[] sElement = fileName.Split('.');
-                int vt = sElement.Length - 1;
-                nameDisplay += "." + sElement[vt];
-                if (!string.IsNullOrEmpty(fileName))
-                {
-                    string path = Server.MapPath(baseFolder + fileName);
-                    var bytes = System.IO.File.ReadAllBytes(path);
-                    System.Diagnostics.Debug.WriteLine("downfile");
-                    return File(bytes, "application/octet-stream", nameDisplay);
-                }
-                return RedirectToAction("ShowAnswer", new { answerID = answerID });
+
+                string path = Server.MapPath(baseFolder + fileName);
+                var bytes = System.IO.File.ReadAllBytes(path);
+                return File(bytes, "application/force-download", nameDisplay);
             }
-            catch (Exception)
-            {
-                return Content("Download Err");
-            }
+            return RedirectToAction("ShowAnswer", new { answerID = answerID });
         }
+
+        //Update mark
         [HttpGet]
         [CustomAuthorize("Teacher")]
         public ActionResult UpdateMark(AnswerModel model)

@@ -18,7 +18,7 @@
                     <div>@Model.File</div>
                     @if (Model.File != null)
                     {
-                        @Html.ActionLink("Download File", "/downFile",
+                        @Html.ActionLink("Download File", "DownloadFile",
                        new { fileName = Model.File, studentName = Model.StudentID, answerID = Model.AnswerID },
                        new { @class = "btn btn-primary mx-auto" })
                         <br /> 

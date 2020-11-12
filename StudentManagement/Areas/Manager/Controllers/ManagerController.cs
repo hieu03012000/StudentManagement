@@ -21,10 +21,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             Mapper.CreateMap<PersonModel, BusinessObjects.Teacher>();
 
             Mapper.CreateMap<BusinessObjects.Student, PersonModel>();
-            Mapper.CreateMap<PersonModel, BusinessObjects.Student>();
-            
-            Mapper.CreateMap<List<BusinessObjects.Teacher>, LinkedList<PersonModel>>();
-            Mapper.CreateMap<LinkedList<PersonModel>, List<BusinessObjects.Teacher>>();
+            Mapper.CreateMap<PersonModel, BusinessObjects.Student>(); 
 
             Mapper.CreateMap<Person, PersonModel>();
             Mapper.CreateMap<PersonModel, Person>();         
