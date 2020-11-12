@@ -66,7 +66,7 @@ namespace StudentManagement.Areas.Manager.Controllers
             if (string.IsNullOrEmpty(classID))
             {
                 students = service.GetStudentsForManager(searchValue, sort + " " + order, page, pageSize);
-                int totalPages = (int)Math.Ceiling(service.GetTeachersForManager(searchValue, sort + " " + order).Count / (double)pageSize);
+                int totalPages = (int)Math.Ceiling(service.GetStudentsForManager(searchValue, sort + " " + order).Count / (double)pageSize);
                 model = new SearchModel { SearchValue = searchValue, Page = page, PageSize = pageSize, TotalPages = totalPages };
             }
             else
@@ -75,6 +75,7 @@ namespace StudentManagement.Areas.Manager.Controllers
                 var c = Mapper.Map<Class, ClassModel>(service.GetClass(classID));
                 model.Class = c;
                 model.Class.Teacher = Mapper.Map<BusinessObjects.Teacher, PersonModel>(service.GetTeacher(c.TeacherID));
+
             }
                 
             var list = Mapper.Map<List<BusinessObjects.Student>, List<PersonModel>>(students);
