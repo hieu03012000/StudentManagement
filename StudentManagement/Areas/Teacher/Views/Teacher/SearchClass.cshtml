@@ -1,0 +1,72 @@
+﻿@model StudentManagement.Areas.Teacher.Data.SearchClassModel
+
+@{
+    ViewBag.Title = "Classes";
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header ">
+        <h3 class="m-0 text-primary font-weight-bold">Classes</h3>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div id="dataTable_filter" class="dataTables_filter">
+                        <label class="d-flex align-items-center justify-content-center">
+                            Search:
+                            @Html.TextBox("SearchValue", Model.SearchValue,
+                           new { @class = "form-control form-control-sm", style = "width: 500px; margin-left: 2rem;", aria_controls = "dataTable" })
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 mb-4 text-right font-weight-bold">
+                    @Html.ActionLink("+ Add Class", "AddClass")
+                </div>
+            </div>
+            @if (Model.Classes.List.Count > 0)
+            {
+                <div class="row">
+                    @Html.Partial("_ClassList", Model.Classes)
+                    <div class="mt-4 mx-auto">
+                        <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                            <ul class="pagination">
+                                @if (Model.Page != 1)
+                                {
+                                    <li class="paginate_button page-item previous" id="dataTable_previous">
+                                        <a aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link"
+                                           href="/classess?SearchValue=@(Model.SearchValue)&Page=@(Model.Page - 1)">
+                                            <span>←</span>Previous
+                                        </a>
+                                    </li>
+                                }
+                                @for (int i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    <li class="paginate_button page-item @(i == Model.Page ? "active" : "")">
+                                        <a href="/classess?SearchValue=@(Model.SearchValue)&Page=@(i)"
+                                           aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">@(i)</a>
+                                    </li>
+                                }
+                                @if (Model.Page < Model.TotalPages)
+                                {
+                                    <li class="paginate_button page-item next" id="dataTable_next">
+                                        <a href="/classess?SearchValue=@(Model.SearchValue)&Page=@(Model.Page + 1)"
+                                           aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">
+                                            Next<span>→</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No classes found...
+            }
+
+        </form>
+    </div>
+</div>

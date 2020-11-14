@@ -1,0 +1,27 @@
+﻿@model StudentManagement.Areas.Student.Data.ShowAnswerModel
+
+@{
+    ViewBag.Title = "Answer";
+}
+@if (Model.Test != null)
+{
+    @Html.Partial("_TestDetail", Model.Test)
+}
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header ">
+        <h3 class="m-0 text-primary font-weight-bold">Answer</h3>
+    </div>
+    @if (Model.Answer == null)
+    {
+        @Html.ActionLink("+ Answer", "AddAnswer", new { testID = Model.Test.TestID }, new { @class = "btn btn-primary mx-auto" })
+    }
+    <div class="card-body">
+        @if (Model.Answer != null)
+        {
+            @Html.Partial("_AnswerDetail", Model.Answer)
+        }
+
+
+    </div>
+</div>

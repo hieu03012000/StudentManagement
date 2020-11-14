@@ -1,0 +1,39 @@
+﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Teacher.Data.AnswerModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col" style="width:50px;">No.</th>
+                <th scope="col">Answer Title</th>
+                <th scope="col">Create Date</th>
+                <th scope="col">Student</th>
+                <th scope="col">Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td scope="row">@(++count)</td>
+                        <td scope="row">@Html.ActionLink(@item.AnswerTitle, "ShowAnswer", new { answerID = @item.AnswerID })</td>
+                        <td scope="row">@item.CreateDate</td>
+                        <td scope="row">@item.Student.Fullname</td>
+                        <td scope="row">
+                            @if(item.Mark >= 0)
+                            {
+                                <p>@item.Mark</p>
+                            }
+                            else
+                            {
+                                <p>Not marked</p>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
