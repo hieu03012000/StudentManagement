@@ -165,6 +165,7 @@
     <Compile Include="Areas\Teacher\Data\StudentClassModel.cs" />
     <Compile Include="Areas\Teacher\Data\TestModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
+
     <Compile Include="Code\Sorting\SortedList.cs" />
     <Compile Include="Code\Sorting\SorterHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
