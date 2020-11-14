@@ -1,0 +1,56 @@
+﻿@model StudentManagement.Areas.Student.Data.AnswerModel
+
+@{
+    var person = (BusinessObjects.Person)Session["USER_DTO"];
+
+    ViewBag.Title = "Add Answer";
+}
+
+@using (Html.BeginForm("UploadFiles", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-xl-11" style="margin:auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Add Answer</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <form method="post" action="/addAnswer" class="nav-item">
+                        <div class="col-md-8 mx-auto" style="height:430px">
+                            <div style="padding-top:10px" class="mx-auto">
+                                <table class="col-xl-10 mx-auto">
+                                    @Html.HiddenFor(m => m.StudentID, new { @Value = person.Username })
+                                    @Html.HiddenFor(m => m.TestID, new { @Value = Model.TestID })
+                                    <tr>
+                                        <td style="padding:20px"><strong>Title:</strong></td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.AnswerTitle, new { @class = "form-control form-control-user" })
+                                            @Html.ValidationMessageFor(m => m.AnswerTitle, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px "><strong>Description:</strong></td>
+                                        <td>
+                                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control form-control-user" })
+                                            @Html.ValidationMessageFor(m => m.Description, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px "><strong>Description:</strong></td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.FileName, new { @id = "upload", @class = "form-control btn", @type = "file"})
+                                            @Html.ValidationMessageFor(m => m.FileName, null)
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div style="margin-top:50px">
+                                <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block col-xl-3 m-md-auto"  />
+                            </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

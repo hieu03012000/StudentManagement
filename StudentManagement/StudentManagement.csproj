@@ -48,8 +48,8 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -58,18 +58,6 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -123,17 +111,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -144,17 +121,58 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
+    <Compile Include="Areas\Auth\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Auth\Controllers\UpdateController.cs" />
+    <Compile Include="Areas\Auth\Data\ChangePasswordModel.cs" />
+    <Compile Include="Areas\Auth\Data\ChangeProfileModel.cs" />
+    <Compile Include="Areas\Auth\Data\LoginModel.cs" />
+    <Compile Include="Areas\Infrastructure\CheckDuplicateUsername.cs" />
+    <Compile Include="Areas\Infrastructure\CheckSpecialCharacter.cs" />
+    <Compile Include="Areas\Manager\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Manager\Data\StudentClassModel.cs" />
+    <Compile Include="Areas\Manager\Data\ClassModel.cs" />
+    <Compile Include="Areas\Manager\Data\PersonModel.cs" />
+    <Compile Include="Areas\Manager\Data\PersonUpdateModel.cs" />
+    <Compile Include="Areas\Manager\Data\SearchClassModel.cs" />
+    <Compile Include="Areas\Manager\Data\SearchModel.cs" />
     <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Student\Controllers\StudentController.cs" />
+    <Compile Include="Areas\Student\Data\AnswerModel.cs" />
+    <Compile Include="Areas\Student\Data\ShowAnswerModel.cs" />
+    <Compile Include="Areas\Student\Data\ClassModel.cs" />
+    <Compile Include="Areas\Student\Data\PersonModel.cs" />
+    <Compile Include="Areas\Student\Data\SearchClassModel.cs" />
+    <Compile Include="Areas\Student\Data\SearchTestModel.cs" />
+    <Compile Include="Areas\Student\Data\TestModel.cs" />
     <Compile Include="Areas\Student\StudentAreaRegistration.cs" />
+    <Content Include="Areas\Student\Views\Student\ShowAnswer.cshtml" />
+    <Content Include="Areas\Student\Views\Student\_AnswerDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Student\AddAnswer.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\AddStudentClass.cshtml" />
+    <None Include="Areas\Student\Views\Student\_ClassDetail.cshtml" />
+    <None Include="Areas\Student\Views\Student\_TeacherDetail.cshtml" />
+    <Content Include="Areas\Student\Views\Student\SearchTest.cshtml" />
+    <None Include="Areas\Student\Views\Student\_TestDetail.cshtml" />
+    <Compile Include="Areas\Teacher\Controllers\TeacherController.cs" />
+    <Compile Include="Areas\Teacher\Data\AnswerModel.cs" />
+    <Compile Include="Areas\Teacher\Data\ClassModel.cs" />
+    <Compile Include="Areas\Teacher\Data\PersonModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchAnswerModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchClassModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchStudentModel.cs" />
+    <Compile Include="Areas\Teacher\Data\SearchTestModel.cs" />
+    <Compile Include="Areas\Teacher\Data\StudentClassModel.cs" />
+    <Compile Include="Areas\Teacher\Data\TestModel.cs" />
     <Compile Include="Areas\Teacher\TeacherAreaRegistration.cs" />
-    <Compile Include="Code\HtmlHelpers\BreadCrumb.cs" />
-    <Compile Include="Code\HtmlHelpers\BreadCrumbHelper.cs" />
     <Compile Include="Code\Sorting\SortedList.cs" />
     <Compile Include="Code\Sorting\SorterHelper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Infrastructure\CustomAuthenticationFilter.cs" />
+    <Compile Include="Areas\Infrastructure\CustomAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\Sorting\ISortable.cs" />
   </ItemGroup>
@@ -1825,19 +1843,9 @@
     <Content Include="Assets\vendor\jquery\jquery.min.js" />
     <Content Include="Assets\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\vendor\jquery\jquery.slim.min.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Manager\Views\web.config" />
-    <Content Include="Areas\Teacher\Views\web.config" />
-    <Content Include="Areas\Student\Views\web.config" />
     <Content Include="Assets\scss\navs\_global.scss" />
     <Content Include="Assets\scss\navs\_sidebar.scss" />
     <Content Include="Assets\scss\navs\_topbar.scss" />
@@ -2010,17 +2018,47 @@
     <Content Include="Assets\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\vendor\jquery\jquery.min.map" />
     <Content Include="Assets\vendor\jquery\jquery.slim.min.map" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Areas\Auth\Views\web.config" />
+    <Content Include="Areas\Auth\Views\Auth\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\_PeopleList.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\SearchTeacher.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\SearchStudent.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\_ClassList.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\SearchClass.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\_PersonDetail.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ChangeProfile.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ChangePassword.cshtml" />
+    <Content Include="Areas\Auth\Views\Update\ShowProfile.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\_ClassDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\CreateNewAccount.cshtml" />
+    <Content Include="Areas\Teacher\Views\web.config" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_ClassList.cshtml" />
+    <Content Include="Areas\Teacher\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_StudentList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_ClassDetail.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchStudent.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\EditPerson.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\EditClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchTest.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_TestList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\ShowStudentDetail.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\SearchAnswer.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_AnswerList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\_TestDetail.cshtml" />
+    <Content Include="Areas\Manager\Views\Manager\AddClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\EditClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddTest.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\EditTest.cshtml" />
+    <Content Include="Areas\Student\Views\web.config" />
+    <Content Include="Areas\Student\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Student\Views\Student\SearchClass.cshtml" />
+    <Content Include="Areas\Student\Views\Student\_ClassList.cshtml" />
+    <Content Include="Areas\Student\Views\Student\_TestList.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\AddStudentClass.cshtml" />
+    <Content Include="Areas\Teacher\Views\Teacher\ShowAnswer.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2036,29 +2074,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Manager\Controllers\" />
-    <Folder Include="Areas\Manager\Data\" />
+    <Folder Include="Areas\Auth\Views\Shared\" />
     <Folder Include="Areas\Manager\Views\Shared\" />
-    <Folder Include="Areas\Student\Controllers\" />
-    <Folder Include="Areas\Student\Data\" />
     <Folder Include="Areas\Student\Views\Shared\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
-    <Folder Include="Areas\Teacher\Data\" />
     <Folder Include="Areas\Teacher\Views\Shared\" />
+    <Folder Include="Assets\file\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -2068,13 +2092,13 @@
       <Project>{96d90dcc-b99f-4f02-b50d-0fd5369e94ad}</Project>
       <Name>BusinessObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayout\DataObjects.csproj">
+    <ProjectReference Include="..\DataObjects\DataObjects.csproj">
       <Project>{8f3d576e-ce2d-474e-9e23-d14b8be8046d}</Project>
       <Name>DataObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
+    <ProjectReference Include="..\ServiceObject\ServiceObject.csproj">
       <Project>{4994f331-af85-482d-b8da-9c292dff5c56}</Project>
-      <Name>Service</Name>
+      <Name>ServiceObject</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

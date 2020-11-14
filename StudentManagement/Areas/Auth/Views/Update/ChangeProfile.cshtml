@@ -1,0 +1,130 @@
+﻿@model StudentManagement.Areas.Auth.Data.ChangeProfileModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var person = (BusinessObjects.Person)Session["USER_DTO"];
+
+    ViewBag.Title = "Change Profile";
+}
+
+@using (Html.BeginForm("UploadFiles", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-xl-11" style="margin:auto">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h3 class="m-0 font-weight-bold text-primary">Your Profile</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <form method="post" action="changeProfile" class="nav-item">
+                        <div class="col-xl-4">
+                            <div class="container py-5">
+                                <div class="row py-4">
+                                    <div class="col-lg-12" style="text-align:center">
+                                        <!-- Upload image input-->
+                                        @*@Html.EditorFor(m => m.File, new { htmlAttributes = new { @id = "upload", @class = "form-control btn", @type = "file", @onchange = "readURL(this);"} })*@
+                                        @Html.TextBoxFor(m => m.File, new { @id = "upload", @class = "form-control btn", @type = "file", @accept = "image/*", @onchange = "readURL(this);", @hidden = "true" })
+                                        @Html.ValidationMessageFor(m => m.File, null)
+                                        <div class="input-group-append">
+                                            <label for="upload" class="btn btn-light rounded-pill px-5 shadow-sm" style="margin:auto"> Update Avatar</label>
+                                        </div>
+                                        <!-- Uploaded image area-->
+                                        <div class="image-area col-md-12"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm d-block" style="margin:auto; margin-top:30px"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8 mx-auto" style="height:430px">
+                            <div style="padding-top:10px" class="mx-auto">
+                                <table class="col-xl-10 mx-auto">
+                                    <tr>
+                                        <td style="padding:15px"><strong>Username:</strong></td>
+                                        <td>
+                                            @person.Username
+                                            @Html.HiddenFor(m => m.Username, new { @Value = person.Username})
+                                            @Html.HiddenFor(m => m.Image, new { @Value = person.Image})
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px"><strong>Fullname:</strong></td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control form-control-user", @Value = @person.Fullname })
+                                            @Html.ValidationMessageFor(m => m.Fullname, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px "><strong>Gender:</strong></td>
+                                        <td>
+                                            @Html.DropDownListFor(m => m.Gender,
+                                             new SelectList(Enum.GetValues(typeof(BusinessObjects.Enums.Gender))),
+                                             null,
+                                             new { @class = "form-control form-control-user" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px"><strong>Phone:</strong></td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control form-control-user", @Value = @person.Phone })
+                                            @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:20px"><strong>Address:</strong></td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Address, new { @class = "form-control form-control-user", @Value = @person.Address })
+                                            @Html.ValidationMessageFor(m => m.Address, null, new { @class = "col-xl-5", @style = "color:#e74a3b; position:absolute" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:15px"><strong>Role:</strong></td>
+                                        <td>
+                                            @person.Discriminator
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <input type="submit" value="Change Profile" class="btn btn-primary btn-user btn-block col-xl-3 m-md-auto" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /*  ==========================================
+        SHOW UPLOADED IMAGE
+        * ========================================== */
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageResult')
+                        .attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $('#upload').on('change', function () {
+                readURL(input);
+            });
+        });
+
+        /*  ==========================================
+            SHOW UPLOADED IMAGE NAME
+        * ========================================== */
+        var input = document.getElementById('upload');
+        var infoArea = document.getElementById('upload-label');
+        input.addEventListener('change', showFileName);
+        function showFileName(event) {
+            var input = event.srcElement;
+            var fileName = input.files[0].name;
+            infoArea.textContent = 'File name: ' + fileName;
+        }
+    </script>
+}

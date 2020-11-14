@@ -1,0 +1,84 @@
+﻿@model StudentManagement.Code.SortedList<StudentManagement.Areas.Teacher.Data.TestModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped text-center" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col" style="width:50px;">No.</th>
+                <th scope="col">Test Title</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Class</th>
+                <th scope="col">Total Answers</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td scope="row">@(++count)</td>
+                        <td scope="row">@Html.ActionLink(@item.TestTitle, "SearchAnswer", new { testID = @item.TestID })</td>
+                        <td scope="row">@item.CreateDate</td>
+                        <td scope="row">@item.EndDate</td>
+                        <td scope="row">@item.Class.ClassName</td>
+                        <td scope="row">@item.TotalAnswers</td>
+                        <td scope="row">@item.Status</td>
+                        <td scope="row" class="d-flex justify-content-around">
+                            @if (@item.Status == BusinessObjects.Enums.Status.Active)
+                            {
+                                <a class="btn btn-danger text-white" data-toggle="modal" data-target="#inactiveModal@(count)">
+                                    Inactive
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-danger text-white" data-toggle="modal" data-target="#alertModal@(count)">
+                                    Inactive
+                                </a>
+                            }
+                            @Html.ActionLink("Edit", "EditTest", new { id = @item.TestID }, new { @class = "btn btn-success" })
+                        </td>
+                    </tr>
+                    <!-- Delete Modal-->
+                    <div class="modal fade" id="inactiveModal@(count)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Do you want to inactive this Class?</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    @Html.ActionLink("Inactive", "inactiveTest", new { id = @item.TestID }, new { @class = "btn btn-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert Modal-->
+                    <div class="modal fade" id="alertModal@(count)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">This Test has already inactive.</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </tbody>
+    </table>
+</div>
